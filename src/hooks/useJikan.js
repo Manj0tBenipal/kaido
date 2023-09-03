@@ -122,7 +122,11 @@ export function useGetAnimeByMalId(id, toBeExecuted) {
   return useHandleJikanResponse(`anime-${id}`, `anime/${id}`, null);
 }
 export function useGetAnimeByGenre(mal_id) {
-  return useHandleJikanResponse(`anime-by-genre-${mal_id}`, null);
+  return useHandleJikanResponse(
+    `anime-by-genre-${mal_id}`,
+    `anime?genres=${mal_id}`,
+    null
+  );
 }
 export function useGetAnimeByFilter(filterName) {
   return useHandleJikanResponse(
