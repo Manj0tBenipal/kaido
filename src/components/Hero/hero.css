@@ -122,7 +122,8 @@
 
   margin-bottom: 1rem;
 }
-.carousel-item .anime-title, .title-large {
+.carousel-item .anime-title,
+.title-large {
   font-weight: 500;
   font-size: 36px;
   letter-spacing: 1px;
@@ -134,7 +135,7 @@
   font-size: 15px;
   border-radius: 30px;
   font-family: "Poppins", sans-serif;
- 
+  text-decoration: none !important;
 }
 .button-wrapper {
   display: flex;
@@ -142,6 +143,7 @@
 }
 .btn-primary {
   background: var(--theme);
+  color: black !important;
 }
 
 .btn-secondary {
@@ -242,7 +244,6 @@
   .buttons {
     height: 30px;
     width: 100px;
-  
   }
   .hero-button {
     font-size: 13px;

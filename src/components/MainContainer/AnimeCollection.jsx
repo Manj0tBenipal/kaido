@@ -8,7 +8,7 @@ export default function AnimeCollection(props) {
   return (
     <div className="anime-collection-wrapper">
       <h2>{props.collectionName}</h2>
-      <div className="card-wrapper d-flex">{cards}</div>
+      <div className="card-wrapper d-flex a-center j-center">{cards}</div>
     </div>
   );
 }

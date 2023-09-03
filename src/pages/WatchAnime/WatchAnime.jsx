@@ -2,9 +2,11 @@ import React from "react";
 import { useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { ANIME } from "@consumet/extensions";
+import "../../main.css";
+import "./watch-anime.css";
 export default function WatchAnime() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [adBlockEnabled, setAdBlockEnabled] = useState(true);
+  const [adBlockEnabled, setAdBlockEnabled] = useState(false);
   const gogoAnime = new ANIME.Gogoanime({});
   const [searchResults, setSearchResults] = useState({});
   const [currentAnimeInfo, setCurrentAnimeInfo] = useState({});
@@ -27,11 +29,14 @@ export default function WatchAnime() {
   const episodeButtons = episodes?.map((el, idx) => {
     return (
       <span
-        style={{ margin: 10, padding: 5, border: "1px solid white" }}
+        className={`episode-tile ${
+          idx === currentEpisodeIdx ? "selected" : ""
+        }`}
         key={el.id}
+        style={episodes.length < 10 ? {minWidth: "100%", borderRadius: 0} : null}
         onClick={() => setCurrentEpisodeIdx(idx)}
       >
-        {el.number}
+        {episodes.length < 10 ?  ` Episode: ` + el.number : el.number}
       </span>
     );
   });
@@ -64,41 +69,55 @@ export default function WatchAnime() {
         });
     }
   }, [episodes, currentEpisodeIdx]);
-  console.log(adBlockEnabled);
-
+  console.log(currentAnimeInfo);
   return (
-    <div style={{ marginTop: 100 }}>
-      <div>
-        If None of the servers work please disable Adblocking Here And change
-        the server <label htmlFor="adblock">Adblock</label>
+    <>
+      {/* <div
+        style={{ marginTop: 60, background: "yellow", color: "black" }}
+        className="warn"
+      >
+        If you want to block redirects blease turn on the adBlock here. Change
+        the servers and look for the working one.
+        <label htmlFor="adblock">Adblock</label>
         <input
           checked={adBlockEnabled}
           onChange={(e) => setAdBlockEnabled(e.target.checked)}
           type="checkbox"
           id="adblock"
         />
-      </div>
-      {episodeButtons}
-      <div>
-        {adBlockEnabled ? (
-          <iframe
-            height="300"
-            width="500"
-            src={episodeServers[currentServerIdx]?.url}
-            allowFullScreen
-            sandbox="allow-scripts"
-          ></iframe>
-        ) : (
-          <iframe
-            height="300"
-            width="500"
-            src={episodeServers[currentServerIdx]?.url}
-            allowFullScreen
-          ></iframe>
-        )}
-      </div>
+      </div> */}
+      <div style={{ marginTop: 60 }} className="watch-container d-flex">
+        <img
+          className="watch-container-background"
+          src={currentAnimeInfo.image}
+        />
+        <div className="media-center d-flex">
+          <div className="episode-container">
+            <p>List Of Episodes:</p>
+            <div className="episode-tiles-wrapper d-flex a-center">
+              {episodeButtons}
+            </div>
+          </div>
 
-      <div>{serverButtons}</div>
-    </div>
+          <div className="video-player">
+            {adBlockEnabled ? (
+              <iframe
+                src={episodeServers[currentServerIdx]?.url}
+                allowFullScreen
+                sandbox="allow-scripts"
+                border={0}
+              ></iframe>
+            ) : (
+              <iframe
+                src={episodeServers[currentServerIdx]?.url}
+                allowFullScreen
+              ></iframe>
+            )}
+            <div className="d-flex a-center j-center">Sub: {serverButtons}</div>
+          </div>
+        </div>
+        <div className="current-anime-details"></div>
+      </div>
+    </>
   );
 }

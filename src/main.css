@@ -32,7 +32,6 @@ body {
   --height-large: 600px;
   --light: #ffffff;
   --theme: rgb(83, 255, 134);
-
   --random-colors: #ff5733, #33ff57, #5733ff, #ff33a8, #33a8ff, #a833ff, #ff33ff,
     #33ffc2, #a8ff33, #ffc233;
 }
@@ -56,7 +55,7 @@ body {
   transition: all 100ms ease;
 }
 .app-container {
-  max-width: 2500px;
+  max-width: 1700px;
   padding: 0 !important;
   margin: 0 auto;
   color: var(--light);

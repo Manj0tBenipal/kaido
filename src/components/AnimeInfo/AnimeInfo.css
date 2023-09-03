@@ -29,6 +29,7 @@
   justify-content: space-between;
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
 }
 .details-header-primary {
   max-width: calc(70% - 40px);
@@ -111,4 +112,36 @@
 }
 .details-header-genre {
   border-bottom: 1px solid grey;
+}
+@media screen and (max-width: 1200px) {
+  .details-header-primary {
+    min-width: 100%;
+  }
+  .details-header-secondary {
+    min-width: 100%;
+  }
+  .details-header-genre {
+    border-bottom: none;
+  }
+  .details-header-statistics {
+    border-bottom: none;
+    margin-bottom: 0px;
+  }
+}
+@media screen and (max-width: 700px) {
+  .anime-details {
+    flex-direction: column;
+  }
+  .anime-details-content .title-large {
+    text-align: center;
+  }
+  .anime-details-poster {
+    height: 250px;
+    margin: auto;
+  }
+}
+@media screen and (max-width: 450px) {
+  .details-header-primary {
+    padding: 10px;
+  }
 }

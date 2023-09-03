@@ -15,6 +15,7 @@ export default function Details() {
     return (
       <Link
         className="genre-button"
+        key={genre.mal_id}
         to={`/grid/genre?id=${genre.mal_id}&name=${genre.name}`}
       >
         {genre.name}
@@ -24,7 +25,10 @@ export default function Details() {
 
   const licensors = animeObj?.licensors?.map((licensor) => {
     return (
-      <Link to={`/grid/${licensor.mal_id}/${licensor.name}`}>
+      <Link
+        key={licensor.name}
+        to={`/grid/${licensor.mal_id}/${licensor.name}`}
+      >
         {licensor.name + ", "}
       </Link>
     );
@@ -32,7 +36,10 @@ export default function Details() {
 
   const producers = animeObj?.producers?.map((producer) => {
     return (
-      <Link to={`/grid/${producer.mal_id}/${producer.name}`}>
+      <Link
+        key={producer.name}
+        to={`/grid/${producer.mal_id}/${producer.name}`}
+      >
         {producer.name + ", "}
       </Link>
     );
@@ -40,7 +47,7 @@ export default function Details() {
 
   const studios = animeObj?.studios?.map((studio) => {
     return (
-      <Link to={`/grid/${studio.mal_id}/${studio.name}`}>
+      <Link key={studio.name} to={`/grid/${studio.mal_id}/${studio.name}`}>
         {studio.name + ", "}
       </Link>
     );
@@ -80,7 +87,9 @@ export default function Details() {
               </h1>
               <div className="anime-statistics-tiles-wrapper d-flex a-center">
                 <span className="anime-statistics-tile d-flex a-center j-center">
-                  {animeObj.rating || "NA"}
+                  {window.innerWidth < 450
+                    ? animeObj.rating.slice(0, 6)
+                    : animeObj.rating || "NA"}
                 </span>
                 <span className="anime-statistics-tile d-flex a-center j-center">
                   <FaMedal /> - {animeObj.rank || "NA"}

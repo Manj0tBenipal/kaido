@@ -9,7 +9,7 @@ import AnimeByFilter from "./pages/AnimeByFilter";
 import "./main.css";
 import AnimeByType from "./pages/AnimeByType";
 import RecommendedTopTen from "./Layouts/RecommendedTopTen";
-import WatchAnime from "./pages/WatchAnime";
+import WatchAnime from "./pages/WatchAnime/WatchAnime";
 export default function App() {
   return (
     <BrowserRouter>

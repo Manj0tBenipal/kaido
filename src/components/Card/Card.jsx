@@ -21,8 +21,8 @@ export default function Card(props) {
       </div>
       <div className="card-details">
         <span className="card-title">
-          {anime.title_english?.length > 25
-            ? anime.title_english?.slice(0, 25) + "..."
+          {anime.title_english?.length > 15
+            ? anime.title_english?.slice(0, 15) + "..."
             : anime.title_english || anime.title}
         </span>
         <div className="card-statistics">
