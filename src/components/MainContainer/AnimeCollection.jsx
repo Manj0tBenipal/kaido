@@ -1,0 +1,14 @@
+import React from "react";
+import Card from "../Card/Card";
+import "./main-container.css";
+export default function AnimeCollection(props) {
+  const cards = props.data.data?.data.map((data, idx) => {
+    return <Card key={data.mal_id} data={data} />;
+  });
+  return (
+    <div className="anime-collection-wrapper">
+      <h2>{props.collectionName}</h2>
+      <div className="card-wrapper d-flex">{cards}</div>
+    </div>
+  );
+}

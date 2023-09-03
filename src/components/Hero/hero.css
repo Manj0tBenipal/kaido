@@ -1,0 +1,308 @@
+.carousel-img {
+  position: absolute;
+  right: 0;
+  object-fit: cover;
+
+  width: 70%;
+  height: var(--height-large);
+}
+.img-wrapper {
+  height: var(--height-large);
+  width: 100%;
+}
+
+.carousel {
+  height: var(--height-large);
+}
+.carousel-inner {
+  height: var(--height-large);
+  width: 100%;
+}
+.anime-info {
+  position: absolute;
+  height: var(--height-large);
+  width: 100%;
+  bottom: 0px;
+  left: 0px;
+  background: linear-gradient(0deg, #242428 0%, #24242800 15%, #24242800 60%);
+
+  z-index: 4;
+
+  color: white;
+}
+
+/* Gradient from left to right */
+.carousel-item .anime-info::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #242428 30%, #242428d4 35%, #24242800 45%);
+}
+
+/* Gradient from navbar to bottom */
+.carousel-item .anime-info::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, #242428 5%, #242428d4 15%, #24242800 60%);
+}
+
+/* Gradient from right to left */
+.carousel-item::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(270deg, #242428 2%, #242428d4 5%, #24242800 10%);
+}
+
+.carousel-control-next {
+  z-index: 99;
+}
+
+.carousel-control-prev {
+  z-index: 99;
+}
+
+.carousel-item {
+  width: 100%;
+  height: 100%;
+}
+.anime-info-content {
+  position: absolute;
+  bottom: 3em;
+  left: 3em;
+  z-index: 2;
+  width: 40%;
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.anime-st-item {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  font-family: "Poppins", sans-serif;
+}
+.quality {
+  background-color: var(--theme);
+  color: black;
+  padding: 2px 4px;
+  border-radius: 2px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  gap: 2px;
+}
+.episode-count {
+  color: black;
+  padding: 2px 4px;
+  border-radius: 2px;
+  font-size: 0.7rem;
+  background-color: rgb(255, 166, 0);
+  font-weight: 600;
+}
+.anime-statistics {
+  display: flex;
+  gap: 20px;
+}
+.rank {
+  color: var(--theme);
+}
+.description {
+  color: rgb(177, 177, 177);
+
+  margin-bottom: 1rem;
+}
+.carousel-item .anime-title, .title-large {
+  font-weight: 500;
+  font-size: 36px;
+  letter-spacing: 1px;
+}
+
+.hero-button {
+  padding: 10px 20px;
+  border: none;
+  font-size: 15px;
+  border-radius: 30px;
+  font-family: "Poppins", sans-serif;
+ 
+}
+.button-wrapper {
+  display: flex;
+  gap: 10px;
+}
+.btn-primary {
+  background: var(--theme);
+}
+
+.btn-secondary {
+  background: rgba(176, 176, 176, 0.829);
+  backdrop-filter: blur(10px);
+  color: white;
+}
+
+.carousel-controls {
+  position: relative !important;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.5);
+  color: rgb(0, 0, 0);
+  border-radius: 7px;
+  opacity: 1 !important;
+  z-index: 10 !important;
+  user-select: none;
+  border: none;
+  cursor: pointer;
+}
+
+.carousel-controls:hover {
+  background: var(--theme);
+}
+
+.carousel-controls-wrapper {
+  position: absolute;
+  right: 40px;
+  bottom: 3rem;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+}
+.swiper-pagination-bullet {
+  background-color: var(--light) !important;
+  height: 9px !important;
+  width: 9px !important;
+
+  opacity: 1 !important;
+}
+.swiper-horizontal > .swiper-pagination-bullets {
+  display: none !important;
+}
+.swiper-pagination-bullet-active {
+  background-color: var(--theme) !important;
+}
+@media screen and (max-width: 1220px) {
+  .anime-info {
+    height: var(--height-medium);
+  }
+  .carousel-inner {
+    height: var(--height-medium);
+  }
+  .img-wrapper {
+    height: var(--height-medium);
+  }
+  .carousel-img {
+    height: var(--height-medium);
+  }
+  .carousel {
+    height: var(--height-medium);
+  }
+  .rank {
+    font-size: 15px;
+    font-weight: 600;
+  }
+  .anime-info-content {
+    width: 80%;
+  }
+  .description {
+    font-size: 14px;
+  }
+  .carousel-item .anime-title {
+    font-size: 35px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .carousel-item .anime-info::before {
+    display: none;
+  }
+  /* Gradient from right to left */
+  .carousel-item::after {
+    background: linear-gradient(
+      270deg,
+      #242428 2%,
+      #242428d4 4%,
+      #24242800 10%
+    );
+  }
+  .anime-statistics {
+    display: none;
+  }
+  .description {
+    display: none;
+  }
+  .buttons {
+    height: 30px;
+    width: 100px;
+  
+  }
+  .hero-button {
+    font-size: 13px;
+    padding: 8px 15px;
+  }
+
+  .anime-info::after {
+    display: none;
+  }
+  .carousel-img {
+    width: 100%;
+    opacity: 0.5;
+  }
+  .carousel-controls {
+    display: none;
+  }
+  .anime-info-content {
+    width: 100%;
+    left: 1em;
+  }
+  .carousel {
+    height: var(--height-small) !important;
+  }
+  .anime-info {
+    height: var(--height-small);
+  }
+  .carousel-inner {
+    height: var(--height-small);
+  }
+  .img-wrapper {
+    height: var(--height-small);
+  }
+  .carousel-img {
+    height: var(--height-small);
+  }
+  .carousel {
+    height: var(--height-medium);
+  }
+  .rank {
+    font-weight: 400;
+    font-size: 12px;
+  }
+
+  .carousel-item .anime-title {
+    font-size: 20px;
+    letter-spacing: 0;
+  }
+
+  .swiper-horizontal > .swiper-pagination-bullets {
+    /* bottom: var(--swiper-pagination-bottom, 8px); */
+    bottom: 0;
+    right: 10px !important ;
+    left: auto !important;
+    width: 20px !important;
+    bottom: 5px !important;
+    display: flex !important;
+    gap: 13px;
+    align-items: center;
+    justify-content: center;
+    height: 80%;
+    flex-direction: column;
+  }
+}

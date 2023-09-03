@@ -1,0 +1,99 @@
+.top-ten-wrapper ul {
+  list-style: none;
+  padding: 10px !important;
+  background: rgba(255, 255, 255, 0.1);
+}
+.top-ten-wrapper ul li {
+  padding: 20px 20px 0px 20px;
+  gap: 15px;
+}
+
+.top-ten-wrapper ul li .title a{
+  text-decoration: none;
+  color: white;
+}
+.top-ten-wrapper ul li .rank {
+  font-size: 18px;
+  width: 30px;
+  color: grey;
+  text-align: center;
+}
+.top-ten-wrapper ul li .top-three {
+  border-bottom: 4px solid var(--theme);
+  color: white;
+}
+.top-ten-wrapper ul li img {
+  min-width: 50px;
+  height: 65px;
+  object-fit: cover;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.top-ten-wrapper {
+  width: 100%;
+}
+.top-ten-header {
+  padding-block: 30px;
+  color: var(--theme);
+  justify-content: space-between;
+}
+
+.top-ten-wrapper ul li .anime-details {
+  gap: 10px;
+  padding: 4px;
+}
+.top-ten-wrapper ul li .episode-info {
+  font-size: 12px;
+}
+.top-ten-wrapper ul li .episode-count {
+  font-size: 10px;
+  color: black;
+  border-radius: 3px 0px 0px 3px;
+}
+.top-ten-wrapper ul li .quality {
+  font-size: 10px;
+  color: black;
+  border-radius: 0 3px 3px 0;
+}
+.top-ten-wrapper li .show-type {
+  margin-left: 10px;
+}
+
+.top-ten-wrapper a:hover {
+  color: var(--theme);
+}
+.top-10-item {
+  gap: 10px;
+  flex: 1;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.097);
+}
+
+.period-selector {
+  padding: 7px 10px;
+  border: none;
+  color: white;
+  background: rgba(255, 255, 255, 0.1);
+}
+.period-selector.selected {
+  background: var(--theme);
+  color: black;
+}
+.period-selector:hover {
+  color: var(--theme);
+  cursor: pointer;
+}
+.period-selector.selected:hover {
+  color: black;
+}
+.period-selector:nth-child(1) {
+  border-radius: 10px 0px 0px 10px;
+}
+.period-selector:nth-child(3) {
+  border-radius: 0px 10px 10px 0px;
+}
+@media screen and (max-width: 1080px) {
+  .top-ten-wrapper ul {
+    padding: 0px !important;
+  }
+}

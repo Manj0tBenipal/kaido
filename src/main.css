@@ -1,0 +1,108 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&family=Ubuntu:wght@300;400&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;500;600&display=swap");
+
+.f-ubuntu {
+  font-family: "Ubuntu", sans-serif;
+}
+html {
+  scroll-behavior: auto;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background: var(--dark) !important;
+  min-height: 100vh;
+}
+#root {
+  min-width: 100%;
+}
+
+.f-poppins {
+  font-family: "Poppins", sans-serif !important;
+}
+:root {
+  --grey-dark: #343a40;
+  --dark: #242428;
+  --height-small: 400px;
+  --height-medium: 500px;
+  --height-large: 600px;
+  --light: #ffffff;
+  --theme: rgb(83, 255, 134);
+
+  --random-colors: #ff5733, #33ff57, #5733ff, #ff33a8, #33a8ff, #a833ff, #ff33ff,
+    #33ffc2, #a8ff33, #ffc233;
+}
+.d-flex {
+  display: flex;
+}
+.d-flex-fd-column {
+  display: flex;
+  flex-direction: column;
+}
+.a-center {
+  align-items: center;
+}
+.j-center {
+  justify-content: center;
+}
+.trans-c-03 > * {
+  transition: all 100ms ease;
+}
+.trans-03 {
+  transition: all 100ms ease;
+}
+.app-container {
+  max-width: 2500px;
+  padding: 0 !important;
+  margin: 0 auto;
+  color: var(--light);
+}
+.section-header {
+  font-family: "Poppins", sans-serif;
+  color: var(--theme);
+}
+/* width */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--grey);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--grey-dark);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--theme);
+}
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  width: 200px;
+  margin-inline: auto;
+}
+
+.spinner {
+  animation: rotate 800ms linear infinite;
+}
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

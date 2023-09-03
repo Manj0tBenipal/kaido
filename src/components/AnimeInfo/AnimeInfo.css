@@ -1,0 +1,114 @@
+.details-container {
+  margin-top: 65px;
+  position: relative;
+  justify-content: space-between;
+}
+.details-container-background {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.details-header::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(20px);
+  background: rgba(93, 93, 93, 0.701);
+  z-index: -1;
+}
+
+.details-header {
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+}
+.details-header-primary {
+  max-width: calc(70% - 40px);
+  padding: 40px;
+}
+
+.details-header .anime-details {
+  gap: 20px;
+}
+.anime-details-poster {
+  height: 250px;
+}
+.anime-statistics-tiles-wrapper {
+  gap: 2px;
+}
+.anime-statistics-tile {
+  font-size: 12px;
+  line-height: 12px;
+  color: black;
+  padding: 4px;
+  font-weight: 500;
+}
+.anime-details-content {
+  gap: 30px;
+}
+.anime-details-content p {
+  font-size: 14px;
+  color: rgb(224, 224, 224);
+}
+.anime-statistics-tile:nth-of-type(5n - 4) {
+  background-color: rgba(107, 213, 242, 0.816);
+  border-radius: 3px 0px 0 3px;
+}
+.anime-statistics-tile:nth-of-type(5n - 3) {
+  background-color: white;
+}
+.anime-statistics-tile:nth-of-type(5n - 2) {
+  background-color: #ffdd95;
+}
+.anime-statistics-tile:nth-of-type(5n - 1) {
+  background-color: #b0e3af;
+}
+.anime-statistics-tile:nth-of-type(5n) {
+  background-color: #e3b5cd;
+  border-radius: 0px 3px 3px 0px;
+}
+.details-header-secondary {
+  padding: 20px;
+  flex-grow: 1;
+  max-width: calc(25% - 40px);
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+}
+.details-header-statistics {
+  border-bottom: 1px solid grey;
+  margin-bottom: 20px;
+}
+.details-header-secondary p {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+.details-header a {
+  text-decoration: none;
+  color: white;
+}
+.details-header a:hover {
+  color: var(--theme);
+}
+.genre-button {
+  display: inline-block;
+  text-decoration: none;
+  color: white;
+  padding: 3px 7px;
+  margin: 3px;
+  border: 1px solid;
+  border-radius: 15px;
+  font-size: 13px;
+}
+.details-header-genre {
+  border-bottom: 1px solid grey;
+}

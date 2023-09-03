@@ -1,0 +1,107 @@
+.featured-container {
+  width: 100%;
+  padding: 20px 30px;
+  flex-wrap: wrap;
+}
+.category-container ul {
+  list-style: none;
+  padding-left: 0 !important;
+}
+.category-container ul li {
+  padding: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.097);
+  gap: 15px;
+}
+.category-container ul li img {
+  height: 90px;
+  min-width: 64px;
+  border-radius: 5px;
+  overflow: hidden;
+  object-fit: cover;
+}
+.category-container {
+  flex: 1;
+  padding: 20px;
+}
+.category-container h4 {
+  color: var(--theme);
+  padding-block: 20px;
+}
+.category-container ul li .anime-details {
+  gap: 10px;
+ 
+}
+.category-container ul li .episode-info {
+  gap: 5px;
+  font-weight: bolder;
+  align-items: center;
+}
+.category-container ul li .show-type {
+  font-weight: 400;
+  color: grey;
+  font-size: 0.7rem;
+}
+.category-container a {
+  text-decoration: none;
+  font-size: 16px;
+  line-height: 16px;
+  color: white;
+  
+}
+
+.category-container a:hover {
+  color: var(--theme);
+}
+.dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.3);
+    display: inline-block;
+    margin: 3px 6px;
+}
+.view-more-link{
+  padding: 10px;
+}
+@media screen and (max-width: 1500px) {
+  .category-container h4 {
+    font-size: 18px;
+  }
+  .category-container {
+    flex: 1;
+    padding-inline: 10px;
+  }
+  .category-container ul li {
+    padding: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.097);
+    gap: 10px;
+  }
+  .featured-container {
+    padding: 20px;
+  }
+}
+@media screen and (max-width: 1375px) {
+  .category-container {
+    flex-basis: 50%;
+    padding-inline: 5px;
+  }
+
+  .category-container h4 {
+    font-size: 16px;
+  }
+}
+@media screen and (max-width: 700px) {
+  .category-container {
+    flex-basis: 100%;
+    padding-inline: 5px;
+  }
+
+  .category-container h4 {
+    font-size: 18px;
+  }
+}
+@media screen and (max-width: 450px) {
+  .featured-container {
+    padding-inline: 10px;
+  }
+}

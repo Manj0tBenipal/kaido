@@ -1,0 +1,146 @@
+.navigation-bar {
+  position: fixed !important;
+  height: 65px;
+  width: 100%;
+  z-index: 11;
+  top: 0;
+  max-width: 2500px;
+  margin: auto;
+  gap: 40px;
+}
+.navigation-bar.dark {
+  backdrop-filter: blur(0px);
+}
+.navigation-bar.blur {
+  backdrop-filter: blur(6px);
+}
+.burger-icon {
+  color: white;
+  margin-inline: 20px;
+  cursor: pointer;
+}
+.burger-icon:hover {
+  color: var(--theme);
+}
+.logo {
+  height: 40px;
+  margin-inline: 10px;
+}
+.logo-text {
+  height: 40px;
+}
+
+.logo-wrapper {
+  color: white;
+}
+.logo-text {
+  color: white;
+  line-height: 80px;
+}
+.search-wrapper {
+  position: relative;
+  height: 40px;
+  width: 20%;
+}
+.search-icon {
+  right: 10px;
+}
+.filter-icon {
+  right: 40px;
+}
+.search-text {
+  height: 100%;
+  width: 100%;
+  padding-inline: 20px;
+}
+.search-icons {
+  position: absolute;
+
+  height: 100%;
+  cursor: pointer;
+}
+
+.social-links-wrapper {
+  color: white;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+.social-links-wrapper > span {
+  padding: 5px;
+  border-radius: 50%;
+}
+.social-links-wrapper span a {
+  text-decoration: none;
+  color: white;
+  line-height: 2px;
+}
+.nav-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+.nav-actions > * {
+  text-align: center;
+  cursor: pointer;
+}
+.nav-actions svg {
+  color: var(--theme);
+}
+.nav-actions *:hover {
+  color: var(--theme);
+}
+.nav-actions a {
+  color: white;
+  text-decoration: none;
+}
+.nav-actions p {
+  margin: 0;
+  font-size: 11px;
+}
+.user-profile-nots {
+  gap: 10px;
+  color: white;
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+}
+.user-profile-nots > * {
+  cursor: pointer;
+}
+.user-profile-nots > *:hover {
+  color: var(--theme);
+}
+.profile-icon {
+  height: 36.5px;
+  border-radius: 50%;
+}
+
+@media screen and (max-width: 1300px) {
+  .search-wrapper {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .social-links-wrapper {
+    display: none;
+  }
+}
+@media screen and (max-width: 790px) {
+  .nav-actions {
+    display: none;
+  }
+}
+@media screen and (max-width: 580px) {
+  .navigation-bar {
+    height: 50px;
+    background: var(--dark) !important;
+  }
+
+  .logo {
+    height: 30px;
+  }
+}

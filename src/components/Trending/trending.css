@@ -1,0 +1,116 @@
+.trending-section-wrapper {
+  padding: 20px 40px;
+}
+
+.trending-section-wrapper h2 {
+  padding-block: 20px;
+}
+.trending-section-wrapper .swiper {
+  padding: 20px 60px 20px 0px;
+}
+
+.trending-slide {
+  height: 260px;
+  position: relative;
+  padding: 10px;
+    color: white;
+  display: block;
+}
+.trending-slide a {
+  width: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+
+  left: 40px;
+}
+.trending-slide-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.trending-item-sidebar {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  row-gap: 50px;
+}
+.trending-item-sidebar p {
+  transform: rotate(270deg);
+  white-space: nowrap;
+  font-size: 17px;
+  width: 100px;
+}
+.trending-item-sidebar span {
+  color: var(--theme);
+  font-family: "Poppins";
+  font-size: 18px;
+  font-weight: 600;
+}
+.trending-swiper-navigation {
+  display: flex;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  flex-direction: column;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 0px 30px 10px;
+  background-color: var(--dark);
+  z-index: 4;
+  gap: 10px;
+}
+.swiper-controls {
+  flex-grow: 1;
+  background: rgba(255, 255, 255, 0.5);
+  padding: 0px 9px;
+  border-radius: 7px;
+  cursor: pointer;
+  user-select: none;
+  color: var(--dark);
+}
+.swiper-controls:hover {
+  background: var(--theme);
+}
+
+@media screen and (max-width: 600px) {
+  .trending-section-wrapper {
+    padding: 0;
+  }
+  .trending-section-wrapper .swiper {
+    padding: 0;
+  }
+  .trending-slide {
+    height: 200px;
+  }
+  .trending-slide a {
+    left: 0;
+  }
+  .trending-item-sidebar span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 8;
+    background: white;
+    padding: 4px 10px;
+    margin-top: 0;
+  }
+
+  .trending-item-sidebar p {
+    display: none;
+  }
+  .trending-swiper-navigation {
+    display: none;
+  }
+  .trending-item-sidebar span {
+    background-color: var(--dark);
+  }
+}

@@ -1,0 +1,161 @@
+.review-section-wrapper {
+  padding: 20px;
+  padding-bottom: 0;
+  background: rgba(255, 255, 255, 0.1);
+}
+.review-card {
+  padding: 15px;
+  border-radius: 20px;
+  background: linear-gradient(
+    180deg,
+    rgba(142, 142, 142, 0.1),
+    rgba(251, 251, 251, 0)
+  );
+  font-size: 14px;
+}
+
+.review-toggle {
+  padding: 20px;
+  gap: 10px;
+}
+.review-section-toolbar {
+  width: 100%;
+
+  justify-content: space-between;
+}
+.review-section {
+  position: relative;
+  width: 100%;
+  min-height: 350px;
+  height: auto;
+  overflow: hidden;
+
+  user-select: none;
+}
+.review-section > img {
+  position: absolute;
+  left: 0px;
+  width: 350px;
+  top: 0;
+  object-fit: cover;
+  overflow: hidden;
+}
+
+.review-list-container {
+  position: absolute;
+  padding-left: 350px;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+}
+.review-list {
+  cursor: grab;
+}
+.review-list > * {
+  max-width: 400px;
+  white-space: pre-wrap;
+}
+.review-type button {
+  margin-left: 5px;
+  padding: 7px 10px;
+  background-color: transparent;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+.review-type .selected {
+  border: 2px solid var(--theme);
+  color: var(--theme);
+}
+.swiper-scrollbar {
+  position: relative !important;
+  margin: auto;
+  margin-top: 20px;
+}
+.user-profile {
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.user-profile img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+  display: inline-block;
+}
+.user-profile a {
+  display: inline-block;
+  text-decoration: none;
+  color: var(--theme);
+  line-height: 40px;
+}
+.review-card .anime-title {
+  font-size: 13px;
+  margin-top: 20px;
+  color: var(--theme);
+  line-height: 13px;
+}
+
+@media screen and (max-width: 1200px) {
+  .review-section > img {
+    display: none;
+  }
+  .review-list-container {
+    padding-left: 0;
+  }
+}
+@media screen and (max-width: 600px) {
+  .review-type button {
+    font-size: 14px;
+    padding: 7px 14px;
+  }
+  .review-card {
+    background: linear-gradient(
+      180deg,
+      rgba(142, 142, 142, 0.1),
+      rgba(251, 251, 251, 0.115)
+    );
+    font-size: 14px;
+  }
+  .review-toggle {
+    gap: 10px;
+    font-size: 14px;
+    padding-inline: 0;
+  }
+  .review-section-wrapper {
+    padding: 10px;
+  }
+  .review-toggle svg {
+    height: 30px;
+  }
+  .review-type .selected {
+    border: none;
+    background-color: var(--theme);
+    color: black;
+  }
+  .review-card .anime-title {
+    font-size: 13px;
+    line-height: 13px;
+  }
+  .user-profile img {
+    width: 30px;
+    height: 30px;
+  }
+  .user-profile a {
+    display: inline-block;
+    text-decoration: none;
+    color: var(--theme);
+    line-height: 30px;
+    font-size: 14px;
+  }
+  .review-card {
+    font-size: 14px;
+  }
+  .swiper-scrollbar {
+    display: none;
+  }
+  .review-section {
+    min-height: 300px;
+  }
+}
