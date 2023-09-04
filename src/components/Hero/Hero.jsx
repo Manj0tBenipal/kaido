@@ -9,7 +9,7 @@ import {
   FaPlayCircle,
 } from "react-icons/fa";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
-import { useRecentAnime, useTrendingAnime } from "../../hooks/useKitsu";
+import { useRecentAnime } from "../../hooks/useKitsu";
 import LoadingSpinner from "../LoadingSpinner";
 import { Link } from "react-router-dom";
 
@@ -20,7 +20,7 @@ export default function Hero() {
     const item = el.attributes;
 
     return (
-      <SwiperSlide data-bs-interval="1500" key={el.id}>
+      <SwiperSlide data-bs-interval="400" key={el.id}>
         <div className={`carousel-item`}>
           <div className="anime-info">
             <div className="anime-info-content">

@@ -1,7 +1,7 @@
 .review-section-wrapper {
   padding: 20px;
   padding-bottom: 0;
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--grey-dark);
 }
 .review-card {
   padding: 15px;

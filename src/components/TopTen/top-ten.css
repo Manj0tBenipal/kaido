@@ -1,14 +1,14 @@
 .top-ten-wrapper ul {
   list-style: none;
   padding: 10px !important;
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--grey-dark);
 }
 .top-ten-wrapper ul li {
   padding: 20px 20px 0px 20px;
   gap: 15px;
 }
 
-.top-ten-wrapper ul li .title a{
+.top-ten-wrapper ul li .title a {
   text-decoration: none;
   color: white;
 }

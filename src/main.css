@@ -55,7 +55,7 @@ body {
   transition: all 100ms ease;
 }
 .app-container {
-  max-width: 1700px;
+  max-width: 1980px;
   padding: 0 !important;
   margin: 0 auto;
   color: var(--light);

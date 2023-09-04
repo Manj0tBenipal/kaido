@@ -28,7 +28,7 @@ export default function NavBar(props) {
   return (
     <nav
       className={`navigation-bar a-center d-flex ${
-        pageIsScrolled ? "blur" : "dark"
+        pageIsScrolled ? "dark" : "transparent"
       }`}
     >
       <div className="menu-group a-center d-flex">

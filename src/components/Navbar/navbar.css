@@ -4,16 +4,14 @@
   width: 100%;
   z-index: 11;
   top: 0;
-  max-width: 2500px;
+  max-width: 1920px;
   margin: auto;
   gap: 40px;
 }
 .navigation-bar.dark {
-  backdrop-filter: blur(0px);
+  background-color: var(--grey-dark);
 }
-.navigation-bar.blur {
-  backdrop-filter: blur(6px);
-}
+
 .burger-icon {
   color: white;
   margin-inline: 20px;

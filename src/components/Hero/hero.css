@@ -118,8 +118,7 @@
   color: var(--theme);
 }
 .description {
-  color: rgb(177, 177, 177);
-
+  
   margin-bottom: 1rem;
 }
 .carousel-item .anime-title,
@@ -212,7 +211,7 @@
     font-weight: 600;
   }
   .anime-info-content {
-    width: 80%;
+    width: 40%;
   }
   .description {
     font-size: 14px;

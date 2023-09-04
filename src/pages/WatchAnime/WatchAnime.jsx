@@ -4,8 +4,11 @@ import { useEffect, useState } from "react";
 import { ANIME } from "@consumet/extensions";
 import "../../main.css";
 import "./watch-anime.css";
+import { BiToggleLeft, BiToggleRight } from "react-icons/bi";
+import RecommendedTopTen from "../../Layouts/RecommendedTopTen";
 export default function WatchAnime() {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [descIsCollapsed, setDescIsCollapsed] = useState(true);
+  const [searchParams] = useSearchParams();
   const [adBlockEnabled, setAdBlockEnabled] = useState(false);
   const gogoAnime = new ANIME.Gogoanime({});
   const [searchResults, setSearchResults] = useState({});
@@ -14,10 +17,13 @@ export default function WatchAnime() {
   const [currentEpisodeIdx, setCurrentEpisodeIdx] = useState(0);
   const [episodeServers, setEpisodeServers] = useState([]);
   const [currentServerIdx, setCurrentServerIdx] = useState(0);
+  // const experiment = getAnimeIds(searchParams.get("name"));
+  // console.log(experiment);
+  console.log(currentAnimeInfo);
   const serverButtons = episodeServers?.map((el, idx) => {
     return (
       <span
-        style={{ margin: 10, padding: 5, border: "1px solid white" }}
+        className={`server-tile ${currentServerIdx === idx ? "selected" : ""}`}
         key={el.name}
         onClick={() => setCurrentServerIdx(idx)}
       >
@@ -33,10 +39,12 @@ export default function WatchAnime() {
           idx === currentEpisodeIdx ? "selected" : ""
         }`}
         key={el.id}
-        style={episodes.length < 10 ? {minWidth: "100%", borderRadius: 0} : null}
+        style={
+          episodes.length < 10 ? { minWidth: "100%", borderRadius: 0 } : null
+        }
         onClick={() => setCurrentEpisodeIdx(idx)}
       >
-        {episodes.length < 10 ?  ` Episode: ` + el.number : el.number}
+        {episodes.length < 10 ? ` Episode: ` + el.number : el.number}
       </span>
     );
   });
@@ -69,23 +77,8 @@ export default function WatchAnime() {
         });
     }
   }, [episodes, currentEpisodeIdx]);
-  console.log(currentAnimeInfo);
   return (
     <>
-      {/* <div
-        style={{ marginTop: 60, background: "yellow", color: "black" }}
-        className="warn"
-      >
-        If you want to block redirects blease turn on the adBlock here. Change
-        the servers and look for the working one.
-        <label htmlFor="adblock">Adblock</label>
-        <input
-          checked={adBlockEnabled}
-          onChange={(e) => setAdBlockEnabled(e.target.checked)}
-          type="checkbox"
-          id="adblock"
-        />
-      </div> */}
       <div style={{ marginTop: 60 }} className="watch-container d-flex">
         <img
           className="watch-container-background"
@@ -113,11 +106,74 @@ export default function WatchAnime() {
                 allowFullScreen
               ></iframe>
             )}
-            <div className="d-flex a-center j-center">Sub: {serverButtons}</div>
+            <div className="server-container d-flex a-center j-center">
+              <div
+                style={{
+                  background: "yellow",
+                  color: "black",
+                  padding: "10px",
+                  maxWidth: "30%",
+                }}
+                className="warn"
+              >
+                To Block redirects. enable AdBlock and look for a working server
+                <p className="d-flex a-center j-center">
+                  AdBlock
+                  {adBlockEnabled ? (
+                    <BiToggleRight
+                      style={{ cursor: "pointer" }}
+                      size={25}
+                      onClick={() => setAdBlockEnabled((prev) => !prev)}
+                    />
+                  ) : (
+                    <BiToggleLeft
+                      style={{ cursor: "pointer" }}
+                      size={25}
+                      onClick={() => setAdBlockEnabled((prev) => !prev)}
+                    />
+                  )}
+                </p>
+              </div>
+              <div className="server-tile-wrapper d-flex-fd-column">
+                <div>Sub: {serverButtons}</div>
+                <div>Sub: {serverButtons}</div>
+              </div>
+            </div>
           </div>
         </div>
-        <div className="current-anime-details"></div>
+        <div className="current-anime-details ">
+          <img
+            className="details-container-background"
+            src={currentAnimeInfo.image || "NA"}
+          />
+          <div className="anime-details d-flex-fd-column">
+            <img
+              className="anime-details-poster"
+              src={currentAnimeInfo.image || "NA"}
+            />
+
+            <div className="anime-details-content d-flex-fd-column">
+              <h1 style={{ textAlign: "center" }} className="title-large">
+                {currentAnimeInfo.title}
+              </h1>
+
+              <p>
+                {descIsCollapsed
+                  ? currentAnimeInfo.description?.slice(0, 150) + "..."
+                  : currentAnimeInfo.description}
+                <span
+                  style={{ cursor: "pointer" }}
+                  onClick={() => setDescIsCollapsed((prev) => !prev)}
+                >
+                  [ {descIsCollapsed ? "More" : "Less"} ]
+                </span>
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
+
+      <RecommendedTopTen />
     </>
   );
 }

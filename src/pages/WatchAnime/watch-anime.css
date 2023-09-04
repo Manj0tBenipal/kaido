@@ -1,7 +1,6 @@
 .watch-container {
   position: relative;
   padding: 20px;
-  height: calc(100vh - 65px);
 }
 .watch-container-background {
   position: absolute;
@@ -26,9 +25,11 @@
 .media-center {
   width: 75%;
   background-color: var(--dark);
+  padding-bottom: 20px;
 }
 .episode-container {
   width: 25%;
+  max-height: 520px;
   padding: 20px;
 }
 .episode-tiles-wrapper {
@@ -38,12 +39,18 @@
   text-align: center;
   align-items: flex-start;
   gap: 5px;
+  max-height: 100%;
   overflow-y: auto;
-  max-height: calc(100% - 20px);
 }
 .current-anime-details {
-  flex-grow: 1;
-  background: white;
+  width: 25%;
+  padding: 20px;
+
+  overflow-y: auto;
+}
+.current-anime-details img {
+  width: 200px;
+  margin: auto;
 }
 .episode-tile {
   width: calc(100% / 4 - 5px);
@@ -54,16 +61,41 @@
   border-radius: 4px;
   overflow: hidden;
 }
+.server-container {
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.server-tile-wrapper {
+  gap: 10px;
+}
+.server-tile {
+  display: inline-block;
+  padding: 5px;
+  background-color: var(--grey-dark);
+  cursor: pointer;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+.server-tile.selected {
+  color: black;
+  background-color: var(--theme);
+}
 .episode-tile.selected {
   color: black;
   background-color: var(--theme);
 }
 .video-player {
-  flex-grow: 1;
+  width: 75%;
 }
 .video-player iframe {
   width: 100% !important;
   aspect-ratio: 16/9;
   overflow: hidden;
-  border: 0;
+  border: none;
+}
+
+@media screen and (max-width: 1600px) {
+  .warn {
+    min-width: 100%;
+  }
 }
