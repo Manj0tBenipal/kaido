@@ -155,5 +155,9 @@
   }
   .watch-container {
     margin-top: 50px;
+    padding-top: 0;
+  }
+  .video-player iframe{
+    aspect-ratio: 4/3;
   }
 }
