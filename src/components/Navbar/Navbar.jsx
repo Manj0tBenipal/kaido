@@ -49,10 +49,19 @@ export default function NavBar(props) {
           className="search-text f-poppins"
           placeholder="Search anime..."
           name="name"
+          value={searchForm?.name}
           onChange={(e) => handleSearchForm(e)}
         />
-        <FaSearch className="search-icon search-icons" size={20} color="grey" />
-        <FaFilter className="filter-icon search-icons" size={20} color="grey" />
+        <Link to={`/search?name=${searchForm?.name}`}>
+          <FaSearch
+            onClick={() => setSearchForm({ name: "" })}
+            className="search-icon search-icons"
+            size={20}
+            color="grey"
+          />
+        </Link>
+
+        {/* <FaFilter className="filter-icon search-icons" size={20} color="grey" /> */}
       </div>
       <div className="social-links-wrapper">
         <span

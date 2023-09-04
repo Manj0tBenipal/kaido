@@ -149,3 +149,9 @@ export function useGetRecommendedAnime(type) {
     null
   );
 }
+export function useGetRandomAnime() {
+  return useHandleJikanResponse(`random-anime`, "random/anime", null);
+}
+export function useGetAnimeSearch(name) {
+  return useHandleJikanResponse(`anime-search${name}`, `anime?q=${name}`);
+}

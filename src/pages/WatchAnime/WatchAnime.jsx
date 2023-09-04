@@ -30,9 +30,7 @@ export default function WatchAnime() {
 
   const [currentServerIdx, setCurrentServerIdx] = useState(0);
   const [currentEpisodeIdx, setCurrentEpisodeIdx] = useState(0);
-  // const experiment = getAnimeIds(searchParams.get("name"));
-  // console.log(experiment);
-  console.log(rawResultsDub);
+
   const serverButtonsDub = episodeServersDub?.map((el, idx) => {
     return (
       <span
@@ -127,13 +125,13 @@ export default function WatchAnime() {
   useEffect(() => {
     if (episodes.length > 0) {
       gogoAnime
-        .fetchEpisodeServers(episodes[currentEpisodeIdx].id)
+        .fetchEpisodeServers(episodes[currentEpisodeIdx]?.id)
         .then((data) => {
           setEpisodeServers(data);
         });
     }
     if (searchResults?.results?.length > 0) {
-      gogoAnime.search(searchResults.results[1].id).then((data) => {
+      gogoAnime.search(searchResults.results[1]?.id).then((data) => {
         setRawResultsDub({ fromSubArr: data });
       });
       gogoAnime.search(`${searchResults.results[0].id}-dub`).then((data) => {
@@ -249,14 +247,16 @@ export default function WatchAnime() {
               <div className="server-tile-wrapper d-flex-fd-column">
                 <div>
                   Language Preference:{" "}
-                  <span
-                    className={`server-tile ${
-                      !subIsSelected ? "selected" : ""
-                    }`}
-                    onClick={() => handlLanguageChange(false)}
-                  >
-                    DUB
-                  </span>
+                  {episodesDub?.length > 0 && (
+                    <span
+                      className={`server-tile ${
+                        !subIsSelected ? "selected" : ""
+                      }`}
+                      onClick={() => handlLanguageChange(false)}
+                    >
+                      DUB
+                    </span>
+                  )}
                   <span
                     className={`server-tile ${subIsSelected ? "selected" : ""}`}
                     onClick={() => handlLanguageChange(true)}

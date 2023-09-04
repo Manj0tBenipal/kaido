@@ -1,5 +1,6 @@
 import React from "react";
 import { FaRandom, FaComments, FaBroadcastTower } from "react-icons/fa";
+import { Link } from "react-router-dom";
 export default function Actions({ isInSidebar }) {
   return (
     <div
@@ -26,14 +27,10 @@ export default function Actions({ isInSidebar }) {
         </a>
       </span>
       <span>
-        <a
-          href="https://twitter.com/AniWatchGo"
-          target="_blank"
-          rel="noreferrer"
-        >
+        <Link to="/details/random" href="https://twitter.com/AniWatchGo">
           <FaRandom size={20} />
           <p>Random</p>
-        </a>
+        </Link>
       </span>
       {!isInSidebar && (
         <span>

@@ -1,6 +1,7 @@
 .share-app {
   padding: 40px;
   gap: 10px;
+
 }
 .share-app p {
   margin: 0 !important;
@@ -11,6 +12,7 @@
 }
 .share-app img {
   width: 70px;
+  
   height: 70px;
   object-fit: cover;
   border-radius: 50%;

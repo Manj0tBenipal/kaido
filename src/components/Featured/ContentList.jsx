@@ -12,7 +12,11 @@ export default function CategorieContainer(props) {
         />
         <div className="anime-details d-flex-fd-column">
           <span className="title">
-            <Link to={`/details/jikan/${el.mal_id}`} className="trans-03">
+            <Link
+              to={`/details/jikan/${el.mal_id}`}
+              className="trans-03"
+              onClick={() => window.scrollTo({ top: 0 })}
+            >
               {el.title_english || el.title}
             </Link>
           </span>

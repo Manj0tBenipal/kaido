@@ -35,6 +35,12 @@
   color: white;
   line-height: 80px;
 }
+.search-wrapper input:focus {
+  border: none;
+  /* Optionally, you can also remove the outline that appears by default */
+  outline: none;
+}
+
 .search-wrapper {
   position: relative;
   height: 40px;
