@@ -12,14 +12,33 @@ export default function WatchAnime() {
   const [adBlockEnabled, setAdBlockEnabled] = useState(false);
   const gogoAnime = new ANIME.Gogoanime({});
   const [searchResults, setSearchResults] = useState({});
+  const [subIsSelected, setSubIsSelected] = useState(true);
+
   const [currentAnimeInfo, setCurrentAnimeInfo] = useState({});
+  const [currentAnimeInfoDub, setCurrentAnimeInfoDub] = useState({});
+
   const [episodes, setEpisodes] = useState([]);
-  const [currentEpisodeIdx, setCurrentEpisodeIdx] = useState(0);
+  const [episodesDub, setEpisodesDub] = useState([]);
+
   const [episodeServers, setEpisodeServers] = useState([]);
+  const [episodeServersDub, setEpisodeServersDub] = useState([]);
+
   const [currentServerIdx, setCurrentServerIdx] = useState(0);
+  const [currentEpisodeIdx, setCurrentEpisodeIdx] = useState(0);
   // const experiment = getAnimeIds(searchParams.get("name"));
   // console.log(experiment);
-  console.log(currentAnimeInfo);
+
+  const serverButtonsDub = episodeServersDub?.map((el, idx) => {
+    return (
+      <span
+        className={`server-tile ${currentServerIdx === idx ? "selected" : ""}`}
+        key={el.name}
+        onClick={() => setCurrentServerIdx(idx)}
+      >
+        {el.name}
+      </span>
+    );
+  });
   const serverButtons = episodeServers?.map((el, idx) => {
     return (
       <span
@@ -32,6 +51,22 @@ export default function WatchAnime() {
     );
   });
 
+  const episodeButtonsDub = episodesDub?.map((el, idx) => {
+    return (
+      <span
+        className={`episode-tile ${
+          idx === currentEpisodeIdx ? "selected" : ""
+        }`}
+        key={el.id}
+        style={
+          episodes.length < 10 ? { minWidth: "100%", borderRadius: 0 } : null
+        }
+        onClick={() => setCurrentEpisodeIdx(idx)}
+      >
+        {episodes.length < 10 ? ` Episode: ` + el.number : el.number}
+      </span>
+    );
+  });
   const episodeButtons = episodes?.map((el, idx) => {
     return (
       <span
@@ -48,6 +83,7 @@ export default function WatchAnime() {
       </span>
     );
   });
+
   useEffect(() => {
     gogoAnime
       .search(searchParams.get("name"))
@@ -58,6 +94,9 @@ export default function WatchAnime() {
       gogoAnime.fetchAnimeInfo(searchResults.results[0].id).then((data) => {
         setCurrentAnimeInfo(data);
       });
+      gogoAnime.fetchAnimeInfo(searchResults.results[1].id).then((data) => {
+        setCurrentAnimeInfoDub(data);
+      });
     }
   }, [searchResults]);
   useEffect(() => {
@@ -66,6 +105,12 @@ export default function WatchAnime() {
         return el;
       });
       setEpisodes(episodes);
+    }
+    if (currentAnimeInfoDub?.episodes?.length > 0) {
+      const episodes = currentAnimeInfoDub.episodes.map((el, idx) => {
+        return el;
+      });
+      setEpisodesDub(episodes);
     }
   }, [currentAnimeInfo]);
   useEffect(() => {
@@ -76,10 +121,17 @@ export default function WatchAnime() {
           setEpisodeServers(data);
         });
     }
+    if (episodesDub.length > 0) {
+      gogoAnime
+        .fetchEpisodeServers(episodesDub[currentEpisodeIdx].id)
+        .then((data) => {
+          setEpisodeServersDub(data);
+        });
+    }
   }, [episodes, currentEpisodeIdx]);
   return (
     <>
-      <div style={{ marginTop: 60 }} className="watch-container d-flex">
+      <div style={{ paddingTop: "65px" }} className="watch-container d-flex">
         <img
           className="watch-container-background"
           src={currentAnimeInfo.image}
@@ -88,35 +140,43 @@ export default function WatchAnime() {
           <div className="episode-container">
             <p>List Of Episodes:</p>
             <div className="episode-tiles-wrapper d-flex a-center">
-              {episodeButtons}
+              {subIsSelected ? episodeButtons : episodeButtonsDub}
             </div>
           </div>
 
           <div className="video-player">
             {adBlockEnabled ? (
               <iframe
-                src={episodeServers[currentServerIdx]?.url}
+                src={
+                  subIsSelected
+                    ? episodeServers[currentServerIdx]?.url
+                    : episodeServersDub[currentServerIdx]?.url
+                }
                 allowFullScreen
-                sandbox="allow-scripts"
+                sandbox="allow-scripts allow-same-origin"
                 border={0}
               ></iframe>
             ) : (
               <iframe
-                src={episodeServers[currentServerIdx]?.url}
+                src={
+                  subIsSelected
+                    ? episodeServers[currentServerIdx]?.url
+                    : episodeServersDub[currentServerIdx]?.url
+                }
                 allowFullScreen
               ></iframe>
             )}
-            <div className="server-container d-flex a-center j-center">
+            <div className="server-container d-flex-fd-column">
               <div
                 style={{
                   background: "yellow",
                   color: "black",
                   padding: "10px",
-                  maxWidth: "30%",
                 }}
                 className="warn"
               >
-                To Block redirects. enable AdBlock and look for a working server
+                To Block redirects, enable AdBlock. Change the servers to see
+                the effect. Some servers might not work
                 <p className="d-flex a-center j-center">
                   AdBlock
                   {adBlockEnabled ? (
@@ -135,8 +195,26 @@ export default function WatchAnime() {
                 </p>
               </div>
               <div className="server-tile-wrapper d-flex-fd-column">
-                <div>Sub: {serverButtons}</div>
-                <div>Sub: {serverButtons}</div>
+                <div>
+                  Language Preference:{" "}
+                  <span
+                    className={`server-tile ${
+                      !subIsSelected ? "selected" : ""
+                    }`}
+                    onClick={() => setSubIsSelected(false)}
+                  >
+                    DUB
+                  </span>
+                  <span
+                    className={`server-tile ${subIsSelected ? "selected" : ""}`}
+                    onClick={() => setSubIsSelected(true)}
+                  >
+                    SUB
+                  </span>
+                </div>
+                <div>
+                  Servers: {subIsSelected ? serverButtons : serverButtonsDub}
+                </div>
               </div>
             </div>
           </div>
