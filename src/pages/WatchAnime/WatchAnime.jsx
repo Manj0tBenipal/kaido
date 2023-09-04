@@ -6,6 +6,7 @@ import "../../main.css";
 import "./watch-anime.css";
 import { BiToggleLeft, BiToggleRight } from "react-icons/bi";
 import RecommendedTopTen from "../../Layouts/RecommendedTopTen";
+import Share from "../../components/Share/Share";
 export default function WatchAnime() {
   const [descIsCollapsed, setDescIsCollapsed] = useState(true);
   const [searchParams] = useSearchParams();
@@ -31,7 +32,7 @@ export default function WatchAnime() {
   const [currentEpisodeIdx, setCurrentEpisodeIdx] = useState(0);
   // const experiment = getAnimeIds(searchParams.get("name"));
   // console.log(experiment);
-
+  console.log(rawResultsDub);
   const serverButtonsDub = episodeServersDub?.map((el, idx) => {
     return (
       <span
@@ -101,6 +102,8 @@ export default function WatchAnime() {
       setSubIsSelected(false);
     }
   }
+
+  //UseEffects For Sub
   useEffect(() => {
     gogoAnime
       .search(searchParams.get("name"))
@@ -139,8 +142,13 @@ export default function WatchAnime() {
     }
   }, [episodes, currentEpisodeIdx]);
 
+  //UseEffects For Dub
+
   useEffect(() => {
-    if (rawResultsDub?.fromSubArr?.results?.length > 0) {
+    if (
+      rawResultsDub?.fromSubArr?.results &&
+      rawResultsDub?.fromSubId?.results
+    ) {
       if (rawResultsDub.fromSubId?.results?.length > 0) {
         setSearchResultsDub(rawResultsDub.fromSubId);
       } else {
@@ -167,7 +175,7 @@ export default function WatchAnime() {
   useEffect(() => {
     if (episodesDub.length > 0) {
       gogoAnime
-        .fetchEpisodeServers(episodesDub[currentEpisodeIdx].id)
+        .fetchEpisodeServers(episodesDub[currentEpisodeIdx]?.id)
         .then((data) => {
           setEpisodeServersDub(data);
         });
@@ -296,6 +304,11 @@ export default function WatchAnime() {
           </div>
         </div>
       </div>
+      <Share
+        style={{
+          paddingInline: 20,
+        }}
+      />
 
       <RecommendedTopTen />
     </>

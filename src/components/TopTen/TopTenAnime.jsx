@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./top-ten.css";
 import { useTrendingAnime } from "../../hooks/useKitsu";
 import { FaStar } from "react-icons/fa";
+import { Link } from "react-router-dom";
 export default function TopTenAnime() {
   const { data } = useTrendingAnime();
   const [period, setPeriod] = useState(2);
@@ -24,12 +25,13 @@ export default function TopTenAnime() {
           <img src={el.attributes.posterImage.tiny} alt="poster" />
           <div className="anime-details d-flex-fd-column">
             <span className="title">
-              <a
-                href={`https://www.youtube.com/watch?v=${el.attributes.youtubeVideoId}`}
+              <Link
+                onClick={() => window.scrollTo({ top: 0 })}
+                to={`/details/kitsu/${el.id}`}
                 className="trans-03"
               >
                 {title}
-              </a>
+              </Link>
             </span>
             <div className="episode-info d-flex ">
               <span className="episode-count">

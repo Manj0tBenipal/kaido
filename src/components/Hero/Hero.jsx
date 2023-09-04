@@ -20,7 +20,7 @@ export default function Hero() {
     const item = el.attributes;
 
     return (
-      <SwiperSlide data-bs-interval="400" key={el.id}>
+      <SwiperSlide data-bs-interval="4 00" key={el.id}>
         <div className={`carousel-item`}>
           <div className="anime-info">
             <div className="anime-info-content">
@@ -49,7 +49,7 @@ export default function Hero() {
                 </span>
               </div>
               <p className="description">
-                {(item.background && item.description.slice(0, 250) + "...") ||
+                {(item.background && item.background.slice(0, 250) + "...") ||
                   (item.synopsis && item.synopsis.slice(0, 250) + "...")}
               </p>
               <div className="button-wrapper">

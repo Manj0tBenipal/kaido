@@ -12,11 +12,7 @@ export default function RecommendedTopTen() {
   return (
     <>
       <Outlet />
-      <Share
-        style={{
-          paddingInline: 20,
-        }}
-      />
+      
       <div
         className=" main-container d-flex  "
         style={

@@ -23,7 +23,7 @@ export default function Trending() {
             </p>
             <span>{idx > 8 ? idx + 1 : "0" + (idx + 1)}</span>
           </div>
-          <Link to={`/details/kitsu/${el.id}`}  >
+          <Link onClick={()=>window.scrollTo({top:0})} to={`/details/kitsu/${el.id}`}  >
             <img
               src={item.posterImage.small}
               className="trending-slide-img "
