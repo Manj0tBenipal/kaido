@@ -29,7 +29,6 @@
 }
 .episode-container {
   width: 25%;
-  max-height: 520px;
   padding: 20px;
 }
 .episode-tiles-wrapper {
@@ -37,9 +36,9 @@
   margin-top: 5px;
   justify-content: flex-start;
   text-align: center;
-  align-items: flex-start;
+  align-items: center;
   gap: 5px;
-  max-height: 100%;
+  max-height: 520px;
   overflow-y: auto;
 }
 .current-anime-details {
@@ -51,6 +50,7 @@
 .current-anime-details img {
   width: 200px;
   margin: auto;
+  height: auto;
 }
 .episode-tile {
   width: calc(100% / 4 - 5px);
@@ -70,7 +70,8 @@
 }
 .server-tile {
   display: inline-block;
-  padding: 5px;
+  padding: 3px 5px;
+  font-size: 12px;
   background-color: var(--grey-dark);
   cursor: pointer;
   border-radius: 4px;
@@ -92,4 +93,67 @@
   aspect-ratio: 16/9;
   overflow: hidden;
   border: none;
+}
+@media screen and (max-width: 1400px) {
+  .watch-container {
+    flex-direction: column;
+  }
+  .media-center {
+    width: 100%;
+  }
+  .episode-container {
+    width: 20%;
+  }
+  .video-player {
+    width: 80%;
+  }
+  .current-anime-details {
+    width: 80%;
+    margin: auto;
+  }
+}
+@media screen and (max-width: 1100px) {
+  .watch-container {
+    padding: 0;
+  }
+  .media-center {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+  .episode-container {
+    width: 80%;
+  }
+  .video-player {
+    width: 80%;
+  }
+  .current-anime-details {
+    width: 90%;
+    margin: auto;
+  }
+
+  .episode-tile {
+    width: calc(100% / 10 - 5px);
+  }
+  .server-tile-wrapper {
+    padding: 10px;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .episode-container {
+    width: 100%;
+  }
+  .video-player {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 580px) {
+  .episode-tile {
+    width: calc(100% / 6 - 5px);
+  }
+  .current-anime-details {
+    width: 100%;
+  }
+  .watch-container {
+    margin-top: 50px;
+  }
 }

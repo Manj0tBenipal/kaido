@@ -11,8 +11,12 @@ export default function WatchAnime() {
   const [searchParams] = useSearchParams();
   const [adBlockEnabled, setAdBlockEnabled] = useState(false);
   const gogoAnime = new ANIME.Gogoanime({});
-  const [searchResults, setSearchResults] = useState({});
+
   const [subIsSelected, setSubIsSelected] = useState(true);
+
+  const [searchResults, setSearchResults] = useState({});
+  const [rawResultsDub, setRawResultsDub] = useState({});
+  const [searchResultsDub, setSearchResultsDub] = useState({});
 
   const [currentAnimeInfo, setCurrentAnimeInfo] = useState({});
   const [currentAnimeInfoDub, setCurrentAnimeInfoDub] = useState({});
@@ -84,6 +88,19 @@ export default function WatchAnime() {
     );
   });
 
+  function handlLanguageChange(preference) {
+    if (preference) {
+      if (episodes.length < currentEpisodeIdx + 1) {
+        setCurrentEpisodeIdx(0);
+      }
+      setSubIsSelected(true);
+    } else {
+      if (episodesDub.length < currentEpisodeIdx + 1) {
+        setCurrentEpisodeIdx(0);
+      }
+      setSubIsSelected(false);
+    }
+  }
   useEffect(() => {
     gogoAnime
       .search(searchParams.get("name"))
@@ -94,9 +111,6 @@ export default function WatchAnime() {
       gogoAnime.fetchAnimeInfo(searchResults.results[0].id).then((data) => {
         setCurrentAnimeInfo(data);
       });
-      gogoAnime.fetchAnimeInfo(searchResults.results[1].id).then((data) => {
-        setCurrentAnimeInfoDub(data);
-      });
     }
   }, [searchResults]);
   useEffect(() => {
@@ -105,12 +119,6 @@ export default function WatchAnime() {
         return el;
       });
       setEpisodes(episodes);
-    }
-    if (currentAnimeInfoDub?.episodes?.length > 0) {
-      const episodes = currentAnimeInfoDub.episodes.map((el, idx) => {
-        return el;
-      });
-      setEpisodesDub(episodes);
     }
   }, [currentAnimeInfo]);
   useEffect(() => {
@@ -121,6 +129,42 @@ export default function WatchAnime() {
           setEpisodeServers(data);
         });
     }
+    if (searchResults?.results?.length > 0) {
+      gogoAnime.search(searchResults.results[1].id).then((data) => {
+        setRawResultsDub({ fromSubArr: data });
+      });
+      gogoAnime.search(`${searchResults.results[0].id}-dub`).then((data) => {
+        setRawResultsDub((prev) => ({ ...prev, fromSubId: data }));
+      });
+    }
+  }, [episodes, currentEpisodeIdx]);
+
+  useEffect(() => {
+    if (rawResultsDub?.fromSubArr?.results?.length > 0) {
+      if (rawResultsDub.fromSubId?.results?.length > 0) {
+        setSearchResultsDub(rawResultsDub.fromSubId);
+      } else {
+        setSearchResultsDub(rawResultsDub.fromSubArr);
+      }
+    }
+  }, [rawResultsDub]);
+
+  useEffect(() => {
+    if (searchResultsDub?.results?.length > 0) {
+      gogoAnime.fetchAnimeInfo(searchResultsDub?.results[0].id).then((data) => {
+        setCurrentAnimeInfoDub({ ...data });
+      });
+    }
+  }, [searchResultsDub]);
+  useEffect(() => {
+    if (currentAnimeInfoDub?.episodes?.length > 0) {
+      const episodes = currentAnimeInfoDub.episodes.map((el) => {
+        return el;
+      });
+      setEpisodesDub(episodes);
+    }
+  }, [currentAnimeInfoDub]);
+  useEffect(() => {
     if (episodesDub.length > 0) {
       gogoAnime
         .fetchEpisodeServers(episodesDub[currentEpisodeIdx].id)
@@ -128,10 +172,10 @@ export default function WatchAnime() {
           setEpisodeServersDub(data);
         });
     }
-  }, [episodes, currentEpisodeIdx]);
+  }, [episodesDub, currentEpisodeIdx]);
   return (
     <>
-      <div style={{ paddingTop: "65px" }} className="watch-container d-flex">
+      <div style={{ marginTop: "65px" }} className="watch-container d-flex">
         <img
           className="watch-container-background"
           src={currentAnimeInfo.image}
@@ -201,13 +245,13 @@ export default function WatchAnime() {
                     className={`server-tile ${
                       !subIsSelected ? "selected" : ""
                     }`}
-                    onClick={() => setSubIsSelected(false)}
+                    onClick={() => handlLanguageChange(false)}
                   >
                     DUB
                   </span>
                   <span
                     className={`server-tile ${subIsSelected ? "selected" : ""}`}
-                    onClick={() => setSubIsSelected(true)}
+                    onClick={() => handlLanguageChange(true)}
                   >
                     SUB
                   </span>
@@ -232,7 +276,9 @@ export default function WatchAnime() {
 
             <div className="anime-details-content d-flex-fd-column">
               <h1 style={{ textAlign: "center" }} className="title-large">
-                {currentAnimeInfo.title}
+                {subIsSelected
+                  ? currentAnimeInfo.title
+                  : currentAnimeInfoDub.title}
               </h1>
 
               <p>

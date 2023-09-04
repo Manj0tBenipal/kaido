@@ -1,8 +1,8 @@
 import React from "react";
 import Genre from "../components/Genre/Genre";
 import TopTenAnime from "../components/TopTen/TopTenAnime";
-import { Outlet } from "react-router-dom";
 import Share from "../components/Share/Share";
+import { Outlet } from "react-router-dom";
 export default function GenreSidebar() {
   return (
     <>
