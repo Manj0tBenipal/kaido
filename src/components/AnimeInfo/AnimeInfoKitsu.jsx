@@ -63,8 +63,8 @@ export default function Details() {
               <div className="button-wrapper">
                 <Link
                   to={`/watch?name=${
-                    data.attributes.canonicalTitle ||
                     data.attributes.titles.en ||
+                    data.attributes.canonicalTitle ||
                     data.attributes.titles.en_jp
                   }`}
                   className="btn-primary hero-button"

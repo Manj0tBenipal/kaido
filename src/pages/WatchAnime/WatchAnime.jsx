@@ -12,7 +12,6 @@ export default function WatchAnime() {
   const [searchParams] = useSearchParams();
   const [adBlockEnabled, setAdBlockEnabled] = useState(false);
   const gogoAnime = new ANIME.Gogoanime({});
-
   const [subIsSelected, setSubIsSelected] = useState(true);
 
   const [searchResults, setSearchResults] = useState({});

@@ -83,7 +83,7 @@ export default function Details() {
 
             <div className="anime-details-content d-flex-fd-column">
               <h1 className="title-large">
-                {animeObj.title || animeObj.title_english}
+                {animeObj.title_english || animeObj.title}
               </h1>
               <div className="anime-statistics-tiles-wrapper d-flex a-center">
                 <span className="anime-statistics-tile d-flex a-center j-center">
@@ -106,7 +106,7 @@ export default function Details() {
               </div>
               <div className="button-wrapper">
                 <Link
-                  to={`/watch?name=${animeObj.title || animeObj.title_english}`}
+                  to={`/watch?name=${animeObj.title_english || animeObj.title}`}
                   className="btn-primary hero-button"
                 >
                   <FaPlayCircle size={12} /> Watch Now
