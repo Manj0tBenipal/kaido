@@ -59,6 +59,7 @@ body {
   padding: 0 !important;
   margin: 0 auto;
   color: var(--light);
+  position: relative;
 }
 .section-header {
   font-family: "Poppins", sans-serif;

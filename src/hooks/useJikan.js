@@ -152,6 +152,9 @@ export function useGetRecommendedAnime(type) {
 export function useGetRandomAnime() {
   return useHandleJikanResponse(`random-anime`, "random/anime", null);
 }
-export function useGetAnimeSearch(name) {
-  return useHandleJikanResponse(`anime-search${name}`, `anime?q=${name}`);
+export function useGetAnimeSearch(name, parameter) {
+  return useHandleJikanResponse(
+    `anime-search${name}`,
+    `anime?${parameter === "letter" ? "letter=" + name : "q=" + name}&limit=24`
+  );
 }

@@ -9,11 +9,28 @@
   margin-right: 10px;
   padding-right: 10px;
 }
-.logo-social-links {
+.logo-social-links .social-links {
   border-bottom: 1px solid var(--grey-dark);
   padding-block: 10px;
 }
 
 .help-text {
   align-items: flex-end;
+}
+.alphabet-tile {
+  text-align: center;
+  min-width: 25px;
+  font-weight: bolder;
+  padding: 2px 7px;
+  border-radius: 5px;
+  background-color: var(--grey-dark);
+  text-decoration: none;
+  color: white;
+}
+.alphabet-list {
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.copyright-text {
+  color: grey;
 }

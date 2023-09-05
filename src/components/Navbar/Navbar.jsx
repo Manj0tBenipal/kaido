@@ -44,7 +44,7 @@ export default function NavBar(props) {
           value={searchForm?.name}
           onChange={(e) => handleSearchForm(e)}
         />
-        <Link to={`/search?name=${searchForm?.name}`}>
+        <Link to={`/search?name=${searchForm?.name}&parameter=title`}>
           <FaSearch
             onClick={() => setSearchForm({ name: "" })}
             className="search-icon search-icons"
