@@ -53,16 +53,18 @@
   z-index: 2;
 }
 .anime-card-img-wrapper .rating {
-  background-color: var(--theme);
+  background-color: #ffdd95;
   color: var(--dark);
-  font-size: 11px;
-  padding: 2px;
+  font-weight: bolder;
+  font-size: 10px;
+  padding: 1px 4px;
   border-radius: 2px 0px 0px 2px;
 }
 .anime-card-img-wrapper .episode-count {
-  padding: 2px;
-  font-size: 11px;
+  padding: 1px 4px;
+  font-size: 10px;
   border-radius: 0px 2px 2px 0px;
+  background-color:  #b0e3af;
 }
 .card-title {
   color: white;

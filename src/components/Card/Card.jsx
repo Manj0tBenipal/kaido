@@ -17,7 +17,7 @@ export default function Card(props) {
           <span className="episode-count">CC:{anime.episodes || "Full"}</span>
         </div>
 
-        <img src={anime.images.webp.image_url} alt="anime-card" />
+        <img src={anime.images.webp.large_image_url} alt="anime-card" />
       </div>
       <div className="card-details">
         <span className="card-title">
@@ -28,7 +28,7 @@ export default function Card(props) {
         <div className="card-statistics">
           <span>
             {anime.duration === "Unknown"
-              ? `${anime.season || "S:NA"}   ${anime.year || "Y:NA"}`
+              ? `?`
               : anime.duration.length > 7
               ? anime.duration.slice(0, 7)
               : anime.duration || "23m"}

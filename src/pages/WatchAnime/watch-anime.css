@@ -70,12 +70,12 @@
 }
 .server-tile {
   display: inline-block;
-  padding: 3px 5px;
-  font-size: 12px;
+  padding: 1px 5px;
+  font-size: 13px;
   background-color: var(--grey-dark);
   cursor: pointer;
   border-radius: 4px;
-  margin-right: 10px;
+  margin: 0px 10px 10px 0px;
 }
 .server-tile.selected {
   color: black;
@@ -94,7 +94,13 @@
   overflow: hidden;
   border: none;
 }
-@media screen and (max-width: 1400px) {
+.warn {
+  font-size: 12px;
+}
+.warn p{
+  font-size: 14px;
+}
+@media  screen and (max-width: 1400px) {
   .watch-container {
     flex-direction: column;
   }
@@ -157,7 +163,7 @@
     margin-top: 50px;
     padding-top: 0;
   }
-  .video-player iframe{
+  .video-player iframe {
     aspect-ratio: 4/3;
   }
 }
