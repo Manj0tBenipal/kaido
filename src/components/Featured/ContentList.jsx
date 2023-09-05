@@ -21,10 +21,10 @@ export default function CategorieContainer(props) {
             </Link>
           </span>
           <div className="episode-info d-flex f-ubuntu">
-            <span className="episode-count">CC:{el.episodes || "NA"}</span>{" "}
+            <span className="episode-count">CC:{el.episodes || "?"}</span>{" "}
             <span className="quality d-flex a-center j-center">
               <FaStar />
-              {el.score}
+              {el.score ||"?"}
             </span>
             <div className="dot"></div>
             <div className="show-type">{el.type}</div>
