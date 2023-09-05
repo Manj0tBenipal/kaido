@@ -10,10 +10,10 @@
 }
 
 .trending-slide {
-  height: 260px;
+  height: 230px;
   position: relative;
   padding: 10px;
-    color: white;
+  color: white;
   display: block;
 }
 .trending-slide a {
