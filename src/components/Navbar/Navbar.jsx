@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import "./navbar.css";
 import logo from "../../media/logo.png";
 import profileIcon from "../../media/profile.jpg";
-import { Link } from "react-router-dom";
+import { Link, Navigate, redirect } from "react-router-dom";
 import { FaSearch, FaBars, FaBell } from "react-icons/fa";
 
 import Actions from "./Actions";
 import SocialLinks from "./SocialLinks";
 
 export default function NavBar(props) {
-  const [searchForm, setSearchForm] = useState({});
+  const [searchForm, setSearchForm] = useState({ name: "" });
 
   const setSidebarIsOpen = props.setSidebarIsOpen;
   const pageIsScrolled = props.isScrolled;
@@ -17,6 +17,7 @@ export default function NavBar(props) {
     const { name, value } = event.target;
     setSearchForm((prev) => ({ ...prev, [name]: value }));
   }
+  const handleKeyPress = (event) => {};
   return (
     <nav
       className={`navigation-bar a-center d-flex ${
@@ -43,6 +44,7 @@ export default function NavBar(props) {
           name="name"
           value={searchForm?.name}
           onChange={(e) => handleSearchForm(e)}
+          onKeyDown={(e) => handleKeyPress(e)}
         />
         <Link to={`/search?name=${searchForm?.name}&parameter=title`}>
           <FaSearch

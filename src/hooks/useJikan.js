@@ -153,8 +153,11 @@ export function useGetRandomAnime() {
   return useHandleJikanResponse(`random-anime`, "random/anime", null);
 }
 export function useGetAnimeSearch(name, parameter) {
-  return useHandleJikanResponse(
-    `anime-search${name}`,
-    `anime?${parameter === "letter" ? "letter=" + name : "q=" + name}&limit=24`
-  );
+  let queryString = "";
+  if (parameter === "title") {
+    queryString = `q=${name}`;
+  } else {
+    queryString = `letter=${name}`;
+  }
+  return useHandleJikanResponse(`anime-search${name}`, `anime?${queryString}`);
 }
