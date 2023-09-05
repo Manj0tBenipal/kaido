@@ -1,0 +1,19 @@
+.footer-container {
+  padding: 20px;
+}
+.footer-container > * {
+  padding: 10px;
+}
+.main-element {
+  border-right: 1px solid var(--grey-dark);
+  margin-right: 10px;
+  padding-right: 10px;
+}
+.logo-social-links {
+  border-bottom: 1px solid var(--grey-dark);
+  padding-block: 10px;
+}
+
+.help-text {
+  align-items: flex-end;
+}

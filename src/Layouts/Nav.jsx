@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import Navbar from "../components/Navbar/Navbar";
 import NavSidebar from "../components/NavigationSidebar/NavSidebar";
+import Footer from "../components/Footer/Footer";
 
 export default function Layout() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -33,7 +34,8 @@ export default function Layout() {
         sidebarIsOpen={sidebarIsOpen}
         setSidebarIsOpen={setSidebarIsOpen}
       />
-      <Outlet/>
+      <Outlet />
+      <Footer />
     </div>
   );
 }
