@@ -1,8 +1,47 @@
-# React + Vite
+# Kaido - Anime Streaming Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to Kaido, your one-stop destination for streaming your favorite anime series and movies! This website is built using React and leverages several libraries and APIs to provide a seamless anime streaming experience.
 
-Currently, two official plugins are available:
+You can visit Kaido by clicking on the following link: [Kaido Anime Streaming](https://kaido.visitmanjotbenipal.com/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
+
+- **Anime Library**: Browse and search for a wide range of anime series and movies.
+
+- **Anime Details**: Get detailed information about each anime, including synopsis, genres, release date, and more.
+
+- **Streaming**: Stream anime episodes and movies directly from the website.
+
+- **User-friendly**: Kaido is designed with a user-friendly interface to enhance your viewing experience.
+
+## Technologies Used
+
+- **React**: The website is built using the React JavaScript library for creating dynamic user interfaces.
+
+- **React Router**: React Router is used for handling client-side routing and navigation within the app.
+
+- **React Query**: React Query is used for efficient data fetching and state management.
+
+- **p-queue**: p-queue is utilized to manage concurrent API requests efficiently.
+
+- **Node.js Library**: This website uses a Node.js library for consuming data from various publicly available anime APIs.
+
+- **Jikan REST API**: Jikan is used to retrieve anime information, including details about episodes, genres, and more.
+
+- **Kitsu API**: The Kitsu API provides additional data and information about anime titles.
+
+## Getting Started
+
+If you want to set up Kaido locally on your machine, follow these steps:
+
+1. Clone the repository:
+
+   ```shell
+   git clone https://github.com/your-username/kaido.git
+   cd kaido
+   npm install
+   npm run dev
+After that you can access Kaido locally by visiting the URL displayed in the shell window
+## Contributing
+We welcome contributions to improve and enhance Kaido. If you have any bug reports, feature requests, or code contributions, please feel free to open an issue or submit a pull request.
+
