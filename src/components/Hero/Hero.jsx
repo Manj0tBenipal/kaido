@@ -15,7 +15,7 @@ import { Link } from "react-router-dom";
 
 export default function Hero() {
   const { isLoading, data } = useRecentAnime();
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  
   const heroSlide = data?.map((el, idx) => {
     const item = el.attributes;
 
@@ -49,8 +49,8 @@ export default function Hero() {
                 </span>
               </div>
               <p className="description">
-                {(item.background && item.background.slice(0, 250) + "...") ||
-                  (item.synopsis && item.synopsis.slice(0, 250) + "...")}
+                {(item.background && item.background.slice(0, 200) + "...") ||
+                  (item.synopsis && item.synopsis.slice(0, 200) + "...")}
               </p>
               <div className="button-wrapper">
                 <Link
@@ -84,13 +84,7 @@ export default function Hero() {
       </SwiperSlide>
     );
   });
-  useEffect(() => {
-    function handleChange() {
-      setScreenWidth(window.innerWidth);
-    }
-    const listener = window.addEventListener("resize", handleChange);
-    return () => window.removeEventListener(listener, handleChange);
-  }, []);
+ 
 
   return isLoading ? (
     <LoadingSpinner />

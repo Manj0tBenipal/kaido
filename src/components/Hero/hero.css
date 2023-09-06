@@ -118,7 +118,6 @@
   color: var(--theme);
 }
 .description {
-  
   margin-bottom: 1rem;
 }
 .carousel-item .anime-title,
@@ -190,7 +189,7 @@
 .swiper-pagination-bullet-active {
   background-color: var(--theme) !important;
 }
-@media screen and (max-width: 1220px) {
+@media screen and (max-width: 1240px) {
   .anime-info {
     height: var(--height-medium);
   }
@@ -211,7 +210,7 @@
     font-weight: 600;
   }
   .anime-info-content {
-    width: 40%;
+    width: 60%;
   }
   .description {
     font-size: 14px;
@@ -248,7 +247,10 @@
     font-size: 13px;
     padding: 8px 15px;
   }
-
+  .anime-info-content {
+    max-width: 100%;
+    padding-right: 2rem;
+  }
   .anime-info::after {
     display: none;
   }

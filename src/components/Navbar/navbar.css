@@ -9,7 +9,7 @@
   gap: 40px;
 }
 .navigation-bar.dark {
-  background-color: var(--grey-dark);
+  background-color: #6f42c1;
 }
 
 .burger-icon {
@@ -35,7 +35,14 @@
   color: white;
   line-height: 80px;
 }
-.search-wrapper input:focus {
+.search-wrapper input {
+  border: none;
+  border-radius: 50px;
+  background-color: var(--grey-dark);
+  color: white !important;
+}
+.search-wrapper input:focus,
+.floating-search-wrapper input:focus {
   border: none;
   /* Optionally, you can also remove the outline that appears by default */
   outline: none;
@@ -47,7 +54,8 @@
   width: 20%;
 }
 .search-icon {
-  right: 10px;
+  right: 20px;
+  
 }
 .filter-icon {
   right: 40px;
@@ -121,10 +129,29 @@
   height: 36.5px;
   border-radius: 50%;
 }
-
+.floating-search-wrapper input {
+  color: white;
+  border: none;
+  background-color: var(--grey-dark);
+  padding: 10px 20px;
+  border-radius: 30px;
+}
+@media screen and (min-width: 1300px) {
+  .floating-search-wrapper {
+    display: none;
+  }
+}
 @media screen and (max-width: 1300px) {
   .search-wrapper {
     display: none;
+  }
+  .floating-search-wrapper {
+    position: absolute;
+    left: calc(50% - 300px);
+    z-index: 900;
+    width: 100%;
+    max-width: 600px;
+    top: 60px;
   }
 }
 
@@ -137,8 +164,12 @@
   .nav-actions {
     display: none;
   }
+  .floating-search-wrapper {
+    max-width: 100%;
+    left: 0;
+  }
 }
-@media screen and (max-width: 580px) {
+@media screen and (max-width: 700px) {
   .navigation-bar {
     height: 50px;
     background: var(--dark) !important;
@@ -146,5 +177,8 @@
 
   .logo {
     height: 30px;
+  }
+  .floating-search-wrapper {
+    top: 50px;
   }
 }
