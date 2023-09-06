@@ -1,4 +1,6 @@
 # Kaido - Anime Streaming Website
+![image](https://github.com/Manj0tBenipal/kaido/assets/108014780/fb96dfe3-0a3a-4b95-9633-bd20509e7b84)
+
 
 Welcome to Kaido, your one-stop destination for streaming your favorite anime series and movies! This website is built using React and leverages several libraries and APIs to provide a seamless anime streaming experience.
 
