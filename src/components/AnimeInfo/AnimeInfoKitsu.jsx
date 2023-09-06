@@ -68,6 +68,7 @@ export default function Details() {
                     data.attributes.titles.en_jp
                   }`}
                   className="btn-primary hero-button"
+                  onClick={() => window.scrollTo({ top: 0 })}
                 >
                   <FaPlayCircle size={12} /> Watch Now
                 </Link>

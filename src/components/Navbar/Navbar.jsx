@@ -63,7 +63,7 @@ export default function NavBar(props) {
               }}
               className="search-icon search-icons"
               size={20}
-              color="white"
+              color="#53ff86"
             />
           </Link>
 
@@ -104,7 +104,7 @@ export default function NavBar(props) {
               }}
               className="search-icon search-icons"
               size={20}
-              color="white"
+              color="#53ff86"
             />
           </Link>
         </div>

@@ -108,6 +108,7 @@ export default function Details() {
                 <Link
                   to={`/watch?name=${animeObj.title_english || animeObj.title}`}
                   className="btn-primary hero-button"
+                  onClick={() => window.scrollTo({ top: 0 })}
                 >
                   <FaPlayCircle size={12} /> Watch Now
                 </Link>

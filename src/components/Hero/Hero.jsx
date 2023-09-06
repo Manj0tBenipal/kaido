@@ -15,7 +15,7 @@ import { Link } from "react-router-dom";
 
 export default function Hero() {
   const { isLoading, data } = useRecentAnime();
-  
+
   const heroSlide = data?.map((el, idx) => {
     const item = el.attributes;
 
@@ -54,6 +54,7 @@ export default function Hero() {
               </p>
               <div className="button-wrapper">
                 <Link
+                  onClick={() => window.scrollTo({ top: 0 })}
                   to={`/watch?name=${
                     item.canonicalTitle || item.titles.en || item.titles.en_jp
                   }`}
@@ -63,6 +64,7 @@ export default function Hero() {
                 </Link>
                 <Link
                   to={`/details/kitsu/${el.id}`}
+                  onClick={() => window.scrollTo({ top: 0 })}
                   className="btn-secondary hero-button"
                 >
                   Details <FaChevronRight size={12} />
@@ -84,7 +86,6 @@ export default function Hero() {
       </SwiperSlide>
     );
   });
- 
 
   return isLoading ? (
     <LoadingSpinner />
