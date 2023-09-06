@@ -7,7 +7,10 @@ import TopTenAnime from "../components/TopTen/TopTenAnime";
 import LoadingSpinner from "../components/LoadingSpinner";
 export default function SearchResults() {
   const [searchParams] = useSearchParams();
-  const animeData = useGetAnimeSearch(searchParams.get("name"));
+  const animeData = useGetAnimeSearch(
+    searchParams.get("name"),
+    searchParams.get("parameter")
+  );
   console.log(animeData);
   return (
     <div

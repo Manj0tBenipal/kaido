@@ -48,7 +48,10 @@ export default function NavBar(props) {
         />
         <Link to={`/search?name=${searchForm?.name}&parameter=title`}>
           <FaSearch
-            onClick={() => setSearchForm({ name: "" })}
+            onClick={() => {
+              window.scrollTo({ top: 0 });
+              setSearchForm({ name: "" });
+            }}
             className="search-icon search-icons"
             size={20}
             color="grey"

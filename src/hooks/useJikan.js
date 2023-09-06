@@ -118,27 +118,27 @@ export function useTopCharacters() {
     characterData
   );
 }
-export function useGetAnimeByMalId(id, toBeExecuted) {
+export function useGetAnimeByMalId(id) {
   return useHandleJikanResponse(`anime-${id}`, `anime/${id}`, null);
 }
 export function useGetAnimeByGenre(mal_id) {
   return useHandleJikanResponse(
     `anime-by-genre-${mal_id}`,
-    `anime?genres=${mal_id}`,
+    `anime?genres=${mal_id}&limit=24`,
     null
   );
 }
 export function useGetAnimeByFilter(filterName) {
   return useHandleJikanResponse(
     `anime-by-filter-${filterName}`,
-    `top/anime?filter=${filterName}`,
+    `top/anime?filter=${filterName}&limit=24`,
     null
   );
 }
 export function useGetAnimeByType(type) {
   return useHandleJikanResponse(
     `anime-by-type-${type}`,
-    `top/anime?type=${type}`,
+    `top/anime?type=${type}&limit=24`,
     null
   );
 }
@@ -159,5 +159,9 @@ export function useGetAnimeSearch(name, parameter) {
   } else {
     queryString = `letter=${name}`;
   }
-  return useHandleJikanResponse(`anime-search${name}`, `anime?${queryString}`);
+  console.log(queryString);
+  return useHandleJikanResponse(
+    `anime-search${name}`,
+    `anime?${queryString}&limit=24`
+  );
 }
