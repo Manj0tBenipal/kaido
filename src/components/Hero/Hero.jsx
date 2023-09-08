@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "./hero.css";
 import {
@@ -9,12 +9,12 @@ import {
   FaPlayCircle,
 } from "react-icons/fa";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
-import { useRecentAnime } from "../../hooks/useKitsu";
+import { getRecentAnime } from "../../hooks/kitsu";
 import LoadingSpinner from "../LoadingSpinner";
 import { Link } from "react-router-dom";
 
 export default function Hero() {
-  const { isLoading, data } = useRecentAnime();
+  const { isLoading, data } = getRecentAnime();
 
   const heroSlide = data?.map((el, idx) => {
     const item = el.attributes;

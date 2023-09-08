@@ -253,14 +253,14 @@ export default function WatchAnime() {
                       }`}
                       onClick={() => handlLanguageChange(false)}
                     >
-                      Eng | Dub 
+                      Eng | Dub
                     </span>
                   )}
                   <span
                     className={`server-tile ${subIsSelected ? "selected" : ""}`}
                     onClick={() => handlLanguageChange(true)}
                   >
-                   Jp | Sub
+                    Jp | Sub
                   </span>
                 </div>
                 <div>

@@ -1,13 +1,13 @@
 import React from "react";
 import { useSearchParams } from "react-router-dom";
-import { useGetAnimeSearch } from "../hooks/useJikan";
+import { getAnimeSearch } from "../hooks/jikan";
 import AnimeCollection from "../components/MainContainer/AnimeCollection";
 import Genre from "../components/Genre/Genre";
 import TopTenAnime from "../components/TopTen/TopTenAnime";
 import LoadingSpinner from "../components/LoadingSpinner";
 export default function SearchResults() {
   const [searchParams] = useSearchParams();
-  const animeData = useGetAnimeSearch(
+  const animeData = getAnimeSearch(
     searchParams.get("name"),
     searchParams.get("parameter")
   );

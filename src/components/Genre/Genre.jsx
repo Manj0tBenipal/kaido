@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { useGenre } from "../../hooks/useJikan";
+import { getGenre } from "../../hooks/jikan";
 import LoadingSpinner from "../LoadingSpinner";
 import "./genre.css";
 import { Link } from "react-router-dom";
 export default function Genre() {
   const [isCollapsed, setIsCollapsed] = useState(true);
-  const genre = useGenre();
+  const genre = getGenre();
   const list = isCollapsed ? genre.data?.data.slice(0, 18) : genre.data?.data;
   const genreList = list?.map((el) => {
     return (

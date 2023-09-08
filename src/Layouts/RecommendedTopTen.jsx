@@ -2,17 +2,16 @@ import React from "react";
 import TopTenAnime from "../components/TopTen/TopTenAnime";
 import AnimeCollection from "../components/MainContainer/AnimeCollection";
 import Genre from "../components/Genre/Genre";
-import Share from "../components/Share/Share";
 import { Outlet } from "react-router-dom";
-import { useGetRecommendedAnime } from "../hooks/useJikan";
+import { getRecommendedAnime } from "../hooks/jikan";
 import LoadingSpinner from "../components/LoadingSpinner";
 export default function RecommendedTopTen() {
-  const collection = useGetRecommendedAnime();
+  const collection = getRecommendedAnime();
 
   return (
     <>
       <Outlet />
-      
+
       <div
         className=" main-container d-flex  "
         style={

@@ -2,30 +2,23 @@ import AnimeCollection from "./AnimeCollection";
 import LoadingSpinner from "../LoadingSpinner";
 
 import {
-  useHandleJikanResponse,
-  useTopMovies,
-  useTopONAs,
-  useTopOVAs,
-  useTopSpecials,
-
-} from "../../hooks/useJikan";
+  getTopMovies,
+  getTopONAs,
+  getTopOVAs,
+  getTopSpecials,
+} from "../../hooks/jikan";
 
 import MainSidebar from "./MainSidebar";
 
 export default function MainContainer() {
   let isLoading = true;
-  const ova = useTopOVAs();
-  const ona = useTopONAs();
-  const movies = useTopMovies();
-  const specials = useTopSpecials();
+  const ova = getTopOVAs();
+  const ona = getTopONAs();
+  const movies = getTopMovies();
+  const specials = getTopSpecials();
 
   if (
-    !(
-      ova.isLoading &&
-      ona.isLoading &&
-      specials.isLoading &&
-      movies.isLoading
-    )
+    !(ova.isLoading && ona.isLoading && specials.isLoading && movies.isLoading)
   ) {
     isLoading = false;
   }

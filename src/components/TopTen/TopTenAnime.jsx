@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import "./top-ten.css";
-import { useTrendingAnime } from "../../hooks/useKitsu";
+import { getTrendingAnime } from "../../hooks/kitsu";
 import { FaStar } from "react-icons/fa";
 import { Link } from "react-router-dom";
 export default function TopTenAnime() {
-  const { data } = useTrendingAnime();
+  const { data } = getTrendingAnime();
   const [period, setPeriod] = useState(2);
   const animeList = data && [...data];
   const sortedList = animeList?.sort(

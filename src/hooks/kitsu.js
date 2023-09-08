@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useQuery } from "react-query";
 import topAnimeData from "../data/topAnime";
-export function useRecentAnime() {
+export function getRecentAnime() {
   const queryObj = useQuery("recent-anime", async () => {
     return await axios
       .get(
@@ -15,7 +15,7 @@ export function useRecentAnime() {
 
   return { isLoading: queryObj.isLoading, data: data };
 }
-export function useTrendingAnime() {
+export function getTrendingAnime() {
   const queryObj = useQuery("trending-anime", async () => {
     return await axios
       .get("https://kitsu.io/api/edge/trending/anime")
@@ -27,7 +27,7 @@ export function useTrendingAnime() {
 
   return { isLoading: queryObj.isLoading, data: data };
 }
-export function useGetAnimeById(id) {
+export function getAnimeById(id) {
   const queryObj = useQuery(`anime-${id}`, async () => {
     return await axios
       .get(`https://kitsu.io/api/edge/anime/${id}`)

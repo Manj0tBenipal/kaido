@@ -1,11 +1,11 @@
 import React from "react";
 import LoadingSpinner from "../LoadingSpinner";
-import { useTopCharacters, useHandleJikanResponse } from "../../hooks/useJikan";
+import { getTopCharacters} from "../../hooks/jikan";
 
 import { FaThumbsUp } from "react-icons/fa";
 export default function TopPosts() {
-  const { isLoading, data } =useTopCharacters()
-  
+  const { isLoading, data } = getTopCharacters();
+
   const characterDpStyles = {
     height: "90px",
   };

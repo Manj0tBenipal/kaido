@@ -1,12 +1,12 @@
 import React from "react";
 import { useSearchParams } from "react-router-dom";
-import {  useGetAnimeByType } from "../hooks/useJikan";
+import {  getAnimeByType } from "../hooks/jikan";
 import LoadingSpinner from "../components/LoadingSpinner";
 import AnimeCollection from "../components/MainContainer/AnimeCollection";
 
 export default function AnimeByType() {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const collection = useGetAnimeByType(searchParams.get("typeName"));
+  const [searchParams] = useSearchParams();
+  const collection = getAnimeByType(searchParams.get("typeName"));
 
   return !collection.isLoading ? (
     <div className="collections-wrapper d-flex-fd-column a-center ">

@@ -2,14 +2,14 @@ import React from "react";
 import { Navigation } from "swiper/modules";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { useTrendingAnime } from "../../hooks/useKitsu";
+import { getTrendingAnime } from "../../hooks/kitsu";
 import "swiper/css";
 import "swiper/css/navigation";
 import "./trending.css";
 import { Link } from "react-router-dom";
 
 export default function Trending() {
-  const { data } = useTrendingAnime();
+  const { data } = getTrendingAnime();
 
   const animeCard = data?.map((el, idx) => {
     const item = el.attributes;
@@ -23,7 +23,10 @@ export default function Trending() {
             </p>
             <span>{idx > 8 ? idx + 1 : "0" + (idx + 1)}</span>
           </div>
-          <Link onClick={()=>window.scrollTo({top:0})} to={`/details/kitsu/${el.id}`}  >
+          <Link
+            onClick={() => window.scrollTo({ top: 0 })}
+            to={`/details/kitsu/${el.id}`}
+          >
             <img
               src={item.posterImage.small}
               className="trending-slide-img "

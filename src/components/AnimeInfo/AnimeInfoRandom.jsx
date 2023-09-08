@@ -4,10 +4,10 @@ import "./AnimeInfo.css";
 import { Link } from "react-router-dom";
 import { FaEye, FaHeart, FaMedal, FaPlayCircle, FaPlus } from "react-icons/fa";
 import Share from "../Share/Share";
-import { useGetRandomAnime } from "../../hooks/useJikan";
+import {getRandomAnime } from "../../hooks/jikan";
 
 export default function Details() {
-  const { data, isLoading } = useGetRandomAnime();
+  const { data, isLoading } = getRandomAnime();
   const animeObj = data?.data;
   const [descIsCollapsed, setDescIsCollapsed] = useState(true);
   const genre = animeObj?.genres.map((genre) => {

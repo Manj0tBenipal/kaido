@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./navbar.css";
 import logo from "../../media/logo.png";
 import profileIcon from "../../media/profile.jpg";
-import { Link, Navigate, redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FaSearch, FaBars, FaBell } from "react-icons/fa";
 
 import Actions from "./Actions";

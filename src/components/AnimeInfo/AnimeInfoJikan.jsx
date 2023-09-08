@@ -4,11 +4,11 @@ import "./AnimeInfo.css";
 import { Link, useParams } from "react-router-dom";
 import { FaEye, FaHeart, FaMedal, FaPlayCircle, FaPlus } from "react-icons/fa";
 import Share from "../Share/Share";
-import { useGetAnimeByMalId } from "../../hooks/useJikan";
+import { getAnimeByMalId } from "../../hooks/jikan";
 
 export default function Details() {
   const params = useParams();
-  const { data, isLoading } = useGetAnimeByMalId(params.id);
+  const { data, isLoading } = getAnimeByMalId(params.id);
   const animeObj = data?.data;
   const [descIsCollapsed, setDescIsCollapsed] = useState(true);
   const genre = animeObj?.genres.map((genre) => {

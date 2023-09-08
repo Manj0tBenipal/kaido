@@ -4,18 +4,17 @@ import LoadingSpinner from "../LoadingSpinner";
 import ContentList from "./ContentList";
 
 import {
-  useMostFavorite,
-  useMostPopular,
-  useTopAiring,
-  useTopMovies,
-  useTopUpcoming,
-} from "../../hooks/useJikan";
+  getMostFavorite,
+  getMostPopular,
+  getTopAiring,
+  getTopUpcoming,
+} from "../../hooks/jikan";
 
 export default function Featured() {
-  const topAiring = useTopAiring();
-  const mostPopular = useMostPopular();
-  const mostFavorite = useMostFavorite();
-  const upcoming = useTopUpcoming();
+  const topAiring = getTopAiring();
+  const mostPopular = getMostPopular();
+  const mostFavorite = getMostFavorite();
+  const upcoming = getTopUpcoming();
   const isLoading =
     topAiring.isLoading &&
     mostPopular.isLoading &&
