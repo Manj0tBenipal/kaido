@@ -10,6 +10,7 @@
 }
 .navigation-bar.dark {
   background-color: #6f42c1;
+  box-shadow: 1px 4px 10px black;
 }
 
 .burger-icon {
