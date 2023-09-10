@@ -49,10 +49,10 @@ body {
   justify-content: center;
 }
 .trans-c-03 > * {
-  transition: all 100ms ease;
+  transition: all 100ms ease-in-out;
 }
 .trans-03 {
-  transition: all 100ms ease;
+  transition: all 300ms ease-in-out;
 }
 .app-container {
   max-width: 1980px;

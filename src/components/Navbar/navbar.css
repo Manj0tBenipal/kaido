@@ -24,22 +24,13 @@
   height: 40px;
   margin-inline: 10px;
 }
-.logo-text {
-  height: 40px;
-}
 
-.logo-wrapper {
-  color: white;
-}
-.logo-text {
-  color: white;
-  line-height: 80px;
-}
 .search-wrapper input {
   border: none;
   border-radius: 50px;
   background-color: var(--grey-dark);
-  color: white !important;
+
+  color: black;
 }
 .search-wrapper input:focus,
 .floating-search-wrapper input:focus {
@@ -55,7 +46,6 @@
 }
 .search-icon {
   right: 20px;
-  
 }
 .filter-icon {
   right: 40px;
@@ -130,9 +120,9 @@
   border-radius: 50%;
 }
 .floating-search-wrapper input {
-  color: white;
+  color: black;
   border: none;
-  background-color: var(--grey-dark);
+  background-color: var(--theme);
   padding: 10px 20px;
   border-radius: 30px;
 }

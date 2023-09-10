@@ -3,7 +3,7 @@ import axios from "axios";
 const jikanQueue = new PQueue({
   concurrency: 1,
   intervalCap: 1,
-  interval: 800,
+  interval: 810,
 });
 
 // function getCurrentTime() {

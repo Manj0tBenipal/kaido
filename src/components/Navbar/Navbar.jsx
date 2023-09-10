@@ -31,7 +31,7 @@ export default function NavBar(props) {
       <nav
         className={`navigation-bar a-center d-flex ${
           pageIsScrolled ? "dark" : "transparent"
-        }`}
+        } trans-03`}
       >
         <div className="menu-group a-center d-flex">
           <FaBars
@@ -47,8 +47,13 @@ export default function NavBar(props) {
         </div>
         <div className="search-wrapper">
           <input
+            style={
+              pageIsScrolled
+                ? { backgroundColor: "var(--grey-dark)", color: "var(--theme)" }
+                : { backgroundColor: "var(--theme)", color: "black" }
+            }
             type="text"
-            className="search-text f-poppins"
+            className="search-text f-poppins  trans-03"
             placeholder="Search anime..."
             name="name"
             value={searchForm?.name}
@@ -61,9 +66,15 @@ export default function NavBar(props) {
                 window.scrollTo({ top: 0 });
                 setSearchForm({ name: "" });
               }}
-              className="search-icon search-icons"
+              className="search-icon search-icons trans-03"
               size={20}
-              color="#53ff86"
+              style={
+                pageIsScrolled
+                  ? {
+                      color: "var(--theme)",
+                    }
+                  : { color: "black" }
+              }
             />
           </Link>
 
@@ -104,7 +115,7 @@ export default function NavBar(props) {
               }}
               className="search-icon search-icons"
               size={20}
-              color="#53ff86"
+              color="black"
             />
           </Link>
         </div>
