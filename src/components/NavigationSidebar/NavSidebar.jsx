@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 import "./nav-sidebar.css";
 import Actions from "../Navbar/Actions";
 export default function NavSidebar(props) {
+  function scrollToTop() {
+    window.scrollTo({ top: 0 });
+  }
   return (
     <div
       className="navigation-sidebar f-poppins"
@@ -37,7 +40,9 @@ export default function NavSidebar(props) {
         <div className="navigation-link-list">
           <ul>
             <li>
-              <Link to="/">Home</Link>
+              <Link onClick={() => scrollToTop()} to="/">
+                Home
+              </Link>
             </li>
             <li>
               <Link to="/grid/filter?name=bypopularity&heading=Most Popular">
@@ -45,21 +50,45 @@ export default function NavSidebar(props) {
               </Link>
             </li>
             <li>
-              <Link to="/grid/type?typeName=movie&heading=Movies">Movies</Link>
+              <Link
+                onClick={() => scrollToTop()}
+                to="/grid/type?typeName=movie&heading=Movies"
+              >
+                Movies
+              </Link>
             </li>
             <li>
-              <Link to="/grid/type?typeName=tv&heading=TV Series">TV Series</Link>
+              <Link
+                onClick={() => scrollToTop()}
+                to="/grid/type?typeName=tv&heading=TV Series"
+              >
+                TV Series
+              </Link>
             </li>
             <li>
-              <Link to="/grid/type?typeName=ova&heading=OVAs">OVAs</Link>
+              <Link
+                onClick={() => scrollToTop()}
+                to="/grid/type?typeName=ova&heading=OVAs"
+              >
+                OVAs
+              </Link>
             </li>
             <li>
-              <Link to="/grid/type?typeName=ona&heading=ONAs">ONAs</Link>
+              <Link
+                onClick={() => scrollToTop()}
+                to="/grid/type?typeName=ona&heading=ONAs"
+              >
+                ONAs
+              </Link>
             </li>
             <li>
-              <Link to="/grid/type?typeName=special&heading=Specials">Specials</Link>
+              <Link
+                onClick={() => scrollToTop()}
+                to="/grid/type?typeName=special&heading=Specials"
+              >
+                Specials
+              </Link>
             </li>
-           
           </ul>
         </div>
       </div>

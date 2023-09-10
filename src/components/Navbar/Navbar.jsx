@@ -50,7 +50,7 @@ export default function NavBar(props) {
             style={
               pageIsScrolled
                 ? { backgroundColor: "var(--grey-dark)", color: "var(--theme)" }
-                : { backgroundColor: "var(--theme)", color: "black" }
+                : { backgroundColor: "white", color: "black" }
             }
             type="text"
             className="search-text f-poppins  trans-03"

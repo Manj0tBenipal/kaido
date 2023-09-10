@@ -16,6 +16,7 @@ export default function Details() {
       <Link
         className="genre-button"
         key={genre.mal_id}
+        onClick={() => window.scrollTo({ top: 0 })}
         to={`/grid/genre?id=${genre.mal_id}&name=${genre.name}`}
       >
         {genre.name}

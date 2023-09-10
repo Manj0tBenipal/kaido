@@ -137,7 +137,7 @@
     display: none;
   }
   .floating-search-wrapper {
-    position: absolute;
+    position: fixed;
     left: calc(50% - 300px);
     z-index: 900;
     width: 100%;
