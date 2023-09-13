@@ -113,7 +113,6 @@ export default function WatchAnime() {
         setCurrentAnimeInfo(data);
       });
     }
-    console.log(searchResults);
   }, [searchResults]);
   useEffect(() => {
     if (currentAnimeInfo?.episodes?.length > 0) {
