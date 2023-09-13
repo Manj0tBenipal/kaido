@@ -1,10 +1,10 @@
 .mouse-over-card-wrapper {
   min-width: 400px;
   position: absolute;
-  top: 20px;
-  left: 50%;
+  top: 60%;
+  left: 80%;
   z-index: 3;
-  background-color: rgba(57, 57, 57, 0.53);
+  background-color: rgba(37, 37, 37, 0.767);
   backdrop-filter: blur(20px);
   padding: 10px;
   border-radius: 10px;
