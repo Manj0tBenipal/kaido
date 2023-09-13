@@ -1,6 +1,6 @@
 import React from "react";
 import { getAnimeByMalId } from "../../hooks/jikan";
-import { FaStar } from "react-icons/fa";
+import { FaStar, FaPlayCircle, FaChevronRight } from "react-icons/fa";
 import LoadingSpinner from "../LoadingSpinner";
 import { Link } from "react-router-dom";
 import { FaEye, FaHeart, FaMedal } from "react-icons/fa";
@@ -26,7 +26,7 @@ export default function MouseOverCard(props) {
         <LoadingSpinner />
       ) : (
         <>
-          <h3 className="title">{anime.title}</h3>
+          <h1>{anime.title}</h1>
           <div className="d-flex anime-st">
             <span className=" d-flex a-center j-center">
               <FaStar color="yellow" />
@@ -51,7 +51,7 @@ export default function MouseOverCard(props) {
                 HD
               </span>
             </div>
-            <span className="anime-type">{anime.type}</span>
+            <span className="type">{anime.type}</span>
           </div>
           <p style={{ marginBottom: 0 }} className="description">
             {anime.synopsis
@@ -61,7 +61,7 @@ export default function MouseOverCard(props) {
               : "?"}
           </p>
           <div
-            style={{ marginBottom: 0 }}
+            style={{ marginBottom: 0, paddingBottom: 10 + "px" }}
             className="details-header-statistics"
           >
             <p>
@@ -83,7 +83,24 @@ export default function MouseOverCard(props) {
           <div className="anime-st-genre">
             <p>
               <b>Genre: </b>
+              {genre}
             </p>
+          </div>
+          <div className="button-wrapper">
+            <Link
+              to={`/watch?name=${anime.title_english || anime.title}`}
+              className="btn-primary hero-button"
+              onClick={() => window.scrollTo({ top: 0 })}
+            >
+              <FaPlayCircle size={12} /> Watch Now
+            </Link>
+            <Link
+              to={`/details/jikan/${anime.mal_id}`}
+              onClick={() => window.scrollTo({ top: 0 })}
+              className="btn-secondary hero-button"
+            >
+              Details <FaChevronRight size={12} />
+            </Link>
           </div>
         </>
       )}

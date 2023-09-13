@@ -100,7 +100,7 @@
 }
 
 @media screen and (max-width: 1390px) {
-  .anime-card {
+  .anime-card-wrapper {
     width: calc(100% / 4 - 1rem);
   }
   .anime-card-img-wrapper {
@@ -111,12 +111,12 @@
   }
 }
 @media screen and (max-width: 800px) {
-  .anime-card {
+  .anime-card-wrapper {
     width: calc(100% / 3 - 1rem);
   }
 }
 @media screen and (max-width: 600px) {
-  .anime-card {
+  .anime-card-wrapper {
     width: calc(100% / 2 - 1rem);
   }
   .anime-card-img-wrapper {

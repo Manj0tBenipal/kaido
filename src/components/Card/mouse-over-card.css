@@ -1,20 +1,22 @@
 .mouse-over-card-wrapper {
   min-width: 400px;
   position: absolute;
-  top: 0;
+  top: 20px;
   left: 50%;
   z-index: 3;
-  background-color: rgba(80, 80, 80, 0.4);
-  backdrop-filter: blur(10px);
+  background-color: rgba(57, 57, 57, 0.53);
+  backdrop-filter: blur(20px);
   padding: 10px;
   border-radius: 10px;
   gap: 10px;
+
 }
 .mouse-over-card-wrapper .anime-st {
   justify-content: space-between;
 }
-.anime-st.type {
+.anime-st .type {
   background-color: var(--theme);
   border-radius: 5px;
   color: black;
+  padding: 3px;
 }
