@@ -1,14 +1,15 @@
-.anime-card {
-  flex-direction: column;
+.anime-card-wrapper {
+  position: relative;
   /* border: 1px solid white; */
 
-  width: calc(100% / 6 - 1.5rem);
-  font-size: 14px;
+  width: calc(100% / 6 - 1rem);
 
-  overflow: hidden;
+  font-size: 14px;
 }
 .anime-card {
+  flex-direction: column;
   text-decoration: none;
+  min-width: 100%;
 }
 .card-details {
   background: var(--grey-dark);
@@ -64,7 +65,7 @@
   padding: 1px 4px;
   font-size: 10px;
   border-radius: 0px 2px 2px 0px;
-  background-color:  #b0e3af;
+  background-color: #b0e3af;
 }
 .card-title {
   color: white;

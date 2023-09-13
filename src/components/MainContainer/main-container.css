@@ -23,13 +23,13 @@
 .sidebar-wrapper {
   width: calc(25% - 1rem);
 }
-@media screen and (min-width: 1080px) {
+@media screen and (min-width: 1150px) {
   .main-container {
     flex-direction: row-reverse;
   }
 }
 
-@media screen and (max-width: 1080px) {
+@media screen and (max-width: 1150px) {
   .collections-wrapper {
     width: 100%;
   }
