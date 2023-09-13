@@ -159,7 +159,7 @@ export function getAnimeSearch(name, parameter) {
   } else {
     queryString = `letter=${name}`;
   }
-  console.log(queryString);
+
   return handleJikanResponse(
     `anime-search${name}`,
     `anime?${queryString}&limit=24`

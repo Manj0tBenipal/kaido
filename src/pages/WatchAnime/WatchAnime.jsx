@@ -8,7 +8,8 @@ import { BiToggleLeft, BiToggleRight } from "react-icons/bi";
 import RecommendedTopTen from "../../Layouts/RecommendedTopTen";
 import Share from "../../components/Share/Share";
 import LoadingSpinner from "../../components/LoadingSpinner";
-import error from "../../media/error.gif";
+
+import Error from "../../components/AnimeNotFound/Error";
 export default function WatchAnime() {
   const [descIsCollapsed, setDescIsCollapsed] = useState(true);
   const [searchParams] = useSearchParams();
@@ -184,13 +185,7 @@ export default function WatchAnime() {
       {Object.keys(searchResults).length === 0 ? (
         <LoadingSpinner />
       ) : searchResults.results.length === 0 ? (
-        <div
-          style={{ marginTop: "65px" }}
-          className="gogoanime-error d-flex-fd-column a-center j-center"
-        >
-          <img src={error} alt="error"></img>
-          <h2>Sorry, we couldn't find the anime you requested.</h2>
-        </div>
+        <Error />
       ) : (
         <div style={{ marginTop: "65px" }} className="watch-container d-flex">
           <img

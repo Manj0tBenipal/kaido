@@ -100,15 +100,7 @@
 .warn p {
   font-size: 14px;
 }
-.gogoanime-error img {
-  width: 300px;
-  display: inline;
-  height: 200px;
-  object-fit: cover;
 
-  width: 200px;
-  border-radius: 50%;
-}
 @media screen and (max-width: 1400px) {
   .watch-container {
     flex-direction: column;

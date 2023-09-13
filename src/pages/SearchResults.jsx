@@ -5,13 +5,14 @@ import AnimeCollection from "../components/MainContainer/AnimeCollection";
 import Genre from "../components/Genre/Genre";
 import TopTenAnime from "../components/TopTen/TopTenAnime";
 import LoadingSpinner from "../components/LoadingSpinner";
+import Error from "../components/AnimeNotFound/Error";
 export default function SearchResults() {
   const [searchParams] = useSearchParams();
   const animeData = getAnimeSearch(
     searchParams.get("name"),
     searchParams.get("parameter")
   );
-  console.log(animeData);
+
   return (
     <div
       className=" main-container d-flex  "
@@ -26,6 +27,8 @@ export default function SearchResults() {
       <div className="collections-wrapper">
         {animeData.isLoading ? (
           <LoadingSpinner />
+        ) : animeData.data?.data.length < 1 ? (
+          <Error />
         ) : (
           <AnimeCollection collectionName="Search Results" data={animeData} />
         )}
