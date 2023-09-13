@@ -12,6 +12,7 @@ import AnimeByType from "./pages/AnimeByType";
 import RecommendedTopTen from "./Layouts/RecommendedTopTen";
 import WatchAnime from "./pages/WatchAnime/WatchAnime";
 import SearchResults from "./pages/SearchResults";
+
 export default function App() {
   return (
     <BrowserRouter>
