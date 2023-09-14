@@ -5,6 +5,14 @@ import MouseOverCard from "./MouseOverCard";
 export default function Card(props) {
   const anime = props.data;
   const [isHovered, setIsHovered] = useState(false);
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  useEffect(() => {
+    const setWidth = () => {
+      setScreenWidth(window.innerWidth);
+    };
+    const listener = window.addEventListener("resize", setWidth);
+    return () => window.removeEventListener(listener, setWidth);
+  });
   return (
     <div
       onMouseOver={() => setIsHovered(true)}
@@ -48,7 +56,9 @@ export default function Card(props) {
           </div>
         </div>
       </Link>
-      {isHovered && <MouseOverCard id={anime.mal_id} />}
+      {screenWidth > 1150 && isHovered && anime.mal_id && (
+        <MouseOverCard id={anime.mal_id} />
+      )}
     </div>
   );
 }

@@ -8,6 +8,7 @@ import "./mouse-over-card.css";
 export default function MouseOverCard(props) {
   const { isLoading, data } = getAnimeByMalId(props.id);
   const anime = data?.data;
+  console.log(anime);
   const genre = anime?.genres?.map((genre) => {
     return (
       <Link
@@ -26,7 +27,7 @@ export default function MouseOverCard(props) {
         <LoadingSpinner />
       ) : (
         <>
-          <h1>{anime.title}</h1>
+          <h1>{anime.title || anime.title_japanese}</h1>
           <div className="d-flex anime-st">
             <span className=" d-flex a-center j-center">
               <FaStar color="yellow" />
