@@ -56,7 +56,7 @@ export default function Card(props) {
           </div>
         </div>
       </Link>
-      {screenWidth > 1150 && isHovered && anime.mal_id && (
+      {screenWidth > 1150 && isHovered && anime && (
         <MouseOverCard id={anime.mal_id} />
       )}
     </div>
