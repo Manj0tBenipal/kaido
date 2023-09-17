@@ -27,7 +27,7 @@ export default function MouseOverCard(props) {
         <LoadingSpinner />
       ) : (
         <>
-          <h1>{anime.title || anime.title_japanese}</h1>
+          <h1>{anime?.title || anime?.title_japanese}</h1>
           <div className="d-flex anime-st">
             <span className=" d-flex a-center j-center">
               <FaStar color="yellow" />

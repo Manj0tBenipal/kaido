@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./card.css";
 import { Link } from "react-router-dom";
 import MouseOverCard from "./MouseOverCard";
+import { FaPlayCircle } from "react-icons/fa";
 export default function Card(props) {
   const anime = props.data;
   const [isHovered, setIsHovered] = useState(false);
@@ -25,7 +26,15 @@ export default function Card(props) {
         className="anime-card d-flex"
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
       >
-        <div className="anime-card-img-wrapper">
+        <div className={`anime-card-img-wrapper  `}>
+          {screenWidth > 1150 && (
+            <div
+              style={isHovered ? { opacity: 1 } : { opacity: 0 }}
+              className="img-blur d-flex a-center j-center trans-03"
+            >
+              <FaPlayCircle color="white" size={70} />{" "}
+            </div>
+          )}
           <div className="tick-item">
             <span className="rating">
               {anime.rating?.slice(0, 5) || "PG-13"}
