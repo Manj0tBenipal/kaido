@@ -17,7 +17,15 @@ export default function Trending() {
     const title = item.titles.en || item.titles.en_jp;
     return (
       <SwiperSlide key={item.titles.en_jp} className="trending-slide">
-        <div>
+        <div
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{
+            duration: 0.2,
+            delay: idx * 0.1,
+            ease: easeInOut,
+          }}
+        >
           <div className="trending-item-sidebar">
             <p className="f-poppins">
               {title.length > 15 ? title.slice(0, 15) + "..." : title}
@@ -29,9 +37,13 @@ export default function Trending() {
             to={`/details/kitsu/${el.id}`}
           >
             <motion.img
-              initial={{ x: idx * 100, opacity: 0 }}
-              animate={isInView ? { x: 0, opacity: 1 } : {}}
-              transition={{ duration: idx * 0.4, ease: easeInOut }}
+              initial={{ opacity: 0 }}
+              animate={isInView ? { x: [100, 10, 0], opacity: 1 } : {}}
+              transition={{
+                duration: 0.2,
+                delay: idx * 0.1,
+                ease: easeOut,
+              }}
               src={item.posterImage.small}
               className="trending-slide-img "
               alt="item.title"
