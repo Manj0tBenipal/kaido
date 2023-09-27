@@ -5,6 +5,8 @@ import LoadingSpinner from "../LoadingSpinner";
 import { Link } from "react-router-dom";
 import { FaEye, FaHeart, FaMedal } from "react-icons/fa";
 import "./mouse-over-card.css";
+
+import { motion } from "framer-motion";
 export default function MouseOverCard(props) {
   const { isLoading, data } = getAnimeByMalId(props.id);
   const anime = data?.data;
@@ -22,7 +24,12 @@ export default function MouseOverCard(props) {
     );
   });
   return (
-    <div className="mouse-over-card-wrapper d-flex-fd-column">
+    <motion.div
+      initial={{ opacity: 0, scale: 0.1 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.3, delay: 0.6 }}
+      className="mouse-over-card-wrapper d-flex-fd-column"
+    >
       {isLoading ? (
         <LoadingSpinner />
       ) : (
@@ -105,6 +112,6 @@ export default function MouseOverCard(props) {
           </div>
         </>
       )}
-    </div>
+    </motion.div>
   );
 }
