@@ -4,7 +4,7 @@ import "./AnimeInfo.css";
 import { Link } from "react-router-dom";
 import { FaEye, FaHeart, FaMedal, FaPlayCircle, FaPlus } from "react-icons/fa";
 import Share from "../Share/Share";
-import {getRandomAnime } from "../../hooks/jikan";
+import { getRandomAnime } from "../../api/jikan";
 
 export default function Details() {
   const { data, isLoading } = getRandomAnime();

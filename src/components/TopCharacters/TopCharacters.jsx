@@ -1,6 +1,6 @@
 import React from "react";
 import LoadingSpinner from "../LoadingSpinner";
-import { getTopCharacters} from "../../hooks/jikan";
+import { getTopCharacters } from "../../api/jikan";
 
 import { FaThumbsUp } from "react-icons/fa";
 export default function TopPosts() {

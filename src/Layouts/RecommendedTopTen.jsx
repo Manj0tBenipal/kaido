@@ -3,7 +3,7 @@ import TopTenAnime from "../components/TopTen/TopTenAnime";
 import AnimeCollection from "../components/MainContainer/AnimeCollection";
 import Genre from "../components/Genre/Genre";
 import { Outlet } from "react-router-dom";
-import { getRecommendedAnime } from "../hooks/jikan";
+import { getRecommendedAnime } from "../api/jikan";
 import LoadingSpinner from "../components/LoadingSpinner";
 export default function RecommendedTopTen() {
   const collection = getRecommendedAnime();

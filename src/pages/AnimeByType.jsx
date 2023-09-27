@@ -1,6 +1,6 @@
 import React from "react";
 import { useSearchParams } from "react-router-dom";
-import {  getAnimeByType } from "../hooks/jikan";
+import { getAnimeByType } from "../api/jikan";
 import LoadingSpinner from "../components/LoadingSpinner";
 import AnimeCollection from "../components/MainContainer/AnimeCollection";
 

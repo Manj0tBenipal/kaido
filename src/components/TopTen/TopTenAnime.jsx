@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./top-ten.css";
-import { getTrendingAnime } from "../../hooks/kitsu";
+import { getTrendingAnime } from "../../api/kitsu";
 import { FaStar } from "react-icons/fa";
 import { Link } from "react-router-dom";
 export default function TopTenAnime() {

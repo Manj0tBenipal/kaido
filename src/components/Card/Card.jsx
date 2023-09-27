@@ -3,10 +3,10 @@ import "./card.css";
 import { Link } from "react-router-dom";
 import MouseOverCard from "./MouseOverCard";
 import { FaPlayCircle } from "react-icons/fa";
-import { inView, motion, useInView } from "framer-motion";
+import { easeOut, motion, useInView } from "framer-motion";
 export default function Card(props) {
   const cardRef = useRef(null);
-  const isInView = useInView(cardRef, { once: true });
+  const isInView = useInView(cardRef);
   const [isAnimated, setIsAnimated] = useState(false);
   const anime = props.data;
   const [isHovered, setIsHovered] = useState(false);
@@ -19,18 +19,12 @@ export default function Card(props) {
     return () => window.removeEventListener(listener, setWidth);
   });
 
-  useEffect(() => {
-    console.log(isInView);
-    if (isInView && !isAnimated) {
-      setIsAnimated(true);
-    }
-  }, [isInView]);
   return (
     <motion.div
       ref={cardRef}
-      initial={{ opacity: 0.3, scale: 0, x: 100 }}
-      animate={isAnimated ? { opacity: 1, scale: 1, x: 0 } : {}}
-      transition={{ duration: 1 }}
+      initial={{ opacity: 0 }}
+      animate={isInView ? { opacity: 1, x: [150, -10, 0] } : { opacity: 0 }}
+      transition={{ duration: 0.4, delay: props.delay, ease: easeOut }}
       onMouseOver={() => setIsHovered(true)}
       onMouseOut={() => setIsHovered(false)}
       className="anime-card-wrapper"
