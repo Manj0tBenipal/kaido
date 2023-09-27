@@ -1,9 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./card.css";
 import { Link } from "react-router-dom";
 import MouseOverCard from "./MouseOverCard";
 import { FaPlayCircle } from "react-icons/fa";
+import { inView, motion, useInView } from "framer-motion";
 export default function Card(props) {
+  const cardRef = useRef(null);
+  const isInView = useInView(cardRef, { once: true });
+  const [isAnimated, setIsAnimated] = useState(false);
   const anime = props.data;
   const [isHovered, setIsHovered] = useState(false);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
@@ -14,8 +18,19 @@ export default function Card(props) {
     const listener = window.addEventListener("resize", setWidth);
     return () => window.removeEventListener(listener, setWidth);
   });
+
+  useEffect(() => {
+    console.log(isInView);
+    if (isInView && !isAnimated) {
+      setIsAnimated(true);
+    }
+  }, [isInView]);
   return (
-    <div
+    <motion.div
+      ref={cardRef}
+      initial={{ opacity: 0.3, scale: 0, x: 100 }}
+      animate={isAnimated ? { opacity: 1, scale: 1, x: 0 } : {}}
+      transition={{ duration: 1 }}
       onMouseOver={() => setIsHovered(true)}
       onMouseOut={() => setIsHovered(false)}
       className="anime-card-wrapper"
@@ -68,6 +83,6 @@ export default function Card(props) {
       {screenWidth > 1150 && isHovered && anime && (
         <MouseOverCard id={anime.mal_id} />
       )}
-    </div>
+    </motion.div>
   );
 }
