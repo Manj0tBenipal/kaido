@@ -8,6 +8,7 @@ import { BiToggleLeft, BiToggleRight } from "react-icons/bi";
 import RecommendedTopTen from "../../Layouts/RecommendedTopTen";
 import Share from "../../components/Share/Share";
 import LoadingSpinner from "../../components/LoadingSpinner";
+import { easeInOut, easeOut, motion } from "framer-motion";
 
 import Error from "../../components/AnimeNotFound/Error";
 export default function WatchAnime() {
@@ -181,7 +182,11 @@ export default function WatchAnime() {
     }
   }, [episodesDub, currentEpisodeIdx]);
   return (
-    <>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ x: [window.innerWidth, 0], opacity: 1 }}
+      transition={{ duration: 0.7, ease: easeOut }}
+    >
       {Object.keys(searchResults).length === 0 ? (
         <LoadingSpinner />
       ) : searchResults.results.length === 0 ? (
@@ -194,7 +199,7 @@ export default function WatchAnime() {
           />
           <div className="media-center d-flex">
             <div className="episode-container">
-              <p>List Of Episodes:</p>
+              <p>List of Episodes:</p>
               <div className="episode-tiles-wrapper d-flex a-center">
                 {subIsSelected ? episodeButtons : episodeButtonsDub}
               </div>
@@ -321,6 +326,6 @@ export default function WatchAnime() {
       />
 
       <RecommendedTopTen />
-    </>
+    </motion.div>
   );
 }

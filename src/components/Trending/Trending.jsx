@@ -19,19 +19,28 @@ export default function Trending() {
       <SwiperSlide key={item.titles.en_jp} className="trending-slide">
         <div
           initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
+          animate={isInView ? { x: [100, 10, 0], opacity: 1 } : {}}
           transition={{
             duration: 0.2,
             delay: idx * 0.1,
-            ease: easeInOut,
+            ease: easeOut,
           }}
         >
-          <div className="trending-item-sidebar">
+          <motion.div
+            className="trending-item-sidebar"
+            initial={{ opacity: 0 }}
+            animate={isInView ? { x: [100, 10, 0], opacity: 1 } : {}}
+            transition={{
+              duration: 0.2,
+              delay: idx * 0.35,
+              ease: easeOut,
+            }}
+          >
             <p className="f-poppins">
               {title.length > 15 ? title.slice(0, 15) + "..." : title}
             </p>
             <span>{idx > 8 ? idx + 1 : "0" + (idx + 1)}</span>
-          </div>
+          </motion.div>
           <Link
             onClick={() => window.scrollTo({ top: 0 })}
             to={`/details/kitsu/${el.id}`}
@@ -41,7 +50,7 @@ export default function Trending() {
               animate={isInView ? { x: [100, 10, 0], opacity: 1 } : {}}
               transition={{
                 duration: 0.2,
-                delay: idx * 0.1,
+                delay: idx * 0.15,
                 ease: easeOut,
               }}
               src={item.posterImage.small}

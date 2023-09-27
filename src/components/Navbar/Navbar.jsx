@@ -41,7 +41,12 @@ export default function NavBar(props) {
           />
           <div className="logo-wrapper a-center d-flex">
             <Link to="/">
-              <img src={logo} className="logo" alt="logo" />
+              <img
+                src={logo}
+                className="logo"
+                alt="logo"
+                onClick={() => scrollTo({ top: 0 })}
+              />
             </Link>
           </div>
         </div>
