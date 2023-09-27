@@ -4,7 +4,7 @@
 
 Welcome to Kaido, your one-stop destination for streaming your favorite anime series and movies! This website is built using React and leverages several libraries and APIs to provide a seamless anime streaming experience.
 
-You can visit Kaido by clicking on the following link: [Kaido Anime Streaming](https://kaido.visitmanjotbenipal.com/)
+
 
 ## Features
 
