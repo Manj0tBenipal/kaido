@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { getGenre } from "../../hooks/jikan";
+import { getGenre } from "../../api/jikan";
 import LoadingSpinner from "../LoadingSpinner";
 import "./genre.css";
 import { Link } from "react-router-dom";

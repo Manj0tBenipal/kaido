@@ -4,7 +4,7 @@ import { BiSolidToggleLeft, BiSolidToggleRight } from "react-icons/bi";
 import rengokuPng from "../../media/muichiro.png";
 import LoadingSpinner from "../LoadingSpinner";
 import { Scrollbar } from "swiper/modules";
-import { getAnimeReviews, getMangaReviews } from "../../hooks/jikan";
+import { getAnimeReviews, getMangaReviews } from "../../api/jikan";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/scrollbar";

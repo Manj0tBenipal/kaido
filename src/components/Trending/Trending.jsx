@@ -1,22 +1,31 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Navigation } from "swiper/modules";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { getTrendingAnime } from "../../hooks/kitsu";
+import { getTrendingAnime } from "../../api/kitsu";
 import "swiper/css";
 import "swiper/css/navigation";
 import "./trending.css";
 import { Link } from "react-router-dom";
-
+import { easeInOut, easeOut, motion, useInView } from "framer-motion";
 export default function Trending() {
   const { data } = getTrendingAnime();
-
+  const ref = useRef(null);
+  const isInView = useInView(ref);
   const animeCard = data?.map((el, idx) => {
     const item = el.attributes;
     const title = item.titles.en || item.titles.en_jp;
     return (
-      <SwiperSlide key={item.titles.en_jp}>
-        <div className="trending-slide">
+      <SwiperSlide key={item.titles.en_jp} className="trending-slide">
+        <div
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{
+            duration: 0.2,
+            delay: idx * 0.1,
+            ease: easeInOut,
+          }}
+        >
           <div className="trending-item-sidebar">
             <p className="f-poppins">
               {title.length > 15 ? title.slice(0, 15) + "..." : title}
@@ -27,7 +36,14 @@ export default function Trending() {
             onClick={() => window.scrollTo({ top: 0 })}
             to={`/details/kitsu/${el.id}`}
           >
-            <img
+            <motion.img
+              initial={{ opacity: 0 }}
+              animate={isInView ? { x: [100, 10, 0], opacity: 1 } : {}}
+              transition={{
+                duration: 0.2,
+                delay: idx * 0.1,
+                ease: easeOut,
+              }}
               src={item.posterImage.small}
               className="trending-slide-img "
               alt="item.title"
@@ -38,7 +54,7 @@ export default function Trending() {
     );
   });
   return (
-    <div className="trending-section-wrapper">
+    <div className="trending-section-wrapper" ref={ref}>
       <h2 className="section-header">Trending</h2>
       <Swiper
         className="swiper"

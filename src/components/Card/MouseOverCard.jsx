@@ -1,5 +1,5 @@
 import React from "react";
-import { getAnimeByMalId } from "../../hooks/jikan";
+import { getAnimeByMalId } from "../../api/jikan";
 import { FaStar, FaPlayCircle, FaChevronRight } from "react-icons/fa";
 import LoadingSpinner from "../LoadingSpinner";
 import { Link } from "react-router-dom";

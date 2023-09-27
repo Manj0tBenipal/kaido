@@ -6,7 +6,7 @@ import {
   getTopONAs,
   getTopOVAs,
   getTopSpecials,
-} from "../../hooks/jikan";
+} from "../../api/jikan";
 
 import MainSidebar from "./MainSidebar";
 

@@ -4,7 +4,7 @@ import "./AnimeInfo.css";
 import { Link, useParams } from "react-router-dom";
 import { FaEye, FaHeart, FaMedal, FaPlayCircle, FaPlus } from "react-icons/fa";
 import Share from "../Share/Share";
-import { getAnimeByMalId } from "../../hooks/jikan";
+import { getAnimeByMalId } from "../../api/jikan";
 
 export default function Details() {
   const params = useParams();

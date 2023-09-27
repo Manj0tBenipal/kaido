@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import "./top-ten.css";
-import { getTrendingAnime } from "../../hooks/kitsu";
+import { getTrendingAnime } from "../../api/kitsu";
 import { FaStar } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { easeOut, motion } from "framer-motion";
 export default function TopTenAnime() {
   const { data } = getTrendingAnime();
   const [period, setPeriod] = useState(2);
@@ -15,7 +16,13 @@ export default function TopTenAnime() {
   const list = sortedList?.map((el, idx) => {
     const title = el.attributes.titles.en || el.attributes.titles.en_jp;
     return (
-      <li key={title} className="d-flex a-center">
+      <motion.li
+        key={title}
+        className="d-flex a-center"
+        initial={{ opacity: 0, y: 100 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ ease: easeOut, duration: 0.3 }}
+      >
         <span
           className={`rank ${0 < idx + 1 && idx + 1 <= 3 ? "top-three" : ""}`}
         >
@@ -46,7 +53,7 @@ export default function TopTenAnime() {
             </div>
           </div>
         </div>
-      </li>
+      </motion.li>
     );
   });
   return (

@@ -4,7 +4,7 @@ import "./AnimeInfo.css";
 
 import { FaEye, FaHeart, FaMedal, FaPlayCircle, FaPlus } from "react-icons/fa";
 import Share from "../Share/Share";
-import { getAnimeById } from "../../hooks/kitsu";
+import { getAnimeById } from "../../api/kitsu";
 import { Link, useParams } from "react-router-dom";
 
 export default function Details() {

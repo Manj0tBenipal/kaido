@@ -162,6 +162,6 @@ export function getAnimeSearch(name, parameter) {
 
   return handleJikanResponse(
     `anime-search${name}`,
-    `anime?${queryString}&limit=24`
+    `anime?${queryString}&sfw=true&order_by=rank&limit=24`
   );
 }

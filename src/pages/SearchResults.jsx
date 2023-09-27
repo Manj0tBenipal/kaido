@@ -1,6 +1,6 @@
 import React from "react";
 import { useSearchParams } from "react-router-dom";
-import { getAnimeSearch } from "../hooks/jikan";
+import { getAnimeSearch } from "../api/jikan";
 import AnimeCollection from "../components/MainContainer/AnimeCollection";
 import Genre from "../components/Genre/Genre";
 import TopTenAnime from "../components/TopTen/TopTenAnime";

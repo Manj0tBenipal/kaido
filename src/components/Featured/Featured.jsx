@@ -8,7 +8,7 @@ import {
   getMostPopular,
   getTopAiring,
   getTopUpcoming,
-} from "../../hooks/jikan";
+} from "../../api/jikan";
 
 export default function Featured() {
   const topAiring = getTopAiring();
