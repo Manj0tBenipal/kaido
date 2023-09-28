@@ -60,6 +60,7 @@ body {
   margin: 0 auto;
   color: var(--light);
   position: relative;
+  overflow-x: hidden;
 }
 .section-header {
   font-family: "Poppins", sans-serif;

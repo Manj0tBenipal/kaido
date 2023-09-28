@@ -7,7 +7,7 @@ import { easeOut, motion, useInView } from "framer-motion";
 export default function Card(props) {
   const cardRef = useRef(null);
   const isInView = useInView(cardRef);
-  const [isAnimated, setIsAnimated] = useState(false);
+
   const anime = props.data;
   const [isHovered, setIsHovered] = useState(false);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);

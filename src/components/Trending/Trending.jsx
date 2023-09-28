@@ -22,7 +22,7 @@ export default function Trending() {
           animate={isInView ? { x: [100, 10, 0], opacity: 1 } : {}}
           transition={{
             duration: 0.2,
-            delay: idx * 0.1,
+            delay: idx * 0.1 + 1.2,
             ease: easeOut,
           }}
         >
@@ -32,7 +32,7 @@ export default function Trending() {
             animate={isInView ? { x: [100, 10, 0], opacity: 1 } : {}}
             transition={{
               duration: 0.2,
-              delay: idx * 0.35,
+              delay: idx * 0.12 + 1.2,
               ease: easeOut,
             }}
           >

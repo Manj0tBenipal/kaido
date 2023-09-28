@@ -12,7 +12,7 @@ import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { getRecentAnime } from "../../api/kitsu";
 import LoadingSpinner from "../LoadingSpinner";
 import { Link } from "react-router-dom";
-import { easeInOut, motion } from "framer-motion";
+import { easeInOut, easeOut, motion } from "framer-motion";
 
 export default function Hero() {
   const { isLoading, data } = getRecentAnime();
@@ -94,14 +94,8 @@ export default function Hero() {
     <motion.div
       className="carousel slide"
       style={{ position: "relative" }}
-      initial={{
-        borderRadius: 400,
-
-        margin: "auto",
-        borderColor: "red",
-      }}
-      animate={{ width: ["10%", "102%", "100%"], borderRadius: 0 }}
-      transition={{ duration: 0.8, ease: easeInOut }}
+      animate={{ y: [-window.innerHeight / 2, 10, 0] }}
+      transition={{ duration: 1.3, ease: easeOut }}
     >
       <Swiper
         slidesPerView={1}
