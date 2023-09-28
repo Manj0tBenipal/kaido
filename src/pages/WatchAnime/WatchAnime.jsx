@@ -184,7 +184,7 @@ export default function WatchAnime() {
   return (
     <motion.div
       initial={{ opacity: 0 }}
-      animate={{ x: [window.innerWidth, 0], opacity: 1 }}
+      animate={{ x: [window.innerWidth / 2, 0], opacity: 1 }}
       transition={{ duration: 0.7, ease: easeOut }}
     >
       {Object.keys(searchResults).length === 0 ? (
@@ -192,7 +192,12 @@ export default function WatchAnime() {
       ) : searchResults.results.length === 0 ? (
         <Error />
       ) : (
-        <div style={{ marginTop: "65px" }} className="watch-container d-flex">
+        <motion.div
+          style={{ marginTop: "65px" }}
+          className="watch-container d-flex"
+          animate={{ y: [-window.innerHeight / 2, 10, 0] }}
+          transition={{ duration: 0.5, ease: easeOut }}
+        >
           <img
             className="watch-container-background"
             src={currentAnimeInfo.image}
@@ -316,7 +321,7 @@ export default function WatchAnime() {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       )}
 
       <Share

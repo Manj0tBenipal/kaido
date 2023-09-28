@@ -19,8 +19,8 @@ export default function TopTenAnime() {
       <motion.li
         key={title}
         className="d-flex a-center"
-        initial={{ opacity: 0, y: 100 }}
-        animate={{ y: 0, opacity: 1 }}
+        initial={{ opacity: 0, x: 100 }}
+        animate={{ x: 0, opacity: 1 }}
         transition={{ ease: easeOut, duration: 0.3 }}
       >
         <span

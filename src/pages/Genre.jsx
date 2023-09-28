@@ -15,7 +15,7 @@ export default function Grid() {
     <motion.div
       className="collections-wrapper d-flex-fd-column a-center "
       initial={{ opacity: 0 }}
-      animate={{ x: [window.innerWidth, 0], opacity: 1 }}
+      animate={{ x: [window.innerWidth /2, 0], opacity: 1 }}
       transition={{ duration: 0.7, ease: easeOut }}
     >
       {!anime.isLoading ? (

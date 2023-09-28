@@ -88,46 +88,50 @@ export default function Hero() {
     );
   });
 
-  return isLoading ? (
-    <LoadingSpinner />
-  ) : (
+  return (
     <motion.div
       className="carousel slide"
       style={{ position: "relative" }}
-      animate={{ y: [-window.innerHeight / 2, 10, 0] }}
+      animate={{ y: [-window.innerHeight / 3, 10, 0] }}
       transition={{ duration: 1.3, ease: easeOut }}
     >
-      <Swiper
-        slidesPerView={1}
-        pagination={{
-          clickable: true,
-        }}
-        direction="horizontal"
-        loop={true}
-        autoplay={true}
-        modules={[Pagination, Navigation, Autoplay]}
-        navigation={{
-          nextEl: ".carousel-control-next",
-          prevEl: ".carousel-control-prev",
-        }}
-        className="carousel slide"
-      >
-        {heroSlide}
-      </Swiper>
-      <div className="carousel-controls-wrapper">
-        <button
-          className="carousel-controls carousel-control-next trans-03 "
-          type="button"
-        >
-          <FaChevronRight size={15} />
-        </button>
-        <button
-          className="carousel-controls carousel-control-prev trans-03  "
-          type="button"
-        >
-          <FaChevronLeft size={15} />
-        </button>
-      </div>
+      {isLoading ? (
+        <LoadingSpinner />
+      ) : (
+        <>
+          <Swiper
+            slidesPerView={1}
+            pagination={{
+              clickable: true,
+            }}
+            direction="horizontal"
+            loop={true}
+            autoplay={true}
+            modules={[Pagination, Navigation, Autoplay]}
+            navigation={{
+              nextEl: ".carousel-control-next",
+              prevEl: ".carousel-control-prev",
+            }}
+            className="carousel slide"
+          >
+            {heroSlide}
+          </Swiper>
+          <div className="carousel-controls-wrapper">
+            <button
+              className="carousel-controls carousel-control-next trans-03 "
+              type="button"
+            >
+              <FaChevronRight size={15} />
+            </button>
+            <button
+              className="carousel-controls carousel-control-prev trans-03  "
+              type="button"
+            >
+              <FaChevronLeft size={15} />
+            </button>
+          </div>
+        </>
+      )}
     </motion.div>
   );
 }

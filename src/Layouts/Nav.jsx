@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 import Navbar from "../components/Navbar/Navbar";
 import NavSidebar from "../components/NavigationSidebar/NavSidebar";
 import Footer from "../components/Footer/Footer";
-
+import { easeOut, motion } from "framer-motion";
 export default function Layout() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
@@ -24,7 +24,11 @@ export default function Layout() {
     };
   }, [isScrolled]);
   return (
-    <div className="app-container f-poppins">
+    <motion.div
+      className="app-container f-poppins"
+      animate={{ y: [-window.innerHeight / 4, 10, 0] }}
+      transition={{ duration: 0.3, ease: easeOut }}
+    >
       <Navbar
         isScrolled={isScrolled}
         sidebarIsOpen={sidebarIsOpen}
@@ -36,6 +40,6 @@ export default function Layout() {
       />
       <Outlet />
       <Footer />
-    </div>
+    </motion.div>
   );
 }
