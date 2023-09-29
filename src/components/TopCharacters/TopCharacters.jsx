@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useRef } from "react";
 import LoadingSpinner from "../LoadingSpinner";
 import { getTopCharacters } from "../../api/jikan";
+import { easeOut, motion } from "framer-motion";
 
 import { FaThumbsUp } from "react-icons/fa";
+import useAnimationOnce from "../../hooks/useAnimationOnce";
 export default function TopPosts() {
   const { isLoading, data } = getTopCharacters();
+  const ref = useRef(null);
+
+  const containerInView = useAnimationOnce(ref);
 
   const characterDpStyles = {
     height: "90px",
@@ -13,7 +18,17 @@ export default function TopPosts() {
   //Elements inherit css from TopTenAnime -- Same list Style
   const list = data?.data.map((el, idx) => {
     return (
-      <li key={el.mal_id} className="d-flex a-center">
+      <motion.li
+        key={el.mal_id}
+        className="d-flex a-center"
+        initial={{ opacity: 0 }}
+        animate={
+          containerInView
+            ? { opacity: 1, x: ["100%", "-10%", "0%"] }
+            : { opacity: 0 }
+        }
+        transition={{ duration: 0.2 * idx }}
+      >
         <span
           className={`rank ${0 < idx + 1 && idx + 1 <= 3 ? "top-three" : ""}`}
         >
@@ -44,18 +59,28 @@ export default function TopPosts() {
             </p>
           </div>
         </div>
-      </li>
+      </motion.li>
     );
   });
   return isLoading ? (
     <LoadingSpinner />
   ) : (
-    <div className="top-ten-wrapper">
+    <motion.div
+      className="top-ten-wrapper"
+      ref={ref}
+      initial={{ opacity: 0 }}
+      animate={
+        containerInView
+          ? { opacity: 1, y: ["10%", "-10%", "0%"] }
+          : { opacity: 0 }
+      }
+      transition={{ duration: 0.6, ease: easeOut }}
+    >
       <div className="top-ten-header d-flex a-center">
         <h2>Top Characters</h2>
       </div>
 
       <ul>{list}</ul>
-    </div>
+    </motion.div>
   );
 }
