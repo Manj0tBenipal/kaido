@@ -5,6 +5,7 @@ import Genre from "../components/Genre/Genre";
 import { Outlet } from "react-router-dom";
 import { getRecommendedAnime } from "../api/jikan";
 import LoadingSpinner from "../components/LoadingSpinner";
+import { easeOut, motion } from "framer-motion";
 export default function RecommendedTopTen() {
   const collection = getRecommendedAnime();
 
@@ -12,8 +13,11 @@ export default function RecommendedTopTen() {
     <>
       <Outlet />
 
-      <div
-        className=" main-container d-flex  "
+      <motion.div
+        className=" main-container d-flex"
+        initial={{ opacity: 0 }}
+        animate={{ x: [window.innerWidth, 0], opacity: 1 }}
+        transition={{ duration: 0.7, ease: easeOut }}
         style={
           window.innerWidth < 1081 ? { flexDirection: "column-reverse" } : {}
         }
@@ -37,7 +41,7 @@ export default function RecommendedTopTen() {
             />
           )}
         </div>
-      </div>
+      </motion.div>
     </>
   );
 }

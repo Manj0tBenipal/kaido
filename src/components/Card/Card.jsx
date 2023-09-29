@@ -7,7 +7,7 @@ import { easeOut, motion, useInView } from "framer-motion";
 export default function Card(props) {
   const cardRef = useRef(null);
   const isInView = useInView(cardRef);
-  const [isAnimated, setIsAnimated] = useState(false);
+
   const anime = props.data;
   const [isHovered, setIsHovered] = useState(false);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
@@ -33,7 +33,7 @@ export default function Card(props) {
         to={`/details/jikan/${anime.mal_id}`}
         key={anime.mal_id}
         className="anime-card d-flex"
-        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        onClick={() => window.scrollTo({ top: 0 })}
       >
         <div className={`anime-card-img-wrapper  `}>
           {screenWidth > 1150 && (

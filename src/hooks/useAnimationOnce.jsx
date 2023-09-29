@@ -1,5 +1,5 @@
-import { useInView } from "framer-motion";
 import React from "react";
+import { useInView } from "framer-motion";
 
 export default function useAnimationOnce(ref) {
   const elementRef = ref;

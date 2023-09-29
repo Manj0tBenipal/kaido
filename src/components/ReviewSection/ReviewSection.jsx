@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { FaEvernote } from "react-icons/fa";
 import { BiSolidToggleLeft, BiSolidToggleRight } from "react-icons/bi";
 import rengokuPng from "../../media/muichiro.png";
@@ -10,41 +10,59 @@ import "swiper/css";
 import "swiper/css/scrollbar";
 import "swiper/css/pagination";
 import "./review-section.css";
+import { easeOut, motion } from "framer-motion";
+import useAnimationOnce from "../../hooks/useAnimationOnce";
+
 export default function ReviewSection() {
   const [reviewsVisible, setReviewsVisible] = useState(true);
   const [animeReviewIsSelected, setAnimeReviewIsSelected] = useState(true);
-
+  const ref = useRef(null);
+  const isInView = useAnimationOnce(ref);
   const animeReviews = getAnimeReviews();
   const mangaReviews = getMangaReviews();
   const animeList = animeReviews.data;
   const mangaList = mangaReviews.data;
   const isLoading = mangaReviews.isLoading && animeReviewIsSelected.isLoading;
-
+  console.log(isInView);
   const reviewType = animeReviewIsSelected ? animeList : mangaList;
   const reviewCards = reviewType?.data
     .filter((el, idx) => idx < 11)
     .map((el, idx) => {
       return (
-        <SwiperSlide className="review-card" key={el.mal_id}>
-          <div className="review-card-header">
-            <div className="user-profile d-flex a-center ">
-              <img src={el.user.images.webp.image_url} alt="23" />
-              <a rel="noreferrer" target="_blank" href={el.user.url}>
-                {el.user.username}
-              </a>
+        <SwiperSlide key={el.mal_id}>
+          <motion.div
+            className="review-card"
+            initial={{ opacity: 0 }}
+            animate={
+              isInView
+                ? {
+                    x: [window.innerWidth / 2, -10, 0],
+                    opacity: 1,
+                  }
+                : { x: window.innerWidth, opacity: 0 }
+            }
+            transition={{ duration: 0.4 * idx + 0.2, ease: easeOut }}
+          >
+            <div className="review-card-header">
+              <div className="user-profile d-flex a-center ">
+                <img src={el.user.images.webp.image_url} alt="23" />
+                <a rel="noreferrer" target="_blank" href={el.user.url}>
+                  {el.user.username}
+                </a>
+              </div>
             </div>
-          </div>
-          <div className="review-text">{el.review.slice(0, 140) + "..."}</div>
-          <div className="anime-title">
-            <FaEvernote size={13} />
-            {el.entry.title}
-          </div>
+            <div className="review-text">{el.review.slice(0, 140) + "..."}</div>
+            <div className="anime-title">
+              <FaEvernote size={13} />
+              {el.entry.title}
+            </div>
+          </motion.div>
         </SwiperSlide>
       );
     });
 
   return (
-    <div className="review-section-wrapper d-flex a-center j-center">
+    <div ref={ref} className="review-section-wrapper d-flex a-center j-center">
       {!reviewsVisible ? (
         <div className="review-toggle d-flex a-center j-center">
           <span>Show reviews</span>

@@ -12,6 +12,7 @@ import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { getRecentAnime } from "../../api/kitsu";
 import LoadingSpinner from "../LoadingSpinner";
 import { Link } from "react-router-dom";
+import { easeInOut, easeOut, motion } from "framer-motion";
 
 export default function Hero() {
   const { isLoading, data } = getRecentAnime();
@@ -87,41 +88,50 @@ export default function Hero() {
     );
   });
 
-  return isLoading ? (
-    <LoadingSpinner />
-  ) : (
-    <div className="carousel slide" style={{ position: "relative" }}>
-      <Swiper
-        slidesPerView={1}
-        pagination={{
-          clickable: true,
-        }}
-        direction="horizontal"
-        loop={true}
-        autoplay={true}
-        modules={[Pagination, Navigation, Autoplay]}
-        navigation={{
-          nextEl: ".carousel-control-next",
-          prevEl: ".carousel-control-prev",
-        }}
-        className="carousel slide"
-      >
-        {heroSlide}
-      </Swiper>
-      <div className="carousel-controls-wrapper">
-        <button
-          className="carousel-controls carousel-control-next trans-03 "
-          type="button"
-        >
-          <FaChevronRight size={15} />
-        </button>
-        <button
-          className="carousel-controls carousel-control-prev trans-03  "
-          type="button"
-        >
-          <FaChevronLeft size={15} />
-        </button>
-      </div>
-    </div>
+  return (
+    <motion.div
+      className="carousel slide"
+      style={{ position: "relative" }}
+      animate={{ y: [-window.innerHeight / 3, 10, 0] }}
+      transition={{ duration: 1.3, ease: easeOut }}
+    >
+      {isLoading ? (
+        <LoadingSpinner />
+      ) : (
+        <>
+          <Swiper
+            slidesPerView={1}
+            pagination={{
+              clickable: true,
+            }}
+            direction="horizontal"
+            loop={true}
+            autoplay={true}
+            modules={[Pagination, Navigation, Autoplay]}
+            navigation={{
+              nextEl: ".carousel-control-next",
+              prevEl: ".carousel-control-prev",
+            }}
+            className="carousel slide"
+          >
+            {heroSlide}
+          </Swiper>
+          <div className="carousel-controls-wrapper">
+            <button
+              className="carousel-controls carousel-control-next trans-03 "
+              type="button"
+            >
+              <FaChevronRight size={15} />
+            </button>
+            <button
+              className="carousel-controls carousel-control-prev trans-03  "
+              type="button"
+            >
+              <FaChevronLeft size={15} />
+            </button>
+          </div>
+        </>
+      )}
+    </motion.div>
   );
 }
