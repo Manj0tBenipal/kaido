@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import "./top-ten.css";
 import { getTrendingAnime } from "../../api/kitsu";
 import { FaStar } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { easeOut, motion } from "framer-motion";
+import useAnimationOnce from "../../hooks/useAnimationOnce";
 export default function TopTenAnime() {
+  const ref = useRef(null);
+  const containerInView = useAnimationOnce(ref);
+
   const { data } = getTrendingAnime();
   const [period, setPeriod] = useState(2);
   const animeList = data && [...data];
@@ -19,9 +23,13 @@ export default function TopTenAnime() {
       <motion.li
         key={title}
         className="d-flex a-center"
-        initial={{ opacity: 0, x: 100 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ ease: easeOut, duration: 0.3 }}
+        initial={{ opacity: 0 }}
+        animate={
+          containerInView
+            ? { opacity: 1, x: ["100%", "-10%", "0%"] }
+            : { opacity: 0 }
+        }
+        transition={{ duration: 0.1 * idx }}
       >
         <span
           className={`rank ${0 < idx + 1 && idx + 1 <= 3 ? "top-three" : ""}`}
@@ -57,7 +65,17 @@ export default function TopTenAnime() {
     );
   });
   return (
-    <div className="top-ten-wrapper">
+    <motion.div
+      className="top-ten-wrapper"
+      ref={ref}
+      initial={{ opacity: 0 }}
+      animate={
+        containerInView
+          ? { opacity: 1, x: ["10%", "-10%", "0%"] }
+          : { opacity: 0 }
+      }
+      transition={{ duration: 0.6, ease: easeOut }}
+    >
       <div className="top-ten-header d-flex a-center">
         <h2>Top 10</h2>
         <div className="top-ten-tabs">
@@ -88,6 +106,6 @@ export default function TopTenAnime() {
         </div>
       </div>
       <ul>{list}</ul>
-    </div>
+    </motion.div>
   );
 }
