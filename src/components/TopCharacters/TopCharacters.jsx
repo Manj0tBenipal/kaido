@@ -24,7 +24,7 @@ export default function TopPosts() {
         initial={{ opacity: 0 }}
         animate={
           containerInView
-            ? { opacity: 1, x: ["100%", "-10%", "0%"] }
+            ? { opacity: 1, x: ["100%", "-3%", "0%"] }
             : { opacity: 0 }
         }
         transition={{ duration: 0.2 * idx }}
@@ -62,16 +62,14 @@ export default function TopPosts() {
       </motion.li>
     );
   });
-  return isLoading ? (
-    <LoadingSpinner />
-  ) : (
+  return (
     <motion.div
       className="top-ten-wrapper"
       ref={ref}
       initial={{ opacity: 0 }}
       animate={
         containerInView
-          ? { opacity: 1, y: ["10%", "-10%", "0%"] }
+          ? { opacity: 1, y: ["10%", "-3%", "0%"] }
           : { opacity: 0 }
       }
       transition={{ duration: 0.6, ease: easeOut }}
@@ -79,8 +77,7 @@ export default function TopPosts() {
       <div className="top-ten-header d-flex a-center">
         <h2>Top Characters</h2>
       </div>
-
-      <ul>{list}</ul>
+      {isLoading ? <LoadingSpinner /> : <ul>{list}</ul>}
     </motion.div>
   );
 }
