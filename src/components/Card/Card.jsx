@@ -25,7 +25,7 @@ export default function Card(props) {
       initial={{ opacity: 0 }}
       animate={
         isInView
-          ? { opacity: 1, x: ["100%", "-10%", "0%"] }
+          ? { opacity: 1, x: ["100%", "-10%", "0%"], zIndex: 1 }
           : { opacity: 0, x: "100%" }
       }
       transition={{ duration: 0.2, delay: props.delay, ease: easeOut }}
