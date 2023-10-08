@@ -88,7 +88,8 @@
 .video-player {
   width: 75%;
 }
-.video-player iframe {
+.video-player video {
+  display: block;
   width: 100% !important;
   aspect-ratio: 16/9;
   overflow: hidden;
@@ -164,7 +165,7 @@
     margin-top: 50px;
     padding-top: 0;
   }
-  .video-player iframe {
+  .video-player video {
     aspect-ratio: 4/3;
   }
 }
