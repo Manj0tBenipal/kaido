@@ -10,7 +10,7 @@ import { motion } from "framer-motion";
 export default function MouseOverCard(props) {
   const { isLoading, data } = getAnimeByMalId(props.id);
   const anime = data?.data;
-  console.log(anime);
+
   const genre = anime?.genres?.map((genre) => {
     return (
       <Link
@@ -24,12 +24,7 @@ export default function MouseOverCard(props) {
     );
   });
   return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.1 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.3, delay: 0.6 }}
-      className="mouse-over-card-wrapper d-flex-fd-column"
-    >
+    <div className="mouse-over-card-wrapper d-flex-fd-column">
       {isLoading ? (
         <LoadingSpinner />
       ) : (
@@ -100,14 +95,14 @@ export default function MouseOverCard(props) {
           </div>
           <div className="button-wrapper">
             <Link
-              to={`/watch?name=${anime?.title_english || anime.title}`}
+              to={`/watch?name=${anime?.title_english || anime?.title}`}
               className="btn-primary hero-button"
               onClick={() => window.scrollTo({ top: 0 })}
             >
               <FaPlayCircle size={12} /> Watch Now
             </Link>
             <Link
-              to={`/details/jikan/${anime.mal_id}`}
+              to={`/details/jikan/${anime?.mal_id}`}
               onClick={() => window.scrollTo({ top: 0 })}
               className="btn-secondary hero-button"
             >
@@ -116,6 +111,6 @@ export default function MouseOverCard(props) {
           </div>
         </>
       )}
-    </motion.div>
+    </div>
   );
 }

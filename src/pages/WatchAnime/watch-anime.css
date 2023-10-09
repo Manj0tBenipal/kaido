@@ -64,18 +64,31 @@
 .server-container {
   gap: 10px;
   flex-wrap: wrap;
+  padding-top: 10px;
 }
 .server-tile-wrapper {
   gap: 10px;
 }
 .server-tile {
   display: inline-block;
-  padding: 1px 5px;
+  padding: 5px 15px;
   font-size: 13px;
   background-color: var(--grey-dark);
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 20px;
   margin: 0px 10px 10px 0px;
+}
+select,
+option {
+  font-family: "Poppins", sans-serif !important;
+  padding: 5px;
+  border: none;
+  border-radius: 20px !important;
+  font-size: 13px;
+}
+select:active,
+select:enabled {
+  border: none;
 }
 .server-tile.selected {
   color: black;
@@ -88,7 +101,12 @@
 .video-player {
   width: 75%;
 }
-.video-player iframe {
+.hls-container {
+  min-width: 100%;
+  aspect-ratio: 16/9;
+}
+.video-player video {
+  display: block;
   width: 100% !important;
   aspect-ratio: 16/9;
   overflow: hidden;
@@ -164,7 +182,7 @@
     margin-top: 50px;
     padding-top: 0;
   }
-  .video-player iframe {
+  .video-player video {
     aspect-ratio: 4/3;
   }
 }

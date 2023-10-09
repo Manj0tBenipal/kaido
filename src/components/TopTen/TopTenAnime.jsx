@@ -26,7 +26,7 @@ export default function TopTenAnime() {
         initial={{ opacity: 0 }}
         animate={
           containerInView
-            ? { opacity: 1, x: ["100%", "-10%", "0%"] }
+            ? { opacity: 1, x: ["100%", "-3%", "0%"] }
             : { opacity: 0 }
         }
         transition={{ duration: 0.1 * idx }}
@@ -64,6 +64,7 @@ export default function TopTenAnime() {
       </motion.li>
     );
   });
+
   return (
     <motion.div
       className="top-ten-wrapper"
@@ -71,7 +72,7 @@ export default function TopTenAnime() {
       initial={{ opacity: 0 }}
       animate={
         containerInView
-          ? { opacity: 1, x: ["10%", "-10%", "0%"] }
+          ? { opacity: 1, x: ["10%", "-3%", "0%"] }
           : { opacity: 0 }
       }
       transition={{ duration: 0.6, ease: easeOut }}

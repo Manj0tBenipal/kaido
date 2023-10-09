@@ -23,7 +23,6 @@ export default function ReviewSection() {
   const animeList = animeReviews.data;
   const mangaList = mangaReviews.data;
   const isLoading = mangaReviews.isLoading && animeReviewIsSelected.isLoading;
-  console.log(isInView);
   const reviewType = animeReviewIsSelected ? animeList : mangaList;
   const reviewCards = reviewType?.data
     .filter((el, idx) => idx < 11)
