@@ -1,197 +1,128 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { ANIME } from "@consumet/extensions";
+import { useState } from "react";
+import HlsVideoPlayer from "./HlsVideoPlayer";
 import "../../main.css";
 import "./watch-anime.css";
-import { BiToggleLeft, BiToggleRight } from "react-icons/bi";
+import loadingImage from "../../media/placeholder.gif";
 import RecommendedTopTen from "../../Layouts/RecommendedTopTen";
 import Share from "../../components/Share/Share";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import { easeInOut, easeOut, motion } from "framer-motion";
 
 import Error from "../../components/AnimeNotFound/Error";
+import {
+  useAnimeInfo,
+  useEpisodeFiles,
+  useSearch,
+  useServers,
+} from "../../hooks/useConsumet";
 export default function WatchAnime() {
   const [descIsCollapsed, setDescIsCollapsed] = useState(true);
   const [searchParams] = useSearchParams();
-  const [adBlockEnabled, setAdBlockEnabled] = useState(false);
-  const gogoAnime = new ANIME.Gogoanime({});
+  const searchResults = useSearch(searchParams.get("name"));
+  const subData = useAnimeInfo(searchResults?.sub?.id);
+  const dubData = useAnimeInfo(searchResults?.dub?.id);
+
+  //States initialized to avoid the relaod of the component once episode or server is changed by user
+
   const [subIsSelected, setSubIsSelected] = useState(true);
+  const [subInfo, setSubInfo] = useState({});
+  const [dubInfo, setDubInfo] = useState({});
+  const [selectedServer, setSelectedServer] = useState(0);
+  const [selectedEpisode, setSelectedEpisode] = useState(0);
+  const [quality, setQuality] = useState("default");
+  const servers = useServers(
+    subIsSelected
+      ? subInfo?.episodes?.length > 0
+        ? subInfo.episodes[selectedEpisode].id
+        : null
+      : dubInfo?.episodes?.length > 0
+      ? dubInfo.episodes[selectedEpisode].id
+      : null
+  );
+  let episodeList = subIsSelected
+    ? subInfo?.episodes?.length > 0
+      ? subInfo.episodes
+      : null
+    : dubInfo?.episodes?.length > 0
+    ? dubInfo.episodes
+    : null;
 
-  const [searchResults, setSearchResults] = useState({});
-  const [rawResultsDub, setRawResultsDub] = useState({});
-  const [searchResultsDub, setSearchResultsDub] = useState({});
-
-  const [currentAnimeInfo, setCurrentAnimeInfo] = useState({});
-  const [currentAnimeInfoDub, setCurrentAnimeInfoDub] = useState({});
-
-  const [episodes, setEpisodes] = useState([]);
-  const [episodesDub, setEpisodesDub] = useState([]);
-
-  const [episodeServers, setEpisodeServers] = useState([]);
-  const [episodeServersDub, setEpisodeServersDub] = useState([]);
-
-  const [currentServerIdx, setCurrentServerIdx] = useState(0);
-  const [currentEpisodeIdx, setCurrentEpisodeIdx] = useState(0);
-
-  const serverButtonsDub = episodeServersDub?.map((el, idx) => {
-    return (
-      <span
-        className={`server-tile ${currentServerIdx === idx ? "selected" : ""}`}
-        key={el.name}
-        onClick={() => setCurrentServerIdx(idx)}
-      >
-        {el.name}
-      </span>
-    );
-  });
-  const serverButtons = episodeServers?.map((el, idx) => {
-    return (
-      <span
-        className={`server-tile ${currentServerIdx === idx ? "selected" : ""}`}
-        key={el.name}
-        onClick={() => setCurrentServerIdx(idx)}
-      >
-        {el.name}
-      </span>
-    );
+  const episodesData = useEpisodeFiles(
+    servers && episodeList
+      ? { server: servers[selectedServer], id: episodeList[selectedEpisode].id }
+      : { server: null, id: null }
+  );
+  const episodeQuality = episodesData?.sources?.map((el) => {
+    return { quality: el.quality, url: el.url };
   });
 
-  const episodeButtonsDub = episodesDub?.map((el, idx) => {
-    return (
-      <span
-        className={`episode-tile ${
-          idx === currentEpisodeIdx ? "selected" : ""
-        }`}
-        key={el.id}
-        style={
-          episodes.length < 10 ? { minWidth: "100%", borderRadius: 0 } : null
-        }
-        onClick={() => setCurrentEpisodeIdx(idx)}
-      >
-        {episodes.length < 10 ? ` Episode: ` + el.number : el.number}
-      </span>
-    );
-  });
-  const episodeButtons = episodes?.map((el, idx) => {
-    return (
-      <span
-        className={`episode-tile ${
-          idx === currentEpisodeIdx ? "selected" : ""
-        }`}
-        key={el.id}
-        style={
-          episodes.length < 10 ? { minWidth: "100%", borderRadius: 0 } : null
-        }
-        onClick={() => setCurrentEpisodeIdx(idx)}
-      >
-        {episodes.length < 10 ? ` Episode: ` + el.number : el.number}
-      </span>
-    );
-  });
-
-  function handlLanguageChange(preference) {
-    if (preference) {
-      if (episodes.length < currentEpisodeIdx + 1) {
-        setCurrentEpisodeIdx(0);
-      }
+  useEffect(() => {
+    if (subData && Object.keys(subInfo).length === 0) {
+      setSubInfo(() => subData);
+    }
+    if (dubData && Object.keys(dubInfo).length === 0) {
+      setDubInfo(() => dubData);
+    }
+  }, [subData, dubData]);
+  useEffect(() => {
+    if (Object.keys(subInfo).length) {
       setSubIsSelected(true);
-    } else {
-      if (episodesDub.length < currentEpisodeIdx + 1) {
-        setCurrentEpisodeIdx(0);
-      }
+    }
+    if (Object.keys(dubInfo).length) {
       setSubIsSelected(false);
     }
+  }, [subInfo, dubInfo]);
+  // Server and episode buttons to change the respective item
+  const serverButtons = servers?.map((el, idx) => {
+    return (
+      <span
+        className={`server-tile ${selectedServer === idx ? "selected" : ""}`}
+        key={el.name}
+        onClick={() => setSelectedServer(idx)}
+      >
+        {el.name}
+      </span>
+    );
+  });
+
+  const episodeButtons = episodeList?.map((el, idx) => {
+    return (
+      <span
+        className={`episode-tile ${idx === selectedEpisode ? "selected" : ""}`}
+        key={el.id}
+        style={
+          episodeList.length < 10 ? { minWidth: "100%", borderRadius: 0 } : null
+        }
+        onClick={() => setSelectedEpisode(idx)}
+      >
+        {episodeList.length < 10 ? ` Episode: ` + el.number : el.number}
+      </span>
+    );
+  });
+  const qualityButtons = episodeQuality?.map((el) => {
+    return (
+      <option
+        style={{ color: "white" }}
+        className={`episode-tile ${el.quality === quality ? "selected" : ""}`}
+        value={el.quality}
+      >
+        {el.quality.toUpperCase()}
+      </option>
+    );
+  });
+  if (searchResults?.noAnime) {
+    return <Error />;
   }
-  //UseEffects For Sub
-  useEffect(() => {
-    gogoAnime
-      .search(searchParams.get("name"))
-      .then((data) => setSearchResults(data));
-  }, []);
-  useEffect(() => {
-    if (searchResults?.results?.length > 0) {
-      gogoAnime.fetchAnimeInfo(searchResults.results[0].id).then((data) => {
-        setCurrentAnimeInfo(data);
-      });
-    }
-  }, [searchResults]);
-  useEffect(() => {
-    if (currentAnimeInfo?.episodes?.length > 0) {
-      const episodes = currentAnimeInfo.episodes.map((el, idx) => {
-        return el;
-      });
-      setEpisodes(episodes);
-    }
-  }, [currentAnimeInfo]);
-  useEffect(() => {
-    if (episodes.length > 0) {
-      gogoAnime
-        .fetchEpisodeServers(episodes[currentEpisodeIdx]?.id)
-        .then((data) => {
-          setEpisodeServers(data);
-        });
-    }
-    if (searchResults?.results?.length > 0) {
-      gogoAnime.search(searchResults.results[1]?.id).then((data) => {
-        setRawResultsDub({ fromSubArr: data });
-      });
-      gogoAnime.search(`${searchResults.results[0].id}-dub`).then((data) => {
-        setRawResultsDub((prev) => ({ ...prev, fromSubId: data }));
-      });
-    }
-  }, [episodes, currentEpisodeIdx]);
-
-  //UseEffects For Dub
-
-  useEffect(() => {
-    if (
-      rawResultsDub?.fromSubArr?.results &&
-      rawResultsDub?.fromSubId?.results
-    ) {
-      if (rawResultsDub.fromSubId?.results?.length > 0) {
-        setSearchResultsDub(rawResultsDub.fromSubId);
-      } else {
-        setSearchResultsDub(rawResultsDub.fromSubArr);
-      }
-    }
-  }, [rawResultsDub]);
-
-  useEffect(() => {
-    if (searchResultsDub?.results?.length > 0) {
-      gogoAnime.fetchAnimeInfo(searchResultsDub?.results[0].id).then((data) => {
-        setCurrentAnimeInfoDub({ ...data });
-      });
-    }
-  }, [searchResultsDub]);
-  useEffect(() => {
-    if (currentAnimeInfoDub?.episodes?.length > 0) {
-      const episodes = currentAnimeInfoDub.episodes.map((el) => {
-        return el;
-      });
-      setEpisodesDub(episodes);
-    }
-  }, [currentAnimeInfoDub]);
-  useEffect(() => {
-    if (episodesDub.length > 0) {
-      gogoAnime
-        .fetchEpisodeServers(episodesDub[currentEpisodeIdx]?.id)
-        .then((data) => {
-          setEpisodeServersDub(data);
-        });
-    }
-  }, [episodesDub, currentEpisodeIdx]);
+  console.log(episodeQuality?.find((el) => el.quality === quality));
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ x: [window.innerWidth / 2, 0], opacity: 1 }}
       transition={{ duration: 0.7, ease: easeOut }}
     >
-      {Object.keys(searchResults).length === 0 ? (
-        <LoadingSpinner />
-      ) : searchResults.results.length === 0 ? (
-        <Error />
-      ) : (
+      {Object.keys(subInfo).length > 0 || Object.keys(dubInfo).length > 0 ? (
         <motion.div
           style={{ marginTop: "65px" }}
           className="watch-container d-flex"
@@ -200,90 +131,74 @@ export default function WatchAnime() {
         >
           <img
             className="watch-container-background"
-            src={currentAnimeInfo.image}
+            src={subIsSelected ? subInfo?.image : dubInfo?.image}
           />
           <div className="media-center d-flex">
             <div className="episode-container">
               <p>List of Episodes:</p>
               <div className="episode-tiles-wrapper d-flex a-center">
-                {subIsSelected ? episodeButtons : episodeButtonsDub}
+                {episodeList?.length > 0 ? episodeButtons : <LoadingSpinner />}
               </div>
             </div>
 
             <div className="video-player">
-              {adBlockEnabled ? (
-                <iframe
-                  src={
-                    subIsSelected
-                      ? episodeServers[currentServerIdx]?.url
-                      : episodeServersDub[currentServerIdx]?.url
-                  }
-                  allowFullScreen
-                  sandbox="allow-scripts allow-same-origin"
-                  border={0}
-                ></iframe>
-              ) : (
-                <iframe
-                  src={
-                    subIsSelected
-                      ? episodeServers[currentServerIdx]?.url
-                      : episodeServersDub[currentServerIdx]?.url
-                  }
-                  allowFullScreen
-                ></iframe>
-              )}
+              <div className="hls-container">
+                {episodeQuality?.length > 0 && (
+                  <HlsVideoPlayer
+                    url={
+                      episodeQuality?.find((el) => el.quality === quality)?.url
+                    }
+                  />
+                )}
+              </div>
+
               <div className="server-container d-flex-fd-column">
-                <div
-                  style={{
-                    background: "yellow",
-                    color: "black",
-                    padding: "10px",
-                  }}
-                  className="warn"
-                >
-                  To Block redirects, enable AdBlock. Change the servers to see
-                  the effect. Some servers might not work
-                  <p className="d-flex a-center j-center">
-                    AdBlock
-                    {adBlockEnabled ? (
-                      <BiToggleRight
-                        style={{ cursor: "pointer" }}
-                        size={25}
-                        onClick={() => setAdBlockEnabled((prev) => !prev)}
-                      />
-                    ) : (
-                      <BiToggleLeft
-                        style={{ cursor: "pointer" }}
-                        size={25}
-                        onClick={() => setAdBlockEnabled((prev) => !prev)}
-                      />
-                    )}
-                  </p>
-                </div>
                 <div className="server-tile-wrapper d-flex-fd-column">
                   <div>
                     Language Preference:{" "}
-                    {episodesDub?.length > 0 && (
+                    {dubInfo?.episodes?.length > 0 && (
                       <span
                         className={`server-tile ${
                           !subIsSelected ? "selected" : ""
                         }`}
-                        onClick={() => handlLanguageChange(false)}
+                        onClick={() => setSubIsSelected(false)}
                       >
-                        Eng | Dub
+                        Dub
                       </span>
                     )}
-                    <span
-                      className={`server-tile ${
-                        subIsSelected ? "selected" : ""
-                      }`}
-                      onClick={() => handlLanguageChange(true)}
-                    >
-                      Jp | Sub
-                    </span>
+                    {subInfo?.episodes?.length > 0 && (
+                      <span
+                        className={`server-tile ${
+                          subIsSelected ? "selected" : ""
+                        }`}
+                        onClick={() => setSubIsSelected(true)}
+                      >
+                        Sub
+                      </span>
+                    )}
                   </div>
                   <div>
-                    Servers: {subIsSelected ? serverButtons : serverButtonsDub}
+                    Servers:{" "}
+                    {servers?.length > 0 ? (
+                      serverButtons
+                    ) : (
+                      <img src={loadingImage} />
+                    )}
+                  </div>
+                  <div>
+                    Quality:
+                    <select
+                      style={{
+                        width: "100px",
+                        marginLeft: 10,
+                        background: "var(--theme)",
+                      }}
+                      className={`episode-tile`}
+                      onChange={(e) => setQuality(e.target.value)}
+                      value={quality}
+                    >
+                      {qualityButtons}
+                    </select>
                   </div>
                 </div>
               </div>
@@ -292,25 +207,27 @@ export default function WatchAnime() {
           <div className="current-anime-details ">
             <img
               className="details-container-background"
-              src={currentAnimeInfo.image || "NA"}
+              src={subIsSelected ? subInfo.image : dubInfo.image || "NA"}
             />
             <div className="anime-details d-flex-fd-column">
               <img
                 className="anime-details-poster"
-                src={currentAnimeInfo.image || "NA"}
+                src={subIsSelected ? subInfo.image : dubInfo.image || "NA"}
               />
 
               <div className="anime-details-content d-flex-fd-column">
                 <h1 style={{ textAlign: "center" }} className="title-large">
-                  {subIsSelected
-                    ? currentAnimeInfo.title
-                    : currentAnimeInfoDub.title}
+                  {subIsSelected ? subInfo.title : dubInfo.title}
                 </h1>
 
                 <p>
-                  {descIsCollapsed
-                    ? currentAnimeInfo.description?.slice(0, 150) + "..."
-                    : currentAnimeInfo.description}
+                  {subIsSelected
+                    ? descIsCollapsed
+                      ? subInfo.description?.slice(0, 150) + "..."
+                      : subInfo.description
+                    : descIsCollapsed
+                    ? dubInfo.description?.slice(0, 150) + "..."
+                    : dubInfo.description}
                   <span
                     style={{ cursor: "pointer" }}
                     onClick={() => setDescIsCollapsed((prev) => !prev)}
@@ -322,6 +239,10 @@ export default function WatchAnime() {
             </div>
           </div>
         </motion.div>
+      ) : !(subInfo && dubInfo) ? (
+        <Error />
+      ) : (
+        <LoadingSpinner />
       )}
 
       <Share

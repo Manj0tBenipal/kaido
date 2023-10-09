@@ -95,14 +95,14 @@ export default function MouseOverCard(props) {
           </div>
           <div className="button-wrapper">
             <Link
-              to={`/watch?name=${anime?.title_english || anime.title}`}
+              to={`/watch?name=${anime?.title_english || anime?.title}`}
               className="btn-primary hero-button"
               onClick={() => window.scrollTo({ top: 0 })}
             >
               <FaPlayCircle size={12} /> Watch Now
             </Link>
             <Link
-              to={`/details/jikan/${anime.mal_id}`}
+              to={`/details/jikan/${anime?.mal_id}`}
               onClick={() => window.scrollTo({ top: 0 })}
               className="btn-secondary hero-button"
             >
