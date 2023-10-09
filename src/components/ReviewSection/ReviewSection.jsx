@@ -33,12 +33,10 @@ export default function ReviewSection() {
             className="review-card"
             initial={{ opacity: 0 }}
             animate={
-              isInView
-                ? {
-                    x: [window.innerWidth / 2, -10, 0],
-                    opacity: 1,
-                  }
-                : { x: window.innerWidth, opacity: 0 }
+              isInView && {
+                x: [window.innerWidth / 2, -10, 0],
+                opacity: 1,
+              }
             }
             transition={{ duration: 0.4 * idx + 0.2, ease: easeOut }}
           >
