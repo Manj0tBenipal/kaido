@@ -7,11 +7,6 @@ export default function HlsVideoPlayer({ url, headers }) {
     if (Hls.isSupported()) {
       const hls = new Hls();
       hls.loadSource(url);
-      console.log(
-        `/m3u8-proxy?url=${encodeURIComponent(
-          url
-        )}&headers=${encodeURIComponent(JSON.stringify(headers))}`
-      );
       hls.attachMedia(videoRef.current);
 
       // Listen for HLS events (optional)
