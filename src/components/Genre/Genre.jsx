@@ -21,11 +21,7 @@ export default function Genre() {
       >
         <motion.div
           initial={{ opacity: 0 }}
-          animate={
-            containerInView
-              ? { opacity: 1, x: ["100%", "-10%", "0%"] }
-              : { opacity: 0 }
-          }
+          animate={containerInView && { opacity: 1, x: ["100%", "-10%", "0%"] }}
           transition={{ duration: 0.05 * idx }}
         >
           {el.name}
@@ -39,11 +35,7 @@ export default function Genre() {
       ref={containerRef}
       className="genre-wrapper "
       initial={{ opacity: 0 }}
-      animate={
-        containerInView
-          ? { x: ["50%", "-10%", "0%"], opacity: 1 }
-          : { opacity: 0 }
-      }
+      animate={containerInView && { x: ["50%", "-10%", "0%"], opacity: 1 }}
       transition={{ ease: easeOut, duration: 0.4 }}
     >
       <h2>Genre</h2>

@@ -19,7 +19,7 @@ export default function Trending() {
       <SwiperSlide key={item.titles.en_jp} className="trending-slide">
         <div
           initial={{ opacity: 0 }}
-          animate={isInView ? { x: [100, 10, 0], opacity: 1 } : {}}
+          animate={isInView && { x: [100, 10, 0], opacity: 1 }}
           transition={{
             duration: 0.2,
             delay: idx * 0.1 + 1.2,
@@ -29,7 +29,7 @@ export default function Trending() {
           <motion.div
             className="trending-item-sidebar"
             initial={{ opacity: 0 }}
-            animate={isInView ? { x: [100, 10, 0], opacity: 1 } : {}}
+            animate={isInView && { x: [100, 10, 0], opacity: 1 }}
             transition={{
               duration: 0.2,
               delay: idx * 0.12 + 1.2,
@@ -47,7 +47,7 @@ export default function Trending() {
           >
             <motion.img
               initial={{ opacity: 0 }}
-              animate={isInView ? { x: [100, 10, 0], opacity: 1 } : {}}
+              animate={isInView && { x: [100, 10, 0], opacity: 1 }}
               transition={{
                 duration: 0.2,
                 delay: idx * 0.15,
