@@ -23,12 +23,8 @@ export default function Card(props) {
     <motion.div
       ref={cardRef}
       initial={{ opacity: 0 }}
-      animate={
-        isInView
-          ? { opacity: 1, x: ["100%", "-10%", "0%"], zIndex: 1 }
-          : { opacity: 0, x: "100%" }
-      }
-      transition={{ duration: 0.2, delay: props.delay, ease: easeOut }}
+      animate={isInView && { opacity: 1, x: ["100%", "-10%", "0%"], zIndex: 1 }}
+      transition={{ duration: 0.3, delay: props.delay, ease: easeOut }}
       onMouseOver={() => setIsHovered(true)}
       onMouseOut={() => setIsHovered(false)}
       className="anime-card-wrapper"

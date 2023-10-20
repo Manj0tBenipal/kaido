@@ -24,11 +24,7 @@ export default function TopTenAnime() {
         key={title}
         className="d-flex a-center"
         initial={{ opacity: 0 }}
-        animate={
-          containerInView
-            ? { opacity: 1, x: ["100%", "-3%", "0%"] }
-            : { opacity: 0 }
-        }
+        animate={containerInView && { opacity: 1, x: ["100%", "-3%", "0%"] }}
         transition={{ duration: 0.1 * idx }}
       >
         <span

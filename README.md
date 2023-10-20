@@ -39,7 +39,7 @@ If you want to set up Kaido locally on your machine, follow these steps:
 1. Clone the repository:
 
    ```shell
-   git clone https://github.com/your-username/kaido.git
+   git clone https://github.com/Manj0tBenipal/kaido.git
    cd kaido
    npm install
    npm run dev

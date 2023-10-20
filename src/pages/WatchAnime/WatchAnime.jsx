@@ -104,6 +104,7 @@ export default function WatchAnime() {
   const qualityButtons = episodeQuality?.map((el) => {
     return (
       <option
+        key={el.quality}
         style={{ color: "white" }}
         className={`episode-tile ${el.quality === quality ? "selected" : ""}`}
         value={el.quality}
@@ -115,7 +116,7 @@ export default function WatchAnime() {
   if (searchResults?.noAnime) {
     return <Error />;
   }
-  console.log(episodeQuality?.find((el) => el.quality === quality));
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -143,12 +144,27 @@ export default function WatchAnime() {
 
             <div className="video-player">
               <div className="hls-container">
-                {episodeQuality?.length > 0 && (
+                {episodeQuality?.length > 0 ? (
                   <HlsVideoPlayer
                     url={
                       episodeQuality?.find((el) => el.quality === quality)?.url
                     }
                   />
+                ) : (
+                  <div
+                    className="d-flex a-center j-center"
+                    style={{ height: "100%" }}
+                  >
+                    <img
+                      src={loadingImage}
+                      style={{
+                        display: "block",
+                        height: 100,
+                        width: 100,
+                        margin: "auto",
+                      }}
+                    />
+                  </div>
                 )}
               </div>
 
@@ -182,7 +198,10 @@ export default function WatchAnime() {
                     {servers?.length > 0 ? (
                       serverButtons
                     ) : (
-                      <img src={loadingImage} />
+                      <img
+                        src={loadingImage}
+                        style={{ height: 100, width: 100 }}
+                      />
                     )}
                   </div>
                   <div>
