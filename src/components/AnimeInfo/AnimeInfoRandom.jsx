@@ -61,7 +61,7 @@ export default function Details() {
     <div className="details-container">
       <div className="details-header">
         <div className="details-header-primary">
-          <img
+          <LazyLoadImage
             className="details-container-background"
             src={
               animeObj.images.webp.image_url ||
@@ -70,6 +70,7 @@ export default function Details() {
               animeObj.images.jpg.large_image_url ||
               "NA"
             }
+            isAnimated={false}
           />
           <div className="anime-details d-flex">
             <LazyLoadImage
@@ -79,6 +80,7 @@ export default function Details() {
                 animeObj.images.webp.large_image_url ||
                 animeObj.images.webp.large_small_url
               }
+              isAnimated={false}
             />
 
             <div className="anime-details-content d-flex-fd-column">

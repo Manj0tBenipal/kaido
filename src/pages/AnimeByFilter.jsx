@@ -5,7 +5,7 @@ import LoadingSpinner from "../components/LoadingSpinner";
 import AnimeCollection from "../components/MainContainer/AnimeCollection";
 import { easeOut, motion } from "framer-motion";
 
-export default function AnimeByFilter() {
+export  function AnimeByFilter() {
   const [searchParams] = useSearchParams();
   const collection = getAnimeByFilter(searchParams.get("name"));
 

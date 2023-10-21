@@ -1,17 +1,26 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { lazy } from "react";
-const Home = lazyLoad("./pages/Home");
-const Genre = lazyLoad("./pages/Genre");
-const Nav = lazyLoad("./Layouts/Nav.jsx");
-const GenreSidebar = lazyLoad("./Layouts/GenreSidebar");
-const AnimeInfoRandom = lazyLoad("./components/AnimeInfo/AnimeInfoRandom");
-const AnimeByFilter = lazyLoad("./pages/AnimeByFilter");
-const AnimeByType = lazyLoad("./pages/AnimeByType");
-const WatchAnime = lazyLoad("./pages/WatchAnime/WatchAnime");
-const SearchResults = lazyLoad("./pages/SearchResults");
-const RecommendedTopTen = lazyLoad("./Layouts/RecommendedTopTen");
-const AnimeInfoJikan = lazyLoad("./components/AnimeInfo/AnimeInfoJikan");
-const AnimeInfoKitsu = lazyLoad("./components/AnimeInfo/AnimeInfoKitsu");
+const Nav = await import("./Layouts/Nav").then((module) => module.default);
+const Home = lazy(() => import("./pages/Home"));
+const Genre = await import("./pages/Genre").then((module) => module.default);
+
+const GenreSidebar = await import("./Layouts/GenreSidebar").then(
+  (module) => module.default
+);
+const AnimeInfoRandom = await import(
+  "./components/AnimeInfo/AnimeInfoRandom"
+).then((module) => module.default);
+const AnimeByFilter = await import("./pages/AnimeByFilter");
+const AnimeByType = lazy(() => import("./pages/AnimeByType"));
+const WatchAnime = lazy(() => import("./pages/WatchAnime/WatchAnime"));
+const SearchResults = lazy(() => import("./pages/SearchResults"));
+const RecommendedTopTen = lazy(() => import("./Layouts/RecommendedTopTen"));
+const AnimeInfoJikan = lazy(() =>
+  import("./components/AnimeInfo/AnimeInfoJikan")
+);
+const AnimeInfoKitsu = lazy(() =>
+  import("./components/AnimeInfo/AnimeInfoKitsu")
+);
 
 export default function App() {
   return (
@@ -35,8 +44,4 @@ export default function App() {
       </Routes>
     </BrowserRouter>
   );
-}
-
-function lazyLoad(path) {
-  return lazy(() => import(/* @vite-ignore */ path));
 }
