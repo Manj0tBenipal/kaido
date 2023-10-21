@@ -8,7 +8,7 @@ import loadingImage from "../../media/placeholder.gif";
 import RecommendedTopTen from "../../Layouts/RecommendedTopTen";
 import Share from "../../components/Share/Share";
 import LoadingSpinner from "../../components/LoadingSpinner";
-import { easeInOut, easeOut, motion } from "framer-motion";
+import { easeOut, motion } from "framer-motion";
 
 import Error from "../../components/AnimeNotFound/Error";
 import {
@@ -20,11 +20,23 @@ import {
 export default function WatchAnime() {
   const [descIsCollapsed, setDescIsCollapsed] = useState(true);
   const [searchParams] = useSearchParams();
+  /**
+   * Since custom hook cannot be used inside of use Effect,
+   * variables are initialized outside of useEffect
+   * when the custom hooks returns the processed data from API it triggers the change in variable's value
+   * Hence triggers the useEffect which then stores the value of the varibale in state.
+   */
   const searchResults = useSearch(searchParams.get("name"));
-  const subData = useAnimeInfo(searchResults?.sub?.id);
-  const dubData = useAnimeInfo(searchResults?.dub?.id);
+  const subData = useAnimeInfo(searchResults?.sub?.id || null);
+  const dubData = useAnimeInfo(searchResults?.dub?.id || null);
 
-  //States initialized to avoid the relaod of the component once episode or server is changed by user
+  /**
+   * When the value of the variables changes, the useEffect is triggered a state is initialized
+   * When the user changes the Server or Episode the component is re-rendered and the state is updated
+   *
+   * Without states the page would reload everything from the start the useEffect checks if the states already have a value
+   * if yes then it does not re-render the component or does not change the state
+   */
 
   const [subIsSelected, setSubIsSelected] = useState(true);
   const [subInfo, setSubInfo] = useState({});
@@ -32,6 +44,10 @@ export default function WatchAnime() {
   const [selectedServer, setSelectedServer] = useState(0);
   const [selectedEpisode, setSelectedEpisode] = useState(0);
   const [quality, setQuality] = useState("default");
+
+  /**
+   * fetches servers from the API based on the user's selection of SUB ior DUB
+   */
   const servers = useServers(
     subIsSelected
       ? subInfo?.episodes?.length > 0
@@ -41,6 +57,11 @@ export default function WatchAnime() {
       ? dubInfo.episodes[selectedEpisode].id
       : null
   );
+
+  /**
+   * Based on the inforamtion from useAnimeInfo hook, the episodes array is stored in a variable
+   * with 'id' of each episode
+   */
   let episodeList = subIsSelected
     ? subInfo?.episodes?.length > 0
       ? subInfo.episodes
@@ -49,15 +70,33 @@ export default function WatchAnime() {
     ? dubInfo.episodes
     : null;
 
+  /**
+   * based on the values of selectedServer and selectedEpisode state the hook fetches the sources from the API
+   * these sources are then used to play the video and include links to video files of different quality
+   */
   const episodesData = useEpisodeFiles(
     servers && episodeList
       ? { server: servers[selectedServer], id: episodeList[selectedEpisode].id }
       : { server: null, id: null }
   );
+
+  /**
+   * Creates an array of qualities available for an episode
+   */
   const episodeQuality = episodesData?.sources?.map((el) => {
     return { quality: el.quality, url: el.url };
   });
 
+  /**
+   * when the custom hook fetches search results from the API it changes the values of
+   * subData and dubData variables
+   *
+   * when the value of these variables change the useEffect is triggered and the state is updated
+   *
+   * Checks if the state is empty and if the custom hook has returned the data from the API
+   *
+   * if the state already has the data it does not change the state(prevents re-rendering on change of episode or server)
+   */
   useEffect(() => {
     if (subData && Object.keys(subInfo).length === 0) {
       setSubInfo(() => subData);
@@ -66,6 +105,15 @@ export default function WatchAnime() {
       setDubInfo(() => dubData);
     }
   }, [subData, dubData]);
+
+  /**
+   * Checks if subAnime or dubAnime is available
+   * In some cases only sub in available and in other only dub
+   *
+   * if subAnime is available then it sets the subIsSelected state to true
+   * if dubAnime is available then it sets the subIsSelected state to false
+   *
+   */
   useEffect(() => {
     if (Object.keys(subInfo).length) {
       setSubIsSelected(true);
@@ -74,6 +122,7 @@ export default function WatchAnime() {
       setSubIsSelected(false);
     }
   }, [subInfo, dubInfo]);
+
   // Server and episode buttons to change the respective item
   const serverButtons = servers?.map((el, idx) => {
     return (
@@ -172,26 +221,33 @@ export default function WatchAnime() {
                 <div className="server-tile-wrapper d-flex-fd-column">
                   <div>
                     Language Preference:{" "}
-                    {dubInfo?.episodes?.length > 0 && (
-                      <span
-                        className={`server-tile ${
-                          !subIsSelected ? "selected" : ""
-                        }`}
-                        onClick={() => setSubIsSelected(false)}
-                      >
-                        Dub
-                      </span>
-                    )}
-                    {subInfo?.episodes?.length > 0 && (
-                      <span
-                        className={`server-tile ${
-                          subIsSelected ? "selected" : ""
-                        }`}
-                        onClick={() => setSubIsSelected(true)}
-                      >
-                        Sub
-                      </span>
-                    )}
+                    {/**
+                     * Checks if the anime has dub or sub and displays the respective button
+                     * If the anime has both dub and sub then it displays both the buttons
+                     * If the anime episode has only dub or sub then it displays only that button
+                     */}
+                    {dubInfo?.episodes?.length > 0 &&
+                      selectedEpisode < dubInfo?.episodes?.length && (
+                        <span
+                          className={`server-tile ${
+                            !subIsSelected ? "selected" : ""
+                          }`}
+                          onClick={() => setSubIsSelected(false)}
+                        >
+                          Dub
+                        </span>
+                      )}
+                    {subInfo?.episodes?.length > 0 &&
+                      selectedEpisode < subInfo?.episodes?.length && (
+                        <span
+                          className={`server-tile ${
+                            subIsSelected ? "selected" : ""
+                          }`}
+                          onClick={() => setSubIsSelected(true)}
+                        >
+                          Sub
+                        </span>
+                      )}
                   </div>
                   <div>
                     Servers:{" "}
