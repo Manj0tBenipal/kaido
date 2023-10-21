@@ -6,6 +6,7 @@ import { FaEye, FaHeart, FaMedal, FaPlayCircle, FaPlus } from "react-icons/fa";
 import Share from "../Share/Share";
 import { getAnimeByMalId } from "../../api/jikan";
 import { easeOut, motion } from "framer-motion";
+import LazyLoadImage from "../../utils/lazyLoadImage";
 export default function Details() {
   const params = useParams();
   const { data, isLoading } = getAnimeByMalId(params.id);
@@ -59,7 +60,6 @@ export default function Details() {
   ));
 
   return (
-
     /**
      * Each Property fetched from the API consists of a conditional check whether the property is available or not
      * If not a Fallback value is displayed
@@ -85,7 +85,7 @@ export default function Details() {
               }
             />
             <div className="anime-details d-flex">
-              <img
+              <LazyLoadImage
                 className="anime-details-poster"
                 src={
                   animeObj.images.webp.image_url ||
@@ -93,6 +93,7 @@ export default function Details() {
                   animeObj.images.webp.large_small_url ||
                   "NA"
                 }
+                isAnimated={false}
               />
 
               <div className="anime-details-content d-flex-fd-column">

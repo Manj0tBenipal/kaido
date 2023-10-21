@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { FaEye, FaHeart, FaMedal, FaPlayCircle, FaPlus } from "react-icons/fa";
 import Share from "../Share/Share";
 import { getRandomAnime } from "../../api/jikan";
+import LazyLoadImage from "../../utils/lazyLoadImage";
 
 export default function Details() {
   const { data, isLoading } = getRandomAnime();
@@ -71,7 +72,7 @@ export default function Details() {
             }
           />
           <div className="anime-details d-flex">
-            <img
+            <LazyLoadImage
               className="anime-details-poster"
               src={
                 animeObj.images.webp.image_url ||

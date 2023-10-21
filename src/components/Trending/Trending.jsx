@@ -7,7 +7,8 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "./trending.css";
 import { Link } from "react-router-dom";
-import { easeInOut, easeOut, motion, useInView } from "framer-motion";
+import { easeOut, motion, useInView } from "framer-motion";
+import LazyLoadImage from "../../utils/lazyLoadImage";
 export default function Trending() {
   const { data } = getTrendingAnime();
   const ref = useRef(null);
@@ -15,11 +16,12 @@ export default function Trending() {
   const animeCard = data?.map((el, idx) => {
     const item = el.attributes;
     const title = item.titles.en || item.titles.en_jp;
+
     return (
       <SwiperSlide key={item.titles.en_jp} className="trending-slide">
         <div
           initial={{ opacity: 0 }}
-          animate={isInView && { x: [100, 10, 0], opacity: 1 }}
+          animate={isInView ? { x: [100, 10, 0], opacity: 1 } : undefined}
           transition={{
             duration: 0.2,
             delay: idx * 0.1 + 1.2,
@@ -45,7 +47,7 @@ export default function Trending() {
             onClick={() => window.scrollTo({ top: 0 })}
             to={`/details/kitsu/${el.id}`}
           >
-            <motion.img
+            <LazyLoadImage
               initial={{ opacity: 0 }}
               animate={isInView && { x: [100, 10, 0], opacity: 1 }}
               transition={{
@@ -54,8 +56,9 @@ export default function Trending() {
                 ease: easeOut,
               }}
               src={item.posterImage.small}
-              className="trending-slide-img "
-              alt="item.title"
+              className="trending-slide-img"
+              alt={item.title}
+              isAnimated={true}
             />
           </Link>
         </div>

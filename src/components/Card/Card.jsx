@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 import MouseOverCard from "./MouseOverCard";
 import { FaPlayCircle } from "react-icons/fa";
 import { easeOut, motion, useInView } from "framer-motion";
+import LazyLoadImage from "../../utils/lazyLoadImage";
 export default function Card(props) {
   const cardRef = useRef(null);
   const isInView = useInView(cardRef);
-
   const anime = props.data;
   const [isHovered, setIsHovered] = useState(false);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
@@ -51,7 +51,11 @@ export default function Card(props) {
             <span className="episode-count">CC:{anime.episodes || "Full"}</span>
           </div>
 
-          <img src={anime.images.webp.large_image_url} alt="anime-card" />
+          <LazyLoadImage
+            src={anime.images.webp.large_image_url}
+            alt="anime-card"
+            isAnimated={false}
+          />
         </div>
         <div className="card-details">
           <span className="card-title">

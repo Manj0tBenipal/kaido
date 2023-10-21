@@ -1,7 +1,6 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, lazy } from "react";
 import { FaEvernote } from "react-icons/fa";
 import { BiSolidToggleLeft, BiSolidToggleRight } from "react-icons/bi";
-import rengokuPng from "../../media/muichiro.png";
 import LoadingSpinner from "../LoadingSpinner";
 import { Scrollbar } from "swiper/modules";
 import { getAnimeReviews, getMangaReviews } from "../../api/jikan";
@@ -12,6 +11,7 @@ import "swiper/css/pagination";
 import "./review-section.css";
 import { easeOut, motion } from "framer-motion";
 import useAnimationOnce from "../../hooks/useAnimationOnce";
+import LazyLoadImage from "../../utils/lazyLoadImage";
 
 export default function ReviewSection() {
   const [reviewsVisible, setReviewsVisible] = useState(true);
@@ -42,7 +42,7 @@ export default function ReviewSection() {
           >
             <div className="review-card-header">
               <div className="user-profile d-flex a-center ">
-                <img src={el.user.images.webp.image_url} alt="23" />
+                <LazyLoadImage src={el.user.images.webp.image_url} alt="23" />
                 <a rel="noreferrer" target="_blank" href={el.user.url}>
                   {el.user.username}
                 </a>
@@ -70,7 +70,13 @@ export default function ReviewSection() {
         </div>
       ) : (
         <div className="review-section d-flex">
-          <img src={rengokuPng} alt="coment" />
+          {window.innerWidth > 1200 && (
+            <LazyLoadImage
+              src={import("../../media/muichiro.png").then((el) => el.default)}
+              alt="coment"
+              isAnimated={false}
+            />
+          )}
 
           <div className="review-list-container">
             <div className="review-section-toolbar d-flex a-center">
