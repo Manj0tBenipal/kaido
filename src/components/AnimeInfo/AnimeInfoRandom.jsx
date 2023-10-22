@@ -5,8 +5,7 @@ import { Link } from "react-router-dom";
 import { FaEye, FaHeart, FaMedal, FaPlayCircle, FaPlus } from "react-icons/fa";
 import Share from "../Share/Share";
 import { getRandomAnime } from "../../api/jikan";
-import LazyLoadImage from "../../utils/lazyLoadImage";
-
+import LazyImage from "../../utils/LazyImage";
 export default function Details() {
   const { data, isLoading } = getRandomAnime();
   const animeObj = data?.data;
@@ -61,7 +60,7 @@ export default function Details() {
     <div className="details-container">
       <div className="details-header">
         <div className="details-header-primary">
-          <LazyLoadImage
+          <lazy
             className="details-container-background"
             src={
               animeObj.images.webp.image_url ||
@@ -73,7 +72,7 @@ export default function Details() {
             isAnimated={false}
           />
           <div className="anime-details d-flex">
-            <LazyLoadImage
+            <LazyImage
               className="anime-details-poster"
               src={
                 animeObj.images.webp.image_url ||

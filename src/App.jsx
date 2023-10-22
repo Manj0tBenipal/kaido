@@ -1,16 +1,15 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { lazy } from "react";
-const Nav = await import("./Layouts/Nav").then((module) => module.default);
+import Nav from "./Layouts/Nav";
 const Home = lazy(() => import("./pages/Home"));
-const Genre = await import("./pages/Genre").then((module) => module.default);
+const Genre = lazy(() => import("./pages/Genre"));
 
-const GenreSidebar = await import("./Layouts/GenreSidebar").then(
-  (module) => module.default
+const GenreSidebar = lazy(() => import("./Layouts/GenreSidebar"));
+
+const AnimeInfoRandom = lazy(() =>
+  import("./components/AnimeInfo/AnimeInfoRandom")
 );
-const AnimeInfoRandom = await import(
-  "./components/AnimeInfo/AnimeInfoRandom"
-).then((module) => module.default);
-const AnimeByFilter = await import("./pages/AnimeByFilter");
+const AnimeByFilter = lazy(() => import("./pages/AnimeByFilter"));
 const AnimeByType = lazy(() => import("./pages/AnimeByType"));
 const WatchAnime = lazy(() => import("./pages/WatchAnime/WatchAnime"));
 const SearchResults = lazy(() => import("./pages/SearchResults"));

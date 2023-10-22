@@ -8,7 +8,7 @@ import "swiper/css/navigation";
 import "./trending.css";
 import { Link } from "react-router-dom";
 import { easeOut, motion, useInView } from "framer-motion";
-import LazyLoadImage from "../../utils/lazyLoadImage";
+import LazyImage from "../../utils/LazyImage";
 export default function Trending() {
   const { data } = getTrendingAnime();
   const ref = useRef(null);
@@ -47,7 +47,7 @@ export default function Trending() {
             onClick={() => window.scrollTo({ top: 0 })}
             to={`/details/kitsu/${el.id}`}
           >
-            <LazyLoadImage
+            <LazyImage
               initial={{ opacity: 0 }}
               animate={isInView && { x: [100, 10, 0], opacity: 1 }}
               transition={{

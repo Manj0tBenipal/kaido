@@ -11,7 +11,7 @@ import "swiper/css/pagination";
 import "./review-section.css";
 import { easeOut, motion } from "framer-motion";
 import useAnimationOnce from "../../hooks/useAnimationOnce";
-import LazyLoadImage from "../../utils/lazyLoadImage";
+import LazyImage from "../../utils/LazyImage";
 
 export default function ReviewSection() {
   const [reviewsVisible, setReviewsVisible] = useState(true);
@@ -42,7 +42,7 @@ export default function ReviewSection() {
           >
             <div className="review-card-header">
               <div className="user-profile d-flex a-center ">
-                <LazyLoadImage src={el.user.images.webp.image_url} alt="23" />
+                <LazyImage src={el.user.images.webp.image_url} alt="23" />
                 <a rel="noreferrer" target="_blank" href={el.user.url}>
                   {el.user.username}
                 </a>
@@ -71,7 +71,7 @@ export default function ReviewSection() {
       ) : (
         <div className="review-section d-flex">
           {window.innerWidth > 1200 && (
-            <LazyLoadImage
+            <lazyImage
               src={import("../../media/muichiro.png").then((el) => el.default)}
               alt="coment"
               isAnimated={false}

@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-
-export default function LazyLoadImage({
+export default function LazyImage({
   src,
   alt,
   isAnimated,
@@ -12,7 +11,6 @@ export default function LazyLoadImage({
 }) {
   const imgRef = useRef(null);
   const [imgSrc, setImgSrc] = useState();
-
   useEffect(() => {
     const options = {
       threshold: 0,
@@ -27,7 +25,6 @@ export default function LazyLoadImage({
       if (imgRef.current) observer.unobserve(imgRef.current);
     };
   }, [imgRef]);
-
   return (
     <motion.img
       className={className}

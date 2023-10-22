@@ -3,7 +3,7 @@ import "./content-list.css";
 import { FaChevronRight, FaStar } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useInView } from "framer-motion";
-import LazyLoadImage from "../../utils/lazyLoadImage";
+import LazyImage from "../../utils/LazyImage";
 export default function CategorieContainer(props) {
   /**
    * Uses the reference of each individual list item to check if it is in view
@@ -15,7 +15,7 @@ export default function CategorieContainer(props) {
   const list = props.data.data?.data.map((el, idx) => {
     return (
       <li key={el.mal_id} className="d-flex a-center">
-        <LazyLoadImage
+        <LazyImage
           src={el.images.webp.large_image_url || el.images.webp.image_url}
           alt="poster"
           isAnimated={false}

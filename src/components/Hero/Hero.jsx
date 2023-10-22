@@ -12,8 +12,8 @@ import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { getRecentAnime } from "../../api/kitsu";
 import LoadingSpinner from "../LoadingSpinner";
 import { Link } from "react-router-dom";
-import { easeInOut, easeOut, motion } from "framer-motion";
-import LazyLoadImage from "../../utils/lazyLoadImage";
+import { easeOut, motion } from "framer-motion";
+import LazyImage from "../../utils/LazyImage";
 
 export default function Hero() {
   const { isLoading, data } = getRecentAnime();
@@ -74,7 +74,7 @@ export default function Hero() {
               </div>
             </div>
           </div>
-          <LazyLoadImage
+          <lazyImage
             className="carousel-img"
             src={
               item.posterImage?.original ||

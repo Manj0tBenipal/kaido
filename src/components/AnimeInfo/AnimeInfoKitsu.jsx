@@ -6,7 +6,7 @@ import { FaEye, FaHeart, FaMedal, FaPlayCircle, FaPlus } from "react-icons/fa";
 import Share from "../Share/Share";
 import { getAnimeById } from "../../api/kitsu";
 import { Link, useParams } from "react-router-dom";
-import LazyLoadImage from "../../utils/lazyLoadImage";
+import LazyImage from "../../utils/LazyImage";
 
 export default function Details() {
   const params = useParams();
@@ -24,7 +24,7 @@ export default function Details() {
       ) : (
         <div className="details-header">
           <div className="details-header-primary">
-            <LazyLoadImage
+            <LazyImage
               className="details-container-background"
               src={
                 data.attributes.coverImage?.small ||

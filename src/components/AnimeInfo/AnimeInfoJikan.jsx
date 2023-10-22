@@ -6,7 +6,7 @@ import { FaEye, FaHeart, FaMedal, FaPlayCircle, FaPlus } from "react-icons/fa";
 import Share from "../Share/Share";
 import { getAnimeByMalId } from "../../api/jikan";
 import { easeOut, motion } from "framer-motion";
-import LazyLoadImage from "../../utils/lazyLoadImage";
+import LazyImage from "../../utils/LazyImage";
 export default function Details() {
   const params = useParams();
   const { data, isLoading } = getAnimeByMalId(params.id);
@@ -85,7 +85,7 @@ export default function Details() {
               }
             />
             <div className="anime-details d-flex">
-              <LazyLoadImage
+              <LazyImage
                 className="anime-details-poster"
                 src={
                   animeObj.images.webp.image_url ||
