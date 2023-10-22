@@ -74,7 +74,7 @@ export default function Hero() {
               </div>
             </div>
           </div>
-          <lazyImage
+          <LazyImage
             className="carousel-img"
             src={
               item.posterImage?.original ||
