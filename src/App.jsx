@@ -21,6 +21,24 @@ const AnimeInfoJikan = lazy(() =>
 const AnimeInfoKitsu = lazy(() =>
   import("./components/AnimeInfo/AnimeInfoKitsu")
 );
+const Home = lazy(() => import("./pages/Home"));
+const Genre = lazy(() => import("./pages/Genre"));
+const Nav = lazy(() => import("./Layouts/Nav.jsx"));
+const GenreSidebar = lazy(() => import("./Layouts/GenreSidebar"));
+const AnimeInfoRandom = lazy(() =>
+  import("./components/AnimeInfo/AnimeInfoRandom")
+);
+const AnimeByFilter = lazy(() => import("./pages/AnimeByFilter"));
+const AnimeByType = lazy(() => import("./pages/AnimeByType"));
+const WatchAnime = lazy(() => import("./pages/WatchAnime/WatchAnime"));
+const SearchResults = lazy(() => import("./pages/SearchResults"));
+const RecommendedTopTen = lazy(() => import("./Layouts/RecommendedTopTen"));
+const AnimeInfoJikan = lazy(() =>
+  import("./components/AnimeInfo/AnimeInfoJikan")
+);
+const AnimeInfoKitsu = lazy(() =>
+  import("./components/AnimeInfo/AnimeInfoKitsu")
+);
 
 export default function App() {
   return (
