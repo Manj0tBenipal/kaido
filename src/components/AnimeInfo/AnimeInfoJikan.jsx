@@ -6,6 +6,7 @@ import { FaEye, FaHeart, FaMedal, FaPlayCircle, FaPlus } from "react-icons/fa";
 import Share from "../Share/Share";
 import { getAnimeByMalId } from "../../api/jikan";
 import { easeOut, motion } from "framer-motion";
+import LazyImage from "../../utils/LazyImage";
 export default function Details() {
   const params = useParams();
   const { data, isLoading } = getAnimeByMalId(params.id);
@@ -59,6 +60,11 @@ export default function Details() {
   ));
 
   return (
+    /**
+     * Each Property fetched from the API consists of a conditional check whether the property is available or not
+     * If not a Fallback value is displayed
+     * The Fallback value is "NA" which stands for Not Available
+     */
     <motion.div
       className="details-container"
       initial={{ opacity: 0 }}
@@ -79,24 +85,28 @@ export default function Details() {
               }
             />
             <div className="anime-details d-flex">
-              <img
+              <LazyImage
                 className="anime-details-poster"
                 src={
                   animeObj.images.webp.image_url ||
                   animeObj.images.webp.large_image_url ||
-                  animeObj.images.webp.large_small_url
+                  animeObj.images.webp.large_small_url ||
+                  "NA"
                 }
+                isAnimated={false}
               />
 
               <div className="anime-details-content d-flex-fd-column">
                 <h1 className="title-large">
-                  {animeObj.title_english || animeObj.title}
+                  {animeObj.title_english || animeObj.title || "NA"}
                 </h1>
                 <div className="anime-statistics-tiles-wrapper d-flex a-center">
                   <span className="anime-statistics-tile d-flex a-center j-center">
-                    {window.innerWidth < 450
-                      ? animeObj.rating.slice(0, 6)
-                      : animeObj.rating || "NA"}
+                    {animeObj?.rating
+                      ? window.innerWidth < 450
+                        ? animeObj.rating.slice(0, 6)
+                        : animeObj.rating
+                      : "NA"}
                   </span>
                   <span className="anime-statistics-tile d-flex a-center j-center">
                     <FaMedal /> - {animeObj.rank || "NA"}
@@ -105,7 +115,7 @@ export default function Details() {
                     <FaHeart /> -{animeObj.favorites || "NA"}
                   </span>
                   <span className="anime-statistics-tile d-flex a-center j-center">
-                    <FaEye /> -{animeObj.members | "NA"}
+                    <FaEye /> -{animeObj.members || "NA"}
                   </span>
                   <span className="anime-statistics-tile d-flex a-center j-center">
                     HD
@@ -126,9 +136,11 @@ export default function Details() {
                   </button>
                 </div>
                 <p>
-                  {descIsCollapsed
-                    ? animeObj.synopsis?.slice(0, 350) + "..."
-                    : animeObj.synopsis}
+                  {animeObj?.synopsis
+                    ? descIsCollapsed
+                      ? animeObj.synopsis?.slice(0, 350) + "..."
+                      : animeObj.synopsis
+                    : "NA"}
                   <span
                     style={{ cursor: "pointer" }}
                     onClick={() => setDescIsCollapsed((prev) => !prev)}

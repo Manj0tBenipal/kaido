@@ -27,7 +27,8 @@ function handleConsumetResponse(endpoint, parameter) {
  */
 
 export function useSearch(name) {
-  const searchResults = handleConsumetResponse("/", name);
+  const searchResults = handleConsumetResponse("/", name.toLowerCase());
+  console.log(name.toLowerCase());
   const results = searchResults.data?.results;
 
   let subAnime, dubAnime;
@@ -47,7 +48,7 @@ export function useSearch(name) {
       subAnime = results[0];
     }
   }
-
+  console.log(results);
   if (results?.length > 1) {
     const suffix_0 = results[0].id.slice(
       results[0].id.length - 3,
@@ -68,17 +69,14 @@ export function useSearch(name) {
      */
     if (suffix_0 !== "dub") {
       subAnime = results[0];
-      if (
-        results[1].id.slice(results[1].id.length - 3, results[1].id.length) ===
-        "dub"
-      ) {
-        dubAnime = results[1];
-      } else {
-        dubAnime = null;
-      }
+
+      dubAnime =
+        results.find((el) => el.id === subAnime.id + "-dub") || results[1];
     } else if (suffix_0 === "dub") {
       dubAnime = results[0];
-      subAnime = null;
+      subAnime = results.find(
+        (el) => (el.id = dubAnime.id.slice(0, dubAnime.id.length - 4))
+      );
     }
   }
   if (!searchResults.isLoading) {

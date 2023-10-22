@@ -44,6 +44,7 @@
   position: relative;
   height: 40px;
   width: 20%;
+  max-width: 250px;
 }
 .search-icon {
   right: 20px;

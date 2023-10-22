@@ -5,6 +5,7 @@ import { easeOut, motion } from "framer-motion";
 
 import { FaThumbsUp } from "react-icons/fa";
 import useAnimationOnce from "../../hooks/useAnimationOnce";
+import LazyImage from "../../utils/LazyImage";
 export default function TopPosts() {
   const { isLoading, data } = getTopCharacters();
   const ref = useRef(null);
@@ -31,11 +32,12 @@ export default function TopPosts() {
           {idx + 1}
         </span>
         <div className="top-10-item d-flex a-center">
-          <img
+          <LazyImage
             style={characterDpStyles}
             className="character-dp"
             src={el.images.webp.image_url}
             alt="poster"
+            isInView={containerInView}
           />
           <div className="anime-details d-flex-fd-column">
             <span className="title">

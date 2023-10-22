@@ -29,23 +29,9 @@
   min-height: 350px;
   height: auto;
   overflow: hidden;
-
   user-select: none;
 }
-.review-section > img {
-  position: absolute;
-  left: 0px;
-  width: 350px;
-  top: 0;
-  object-fit: cover;
-  overflow: hidden;
-}
-
 .review-list-container {
-  position: absolute;
-  padding-left: 350px;
-  left: 0px;
-  top: 0px;
   width: 100%;
   overflow: hidden;
 }
@@ -99,9 +85,7 @@
 }
 
 @media screen and (max-width: 1200px) {
-  .review-section > img {
-    display: none;
-  }
+
   .review-list-container {
     padding-left: 0;
   }

@@ -22,7 +22,7 @@ export default function Genre() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={containerInView && { opacity: 1, x: ["100%", "-10%", "0%"] }}
-          transition={{ duration: 0.05 * idx }}
+          transition={{ duration: 0.5 }}
         >
           {el.name}
         </motion.div>

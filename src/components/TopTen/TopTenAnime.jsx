@@ -5,6 +5,7 @@ import { FaStar } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { easeOut, motion } from "framer-motion";
 import useAnimationOnce from "../../hooks/useAnimationOnce";
+import LazyImage from "../../utils/LazyImage";
 export default function TopTenAnime() {
   const ref = useRef(null);
   const containerInView = useAnimationOnce(ref);
@@ -33,7 +34,11 @@ export default function TopTenAnime() {
           {idx + 1 > 9 ? idx + 1 : "0" + (idx + 1)}
         </span>
         <div className="top-10-item d-flex a-center">
-          <img src={el.attributes.posterImage.tiny} alt="poster" />
+          <LazyImage
+            src={el.attributes.posterImage.tiny}
+            alt="poster"
+            isInView={containerInView}
+          />
           <div className="anime-details d-flex-fd-column">
             <span className="title">
               <Link

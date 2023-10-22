@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./navbar.css";
 import logo from "../../media/logo.png";
-import profileIcon from "../../media/profile.jpg";
 import { Link } from "react-router-dom";
 import { FaSearch, FaBars, FaBell } from "react-icons/fa";
 
@@ -95,9 +94,6 @@ export default function NavBar(props) {
               }}
             />
           )}
-
-          <FaBell size={20} />
-          <img className="profile-icon" src={profileIcon} alt="profile-icon" />
         </div>
       </nav>
       {floatSearchIsVisible && (

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { getAnimeByMalId } from "../../api/jikan";
 import { FaStar, FaPlayCircle, FaChevronRight } from "react-icons/fa";
 import LoadingSpinner from "../LoadingSpinner";
@@ -6,11 +6,10 @@ import { Link } from "react-router-dom";
 import { FaEye, FaHeart, FaMedal } from "react-icons/fa";
 import "./mouse-over-card.css";
 
-import { motion } from "framer-motion";
 export default function MouseOverCard(props) {
   const { isLoading, data } = getAnimeByMalId(props.id);
   const anime = data?.data;
-
+  const ref = useRef(null);
   const genre = anime?.genres?.map((genre) => {
     return (
       <Link
@@ -23,8 +22,17 @@ export default function MouseOverCard(props) {
       </Link>
     );
   });
+
+  useEffect(() => {
+    const cardRef = ref.current;
+    if (ref.current) {
+      cardRef.addEventListener("mouseenter", (event) => {
+        event.stopPropagation();
+      });
+    }
+  }, []);
   return (
-    <div className="mouse-over-card-wrapper d-flex-fd-column">
+    <div className="mouse-over-card-wrapper d-flex-fd-column" ref={ref}>
       {isLoading ? (
         <LoadingSpinner />
       ) : (
@@ -92,22 +100,6 @@ export default function MouseOverCard(props) {
               <b>Genre: </b>
               {genre}
             </p>
-          </div>
-          <div className="button-wrapper">
-            <Link
-              to={`/watch?name=${anime?.title_english || anime?.title}`}
-              className="btn-primary hero-button"
-              onClick={() => window.scrollTo({ top: 0 })}
-            >
-              <FaPlayCircle size={12} /> Watch Now
-            </Link>
-            <Link
-              to={`/details/jikan/${anime?.mal_id}`}
-              onClick={() => window.scrollTo({ top: 0 })}
-              className="btn-secondary hero-button"
-            >
-              Details <FaChevronRight size={12} />
-            </Link>
           </div>
         </>
       )}
