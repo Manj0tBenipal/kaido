@@ -36,7 +36,7 @@
   .sidebar-wrapper {
     width: 100%;
   }
-  .main-contianer {
-    padding-inline: 0 !important;
+  .main-container {
+    padding: 30px 10px;
   }
 }

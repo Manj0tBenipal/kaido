@@ -70,14 +70,6 @@ export default function ReviewSection() {
         </div>
       ) : (
         <div className="review-section d-flex">
-          {window.innerWidth > 1200 && (
-            <lazyImage
-              src={import("../../media/muichiro.png").then((el) => el.default)}
-              alt="coment"
-              isAnimated={false}
-            />
-          )}
-
           <div className="review-list-container">
             <div className="review-section-toolbar d-flex a-center">
               <div className="review-type">

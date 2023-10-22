@@ -173,12 +173,7 @@ export default function WatchAnime() {
       transition={{ duration: 0.7, ease: easeOut }}
     >
       {Object.keys(subInfo).length > 0 || Object.keys(dubInfo).length > 0 ? (
-        <motion.div
-          style={{ marginTop: "65px" }}
-          className="watch-container d-flex"
-          animate={{ y: [-window.innerHeight / 2, 10, 0] }}
-          transition={{ duration: 0.5, ease: easeOut }}
-        >
+        <div style={{ marginTop: "65px" }} className="watch-container d-flex">
           <img
             className="watch-container-background"
             src={subIsSelected ? subInfo?.image : dubInfo?.image}
@@ -313,7 +308,7 @@ export default function WatchAnime() {
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
       ) : !(subInfo && dubInfo) ? (
         <Error />
       ) : (
