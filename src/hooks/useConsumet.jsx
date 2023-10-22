@@ -48,7 +48,7 @@ export function useSearch(name) {
       subAnime = results[0];
     }
   }
-
+  console.log(results);
   if (results?.length > 1) {
     const suffix_0 = results[0].id.slice(
       results[0].id.length - 3,
@@ -70,7 +70,8 @@ export function useSearch(name) {
     if (suffix_0 !== "dub") {
       subAnime = results[0];
 
-      dubAnime = results.find((el) => el.id === subAnime.id + "-dub");
+      dubAnime =
+        results.find((el) => el.id === subAnime.id + "-dub") || results[1];
     } else if (suffix_0 === "dub") {
       dubAnime = results[0];
       subAnime = results.find(
