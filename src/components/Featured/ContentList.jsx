@@ -5,11 +5,7 @@ import { Link } from "react-router-dom";
 import { useInView } from "framer-motion";
 import LazyImage from "../../utils/LazyImage";
 export default function CategorieContainer(props) {
-  /**
-   * Uses the reference of each individual list item to check if it is in view
-   *
-   * only download the image if it is in view
-   */
+  
   const ref = React.useRef(null);
   const isInView = useInView(ref, { once: true });
   const list = props.data.data?.data.map((el, idx) => {
