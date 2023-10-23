@@ -5,10 +5,10 @@ import LoadingSpinner from "../components/LoadingSpinner";
 import AnimeCollection from "../components/MainContainer/AnimeCollection";
 import { easeOut, motion } from "framer-motion";
 
-export  function AnimeByFilter() {
+export default function AnimeByFilter() {
   const [searchParams] = useSearchParams();
   const collection = getAnimeByFilter(searchParams.get("name"));
-
+  console.log(collection, searchParams.get("name"));
   return (
     <motion.div
       className="collections-wrapper d-flex-fd-column a-center "
