@@ -20,15 +20,8 @@ function handleConsumetResponse(endpoint, parameter) {
   };
 }
 
-/**
- *
- * @param  name
- * @returns an object containing loading and error states from the query and data retrieved
- */
-
 export function useSearch(name) {
   const searchResults = handleConsumetResponse("/", name.toLowerCase());
-  console.log(name.toLowerCase());
   const results = searchResults.data?.results;
 
   let subAnime, dubAnime;
@@ -48,7 +41,7 @@ export function useSearch(name) {
       subAnime = results[0];
     }
   }
-  console.log(results);
+
   if (results?.length > 1) {
     const suffix_0 = results[0].id.slice(
       results[0].id.length - 3,

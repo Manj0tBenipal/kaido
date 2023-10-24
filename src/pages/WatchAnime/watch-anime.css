@@ -103,14 +103,6 @@ select:enabled {
 }
 .hls-container {
   min-width: 100%;
-  aspect-ratio: 16/9;
-}
-.video-player video {
-  display: block;
-  width: 100% !important;
-  aspect-ratio: 16/9;
-  overflow: hidden;
-  border: none;
 }
 .warn {
   font-size: 12px;

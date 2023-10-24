@@ -4,7 +4,6 @@ import { useState } from "react";
 import HlsVideoPlayer from "./HlsVideoPlayer";
 import "../../main.css";
 import "./watch-anime.css";
-import loadingImage from "../../media/placeholder.gif";
 import RecommendedTopTen from "../../Layouts/RecommendedTopTen";
 import Share from "../../components/Share/Share";
 import LoadingSpinner from "../../components/LoadingSpinner";
@@ -43,7 +42,6 @@ export default function WatchAnime() {
   const [dubInfo, setDubInfo] = useState({});
   const [selectedServer, setSelectedServer] = useState(0);
   const [selectedEpisode, setSelectedEpisode] = useState(0);
-  const [quality, setQuality] = useState("default");
 
   /**
    * fetches servers from the API based on the user's selection of SUB ior DUB
@@ -86,7 +84,33 @@ export default function WatchAnime() {
   const episodeQuality = episodesData?.sources?.map((el) => {
     return { quality: el.quality, url: el.url };
   });
+  // Server and episode buttons to change the respective item
+  const serverButtons = servers?.map((el, idx) => {
+    return (
+      <span
+        className={`server-tile ${selectedServer === idx ? "selected" : ""}`}
+        key={el.name}
+        onClick={() => setSelectedServer(idx)}
+      >
+        {el.name}
+      </span>
+    );
+  });
 
+  const episodeButtons = episodeList?.map((el, idx) => {
+    return (
+      <span
+        className={`episode-tile ${idx === selectedEpisode ? "selected" : ""}`}
+        key={el.id}
+        style={
+          episodeList.length < 10 ? { minWidth: "100%", borderRadius: 0 } : null
+        }
+        onClick={() => setSelectedEpisode(idx)}
+      >
+        {episodeList.length < 10 ? ` Episode: ` + el.number : el.number}
+      </span>
+    );
+  });
   /**
    * when the custom hook fetches search results from the API it changes the values of
    * subData and dubData variables
@@ -123,45 +147,6 @@ export default function WatchAnime() {
     }
   }, [subInfo, dubInfo]);
 
-  // Server and episode buttons to change the respective item
-  const serverButtons = servers?.map((el, idx) => {
-    return (
-      <span
-        className={`server-tile ${selectedServer === idx ? "selected" : ""}`}
-        key={el.name}
-        onClick={() => setSelectedServer(idx)}
-      >
-        {el.name}
-      </span>
-    );
-  });
-
-  const episodeButtons = episodeList?.map((el, idx) => {
-    return (
-      <span
-        className={`episode-tile ${idx === selectedEpisode ? "selected" : ""}`}
-        key={el.id}
-        style={
-          episodeList.length < 10 ? { minWidth: "100%", borderRadius: 0 } : null
-        }
-        onClick={() => setSelectedEpisode(idx)}
-      >
-        {episodeList.length < 10 ? ` Episode: ` + el.number : el.number}
-      </span>
-    );
-  });
-  const qualityButtons = episodeQuality?.map((el) => {
-    return (
-      <option
-        key={el.quality}
-        style={{ color: "white" }}
-        className={`episode-tile ${el.quality === quality ? "selected" : ""}`}
-        value={el.quality}
-      >
-        {el.quality.toUpperCase()}
-      </option>
-    );
-  });
   if (searchResults?.noAnime) {
     return <Error />;
   }
@@ -189,25 +174,13 @@ export default function WatchAnime() {
             <div className="video-player">
               <div className="hls-container">
                 {episodeQuality?.length > 0 ? (
-                  <HlsVideoPlayer
-                    url={
-                      episodeQuality?.find((el) => el.quality === quality)?.url
-                    }
-                  />
+                  <HlsVideoPlayer episodeData={episodeQuality} />
                 ) : (
                   <div
                     className="d-flex a-center j-center"
-                    style={{ height: "100%" }}
+                    style={{ width: "100%", aspectRatio: "16/9" }}
                   >
-                    <img
-                      src={loadingImage}
-                      style={{
-                        display: "block",
-                        height: 100,
-                        width: 100,
-                        margin: "auto",
-                      }}
-                    />
+                    <LoadingSpinner />
                   </div>
                 )}
               </div>
@@ -249,26 +222,8 @@ export default function WatchAnime() {
                     {servers?.length > 0 ? (
                       serverButtons
                     ) : (
-                      <img
-                        src={loadingImage}
-                        style={{ height: 100, width: 100 }}
-                      />
+                      <LoadingSpinner style={{ height: "100px" }} />
                     )}
-                  </div>
-                  <div>
-                    Quality:
-                    <select
-                      style={{
-                        width: "100px",
-                        marginLeft: 10,
-                        background: "var(--theme)",
-                      }}
-                      className={`episode-tile`}
-                      onChange={(e) => setQuality(e.target.value)}
-                      value={quality}
-                    >
-                      {qualityButtons}
-                    </select>
                   </div>
                 </div>
               </div>

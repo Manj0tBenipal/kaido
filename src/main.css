@@ -96,14 +96,14 @@ body {
   margin-inline: auto;
 }
 
-.spinner {
-  animation: rotate 800ms linear infinite;
+.progressing {
+  animation: blink 400ms linear infinite;
 }
-@keyframes rotate {
+@keyframes blink {
   from {
-    transform: rotate(0deg);
+    opacity: 0;
   }
   to {
-    transform: rotate(360deg);
+    opacity: 1;
   }
 }
