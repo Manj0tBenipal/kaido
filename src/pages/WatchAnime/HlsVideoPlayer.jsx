@@ -133,6 +133,18 @@ export default function HLSVideoPlayer({ episodeData }) {
         "fullscreenchange",
         handleFullScreenChange
       );
+      videoContainerRef.current.addEventListener("mouseenter", () => {
+        if (controlsRef.current) {
+          controlsRef.current.classList.toggle("fade");
+        }
+      });
+      // videoContainerRef.current.addEventListener("mouseout", () => {
+      //   if (controlsRef.current) {
+      //     controlsRef.current.style.display = "none";
+      //   }
+      // });
+    }
+    if (videoRef.current) {
       videoRef.current.addEventListener("loadeddata", () => {
         const durationInSec = videoRef.current.duration;
 
@@ -163,6 +175,16 @@ export default function HLSVideoPlayer({ episodeData }) {
           "fullscreenchange",
           handleFullScreenChange
         );
+      videoContainerRef.current.removeEventListener("mousemove", () => {
+        if (controlsRef.current) {
+          controlsRef.current.classList.toggle("fade");
+        }
+      });
+      // videoContainerRef.current.removeEventListener("mouseout", () => {
+      //   if (controlsRef.current) {
+      //     controlsRef.current.style.display = "none";
+      //   }
+      // });
     };
   }, []);
   useEffect(() => {

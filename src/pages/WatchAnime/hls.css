@@ -24,9 +24,9 @@ video {
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
 }
-.video-container:hover .video-controls-container {
+/* .video-container:hover .video-controls-container {
   opacity: 1;
-}
+} */
 
 .video-controls-container .controls {
   display: flex;
@@ -157,4 +157,17 @@ video {
 input[type="range"] {
   accent-color: var(--theme);
   border: none;
+}
+
+.fade {
+  display: block;
+  animation: fadeout 5s ease-in-out;
+}
+@keyframes fadeout {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
