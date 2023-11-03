@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useQuery } from "react-query";
-import topAnimeData from "../data/topAnime";
 export function getRecentAnime() {
   const queryObj = useQuery("recent-anime", async () => {
     return await axios
@@ -11,7 +10,7 @@ export function getRecentAnime() {
         return { data: topAnimeData, isLoading: false };
       });
   });
-  const data = queryObj.isError ? topAnimeData.data : queryObj.data?.data.data;
+  const data = queryObj.data?.data.data;
 
   return { isLoading: queryObj.isLoading, data: data };
 }
@@ -23,7 +22,7 @@ export function getTrendingAnime() {
         return { data: topAnimeData, isLoading: false };
       });
   });
-  const data = queryObj.isError ? topAnimeData.data : queryObj.data?.data.data;
+  const data = queryObj.data?.data.data;
 
   return { isLoading: queryObj.isLoading, data: data };
 }

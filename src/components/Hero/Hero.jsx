@@ -51,8 +51,12 @@ export default function Hero() {
                 </span>
               </div>
               <p className="description">
-                {(item.background && item.background.slice(0, 200) + "...") ||
-                  (item.synopsis && item.synopsis.slice(0, 200) + "...")}
+                {(item?.background?.length > 300
+                  ? item.background.slice(0, 300) + "..."
+                  : item?.background) ||
+                  (item?.synopsis?.length > 300
+                    ? item.synopsis.slice(0, 300) + "..."
+                    : item?.synopsis || "No description")}
               </p>
               <div className="button-wrapper">
                 <Link
@@ -94,7 +98,7 @@ export default function Hero() {
     <motion.div
       className="carousel slide"
       style={{ position: "relative" }}
-      animate={{ y: [-window.innerHeight / 3, 10, 0] }}
+      animate={{ x: [-window.innerWidth / 2, 10, 0] }}
       transition={{ duration: 1.3, ease: easeOut }}
     >
       {isLoading ? (

@@ -1,0 +1,5 @@
+.skeleton-card-img {
+  width: 100% !important;
+  height: 310px;
+  object-fit: cover;
+}

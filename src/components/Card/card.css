@@ -1,20 +1,21 @@
 .anime-card-wrapper {
   position: relative;
   /* border: 1px solid white; */
-
   width: calc(100% / 6 - 1rem);
-
   font-size: 14px;
 }
 .anime-card {
   flex-direction: column;
   text-decoration: none;
   min-width: 100%;
+  border-radius: 2px;
+  overflow: hidden;
 }
 .card-details {
   background: var(--grey-dark);
   padding-inline: 10px;
   padding-bottom: 10px;
+  z-index: 3;
 }
 .anime-card-img-wrapper {
   position: relative;
@@ -37,11 +38,7 @@
     #343a4000 32%
   );
 }
-.anime-card-img-wrapper img {
-  width: 100% !important;
-  height: 250px;
-  object-fit: cover;
-}
+
 .anime-card-img-wrapper img {
   width: 100% !important;
   height: 310px;

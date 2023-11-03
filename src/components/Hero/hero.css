@@ -37,7 +37,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 145%;
   height: 100%;
   background: linear-gradient(90deg, #242428 30%, #242428d4 35%, #24242800 45%);
 }
@@ -81,7 +81,7 @@
   bottom: 3em;
   left: 3em;
   z-index: 2;
-  width: 40%;
+  width: 45%;
   font-family: "Poppins", sans-serif;
   display: flex;
   flex-direction: column;
@@ -211,6 +211,7 @@
   }
   .anime-info-content {
     width: 60%;
+    gap: 0rem;
   }
   .description {
     font-size: 14px;

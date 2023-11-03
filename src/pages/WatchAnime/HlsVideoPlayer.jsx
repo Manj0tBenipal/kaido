@@ -155,36 +155,31 @@ export default function HLSVideoPlayer({ episodeData }) {
           };
         });
       });
+
       videoRef.current.addEventListener("timeupdate", () => {
-        if (videoRef.current) {
-          const currentTimeInSec = videoRef.current.currentTime;
-          setCurrentTime(() => {
-            return {
-              currentTime: currentTimeInSec,
-              formattedDuration: formatTime(currentTimeInSec),
-            };
-          });
-        }
+        const currentTimeInSec = videoRef.current.currentTime;
+        setCurrentTime(() => {
+          return {
+            currentTime: currentTimeInSec,
+            formattedDuration: formatTime(currentTimeInSec),
+          };
+        });
       });
     }
 
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
-      videoContainerRef.current &&
+      if (videoContainerRef.current) {
         videoContainerRef.current.removeEventListener(
           "fullscreenchange",
           handleFullScreenChange
         );
-      videoContainerRef.current.removeEventListener("mousemove", () => {
-        if (controlsRef.current) {
-          controlsRef.current.classList.toggle("fade");
-        }
-      });
-      // videoContainerRef.current.removeEventListener("mouseout", () => {
-      //   if (controlsRef.current) {
-      //     controlsRef.current.style.display = "none";
-      //   }
-      // });
+        videoContainerRef.current.removeEventListener("mousemove", () => {
+          if (controlsRef.current) {
+            controlsRef.current.classList.toggle("fade");
+          }
+        });
+      }
     };
   }, []);
   useEffect(() => {
