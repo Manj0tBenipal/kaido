@@ -4,7 +4,7 @@ export function getRecentAnime() {
   const queryObj = useQuery("recent-anime", async () => {
     return await axios
       .get(
-        "https://kitsu.io/api/edge/anime?filter[status]=current&sort=-averageRating"
+        "https://kitsu.io/api/edge/anime?page[limit]=10&sort=-averageRating"
       )
       .catch((error) => {
         return { data: topAnimeData, isLoading: false };
