@@ -81,8 +81,8 @@ export default function Hero() {
           <LazyImage
             className="carousel-img"
             src={
-              item.posterImage?.original ||
-              item.posterImage?.large ||
+              item.coverImage?.original ||
+              item.coverImage?.large ||
               item.posterImage?.small ||
               item.posterImage?.medium
             }

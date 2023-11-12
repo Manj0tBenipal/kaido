@@ -9,7 +9,7 @@
 }
 video {
   display: block;
-  width: 100% !important;
+  height: 100% !important;
   aspect-ratio: 16/9;
   overflow: hidden;
   border: none;
@@ -163,11 +163,15 @@ input[type="range"] {
   display: block;
   animation: fadeout 5s ease-in-out;
 }
+.awake {
+  display: block;
+}
 @keyframes fadeout {
   from {
     opacity: 1;
   }
   to {
     opacity: 0;
+    display: none;
   }
 }

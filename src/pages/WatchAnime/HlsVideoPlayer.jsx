@@ -102,7 +102,9 @@ export default function HLSVideoPlayer({ episodeData }) {
       console.error("HLS is not supported in this browser.");
     }
   }, [settings.qualityIndex]);
+
   useEffect(() => {
+    //handles the keydoen events such as f-> Fullscreen and m->Mute etc..
     function handleKeyDown(e) {
       if (e.target.tagName === "INPUT") return;
       let key = e.key.toLowerCase();
@@ -127,23 +129,45 @@ export default function HLSVideoPlayer({ episodeData }) {
           break;
       }
     }
+
     document.addEventListener("keydown", (e) => handleKeyDown(e));
+
+    //This useEffect updates the state of fullScreen as the user uses keyboard or mouse click event to change the fullScreen mode
+    //Helps keep the button icons in sync irrespective of the trigger of fullScreen Mode
     if (videoContainerRef.current) {
       videoContainerRef.current.addEventListener(
         "fullscreenchange",
         handleFullScreenChange
       );
-      videoContainerRef.current.addEventListener("mouseenter", () => {
+
+      /**
+       * The function below handle the display of controls inside the video player
+       * controls appear when user moves mouse inside the video player
+       * Controls disappear on inactivity
+       * controls appear when mouse moves into the video container
+       */
+
+      videoContainerRef.current.addEventListener("mousemove", () => {
         if (controlsRef.current) {
+          controlsRef.current.classList.add("awake");
+        }
+      });
+      videoContainerRef.current.addEventListener("mouseover", () => {
+        if (controlsRef.current) {
+          controlsRef.current.classList.add("awake");
+        }
+      });
+
+      //
+      videoContainerRef.current.addEventListener("mouseout", () => {
+        if (controlsRef.current) {
+          controlsRef.current.classList.remove("awake");
           controlsRef.current.classList.toggle("fade");
         }
       });
-      // videoContainerRef.current.addEventListener("mouseout", () => {
-      //   if (controlsRef.current) {
-      //     controlsRef.current.style.display = "none";
-      //   }
-      // });
     }
+
+    //Manages the duration of the video and the progress as the video
     if (videoRef.current) {
       videoRef.current.addEventListener("loadeddata", () => {
         const durationInSec = videoRef.current.duration;
@@ -182,6 +206,8 @@ export default function HLSVideoPlayer({ episodeData }) {
       }
     };
   }, []);
+
+  console.log(videoRef?.current?.classList);
   useEffect(() => {
     if (parseInt(volume) === 0) {
       setIsMuted(true);
