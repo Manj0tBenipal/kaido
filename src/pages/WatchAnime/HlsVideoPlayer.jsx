@@ -398,7 +398,11 @@ export default function HLSVideoPlayer({ episodeData }) {
           </div>
         </div>
       )}
-      <video onClick={() => togglePlay()} ref={videoRef} />
+      <video
+        style={isFullScreen ? { height: "100%" } : null}
+        onClick={() => togglePlay()}
+        ref={videoRef}
+      />
     </div>
   );
 }
