@@ -20,6 +20,29 @@ export default function HlsVideoPlayer({ url, headers }) {
       console.error("HLS is not supported in this browser.");
     }
   }, [url]);
+  // full-screnn added
+    const toggleFullScreen = () => {
+    if (!document.fullscreenElement) {
+      videoRef.current.requestFullscreen().catch((err) => {
+        console.error("Error attempting to enable full-screen mode:", err);
+      });
+    } else {
+      document.exitFullscreen();
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeyPress);
+    return () => {
+      document.removeEventListener("keydown", handleKeyPress);
+    };
+  }, []);
+
+  const handleKeyPress = (event) => {
+    if (event.key === "f" || event.key === "F") {
+      toggleFullScreen();
+    }
+  };
   return (
     <div>
       <video ref={videoRef} controls />
