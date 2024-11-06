@@ -2,7 +2,7 @@ import axios from "axios";
 import { useQuery } from "react-query";
 import { servers } from "../api/gogoanime_servers";
 function handleConsumetResponse(endpoint, parameter) {
-  const BASE_URL = "https://api.consumet.manjotbenipal.xyz/anime/gogoanime";
+  const BASE_URL = `https://consumet.manjotbenpipal.xyz/anime/gogoanime`;
   const results = useQuery(`${endpoint}${parameter}`, async () => {
     if (parameter) {
       return await axios
